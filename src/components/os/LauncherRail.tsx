@@ -45,7 +45,7 @@ export const LauncherRail: React.FC = () => {
   };
 
   return (
-    <aside className="w-16 sm:w-20 bg-[#07100D] border-r border-[#42F59B]/20 flex flex-col items-center py-4 space-y-3 z-20 select-none shrink-0">
+    <aside className="w-16 sm:w-20 bg-[#040D14] border-r border-[#00F0FF]/30 flex flex-col items-center py-4 space-y-3 z-20 select-none shrink-0">
       {LAUNCHER_ITEMS.map((item) => {
         const Icon = item.icon;
         const isActive = activeWorkspace === item.id;
@@ -57,19 +57,19 @@ export const LauncherRail: React.FC = () => {
               aria-label={item.label}
               className={`w-11 h-11 sm:w-12 sm:h-12 rounded-lg flex flex-col items-center justify-center transition-all cursor-pointer relative ${
                 isActive
-                  ? 'bg-[#42F59B]/20 border border-[#42F59B] text-[#42F59B] glow-green-sm'
-                  : 'bg-[#0A1411] border border-[#42F59B]/10 text-[#9DB2A8] hover:text-[#42F59B] hover:border-[#42F59B]/40'
+                  ? 'bg-[#00F0FF]/20 border-2 border-[#00F0FF] text-[#00F0FF] glow-blue-sm'
+                  : 'bg-[#071520] border border-[#00F0FF]/15 text-[#8DAAC0] hover:text-[#00F0FF] hover:border-[#00F0FF]/50'
               }`}
             >
               <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span className="text-[9px] font-mono mt-0.5 tracking-tighter truncate max-w-full">
+              <span className="text-[9px] font-mono mt-0.5 tracking-tighter truncate max-w-full font-bold">
                 {item.label}
               </span>
             </button>
 
-            <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 hidden group-hover:flex flex-col bg-[#0A1411] border border-[#42F59B] text-[#F1F7F3] p-2 rounded shadow-xl z-50 text-xs font-mono whitespace-nowrap">
-              <span className="font-bold text-[#42F59B]">{item.label}</span>
-              <span className="text-[10px] text-[#44E8FF]">CLI: {item.commandHint}</span>
+            <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 hidden group-hover:flex flex-col bg-[#071520] border border-[#00F0FF] text-[#F0F8FF] p-2.5 rounded shadow-2xl z-50 text-xs font-mono whitespace-nowrap glow-blue-sm">
+              <span className="font-extrabold text-[#00F0FF]">{item.label}</span>
+              <span className="text-[10px] text-[#39FF14]">CLI: {item.commandHint}</span>
             </div>
           </div>
         );

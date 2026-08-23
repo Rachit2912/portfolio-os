@@ -20,29 +20,29 @@ export const TopBar: React.FC = () => {
   }, []);
 
   return (
-    <header className="h-10 bg-[#07100D]/90 border-b border-[#42F59B]/20 px-4 flex items-center justify-between text-xs font-mono select-none z-30 backdrop-blur-sm">
+    <header className="h-10 bg-[#040D14]/90 border-b border-[#00F0FF]/30 px-4 flex items-center justify-between text-xs font-mono select-none z-30 backdrop-blur-md">
       <div className="flex items-center space-x-3">
-        <div className="flex items-center space-x-2 text-[#42F59B] font-bold">
-          <Shield className="w-4 h-4 text-[#42F59B]" />
+        <div className="flex items-center space-x-2 text-[#00F0FF] font-extrabold text-glow-blue">
+          <Shield className="w-4 h-4 text-[#00F0FF]" />
           <span className="hidden sm:inline">RACHIT_OS</span>
         </div>
-        <span className="text-[#9DB2A8] hidden sm:inline">|</span>
-        <div className="text-[#8CFFC5] font-semibold flex items-center space-x-1">
-          <span className="text-[#44E8FF]">path:</span>
+        <span className="text-[#8DAAC0] hidden sm:inline">|</span>
+        <div className="text-[#39FF14] font-semibold flex items-center space-x-1">
+          <span className="text-[#00F0FF]">path:</span>
           <span>{currentPath}</span>
         </div>
-        <span className="text-[#9DB2A8] hidden md:inline">({activeWorkspace})</span>
+        <span className="text-[#8DAAC0] hidden md:inline">({activeWorkspace})</span>
       </div>
 
       <div className="flex items-center space-x-4">
-        <div className="hidden lg:flex items-center space-x-3 border-r border-[#42F59B]/20 pr-4">
+        <div className="hidden lg:flex items-center space-x-3 border-r border-[#00F0FF]/20 pr-4">
           {socialLinks.slice(0, 4).map((link) => (
             <a
               key={link.name}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#9DB2A8] hover:text-[#42F59B] transition-colors flex items-center space-x-1"
+              className="text-[#8DAAC0] hover:text-[#00F0FF] transition-colors flex items-center space-x-1 text-[11px]"
               title={link.label}
             >
               <span>{link.name}</span>
@@ -51,25 +51,25 @@ export const TopBar: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex items-center space-x-3 text-[#9DB2A8]">
-          <div className="hidden md:flex items-center space-x-1 text-[#42F59B]">
+        <div className="flex items-center space-x-3 text-[#8DAAC0]">
+          <div className="hidden md:flex items-center space-x-1 text-[#39FF14] text-[11px] font-bold">
             <Wifi className="w-3.5 h-3.5" />
             <span>ONLINE</span>
           </div>
 
           <button
             onClick={() => toggleCRT()}
-            className={`px-2 py-0.5 rounded border text-[10px] cursor-pointer transition-colors ${
+            className={`px-2 py-0.5 rounded border text-[10px] cursor-pointer transition-colors font-bold ${
               crtEnabled
-                ? 'bg-[#42F59B]/10 border-[#42F59B] text-[#42F59B]'
-                : 'bg-[#0A1411] border-[#9DB2A8]/30 text-[#9DB2A8]'
+                ? 'bg-[#00F0FF]/15 border-[#00F0FF] text-[#00F0FF] glow-blue-sm'
+                : 'bg-[#071520] border-[#8DAAC0]/30 text-[#8DAAC0]'
             }`}
             title="Toggle CRT Overlay"
           >
             CRT: {crtEnabled ? 'ON' : 'OFF'}
           </button>
 
-          <div className="text-[#42F59B] font-bold tracking-wider">
+          <div className="text-[#00F0FF] font-bold tracking-wider text-glow-blue">
             {timeStr || '00:00:00'}
           </div>
         </div>
