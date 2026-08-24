@@ -6,27 +6,27 @@ import { useOSStore } from '@/store/useOSStore';
 import { CommandRegistry } from './CommandRegistry';
 
 const NEOFETCH_PRE_RUN = (
-  <div className="os-panel p-4 border-[#00F0FF] glow-blue-sm space-y-3 font-mono text-xs max-w-xl my-1 bg-[#020A0F]">
-    <div className="flex items-center space-x-4 border-b border-[#00F0FF]/30 pb-2">
-      <div className="text-[#00F0FF] font-extrabold text-sm tracking-wider text-glow-blue">
-        rachit@archlinux-portfolio
+  <div className="os-panel p-4 border-[#39FF14] glow-green-sm space-y-3 font-mono text-xs max-w-xl my-1 bg-[#030D06]">
+    <div className="flex items-center space-x-4 border-b border-[#39FF14]/30 pb-2">
+      <div className="text-[#39FF14] font-extrabold text-sm tracking-wider text-glow-green">
+        rachit@rachit-portfolio-os
       </div>
     </div>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[#F0F8FF]">
-      <div><span className="text-[#39FF14] font-bold">OS:</span> Arch Linux x86_64</div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[#E8FFE8]">
+      <div><span className="text-[#39FF14] font-bold">OS:</span> Rachit Portfolio OS x86_64</div>
       <div><span className="text-[#39FF14] font-bold">Host:</span> VIT Vellore B.Tech IT</div>
-      <div><span className="text-[#39FF14] font-bold">Kernel:</span> 6.8.0-rachit-arch</div>
-      <div><span className="text-[#39FF14] font-bold">Uptime:</span> 887 days (CGPA 8.87)</div>
+      <div><span className="text-[#39FF14] font-bold">Kernel:</span> 6.8.0-rachit-portfolio-os</div>
+      <div><span className="text-[#39FF14] font-bold">CGPA:</span> 8.87 / 10</div>
       <div><span className="text-[#39FF14] font-bold">Current Role:</span> SDE Intern @ Hitwicket</div>
       <div><span className="text-[#39FF14] font-bold">Certification:</span> AWS SAA Certified</div>
-      <div><span className="text-[#39FF14] font-bold">Shell:</span> shellB C++ custom REPL</div>
+      <div><span className="text-[#39FF14] font-bold">Shell:</span> shellB C++ custom POSIX REPL</div>
       <div><span className="text-[#39FF14] font-bold">LeetCode:</span> Global Rank #408</div>
     </div>
 
-    <div className="pt-2 border-t border-[#00F0FF]/20 text-[11px]">
-      <span className="text-[#8DAAC0]">Core Stack: </span>
-      <span className="text-[#39FF14] font-semibold">C/C++, Go, Python, Node.js, PostgreSQL, Redis, Docker, AWS</span>
+    <div className="pt-2 border-t border-[#39FF14]/20 text-[11px]">
+      <span className="text-[#70A080]">Core Stack: </span>
+      <span className="text-[#00FF66] font-semibold">C/C++, Go, Python, Node.js, PostgreSQL, Redis, Docker, AWS</span>
     </div>
   </div>
 );
@@ -64,14 +64,22 @@ export const TerminalWindow: React.FC = () => {
       return;
     }
 
+    const savedPromptPath = currentPath;
     const res = CommandRegistry.execute(trimmed, currentPath);
+
+    if (res.action === 'exit') {
+      setActiveWorkspace('desktop');
+      setInputVal('');
+      return;
+    }
 
     addCommandHistory({
       id: Math.random().toString(36).substring(7),
       command: trimmed,
       output: res.output,
       timestamp: new Date().toLocaleTimeString(),
-      isError: res.isError
+      isError: res.isError,
+      promptPath: savedPromptPath
     });
 
     if (res.newPath) setCurrentPath(res.newPath);
@@ -106,18 +114,18 @@ export const TerminalWindow: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#020A0F] border border-[#00F0FF]/40 rounded-lg shadow-2xl overflow-hidden font-mono text-xs">
+    <div className="w-full h-full flex flex-col bg-[#030D06] border border-[#39FF14]/40 rounded-lg shadow-2xl overflow-hidden font-mono text-xs">
       {/* Window Header */}
-      <div className="bg-[#071520] border-b border-[#00F0FF]/30 px-4 py-2 flex items-center justify-between select-none shrink-0">
-        <div className="flex items-center space-x-2 text-[#00F0FF]">
+      <div className="bg-[#0A1C10] border-b border-[#39FF14]/30 px-4 py-2 flex items-center justify-between select-none shrink-0">
+        <div className="flex items-center space-x-2 text-[#39FF14]">
           <TerminalIcon className="w-4 h-4 text-[#39FF14]" />
-          <span className="font-bold tracking-wide">rachit@archlinux:{currentPath}$</span>
+          <span className="font-bold tracking-wide">rachit@rachit-portfolio-os:{currentPath}$</span>
         </div>
         <div className="flex items-center space-x-2">
-          <span className="text-[10px] text-[#8DAAC0] hidden sm:inline">Type 'help' for commands</span>
+          <span className="text-[10px] text-[#70A080] hidden sm:inline">Type 'help' for commands</span>
           <button
             onClick={() => setActiveWorkspace('desktop')}
-            className="text-[#8DAAC0] hover:text-[#FF2A55] transition-colors p-1 cursor-pointer"
+            className="text-[#70A080] hover:text-[#FF2A55] transition-colors p-1 cursor-pointer"
             title="Close Terminal"
           >
             <X className="w-4 h-4" />
@@ -130,19 +138,19 @@ export const TerminalWindow: React.FC = () => {
         className="flex-1 p-4 overflow-y-auto space-y-3 font-mono"
         onClick={() => inputRef.current?.focus()}
       >
-        {/* Pre-run Arch Linux Neofetch display */}
+        {/* Pre-run Neofetch display */}
         <div className="space-y-1 text-[#39FF14]">
-          <div className="text-[#00F0FF] font-bold">rachit@archlinux:~$ neofetch</div>
+          <div className="text-[#39FF14] font-bold">rachit@rachit-portfolio-os:~$ neofetch</div>
           {NEOFETCH_PRE_RUN}
-          <div className="text-[#8DAAC0] text-[11px] pt-1">
-            Arch Linux Terminal Ready. Type <span className="text-[#39FF14] font-bold">'help'</span> for list of commands.
+          <div className="text-[#70A080] text-[11px] pt-1">
+            Rachit Portfolio OS Terminal Ready. Type <span className="text-[#39FF14] font-bold">'help'</span> for list of commands.
           </div>
         </div>
 
         {commandHistory.map((item) => (
           <div key={item.id} className="space-y-1">
             <div className="flex items-center space-x-2">
-              <span className="text-[#00F0FF] font-bold">rachit@archlinux:{currentPath}$</span>
+              <span className="text-[#00FF66] font-bold">rachit@rachit-portfolio-os:{item.promptPath || '~'}$</span>
               <span className="font-bold text-[#39FF14]">{item.command}</span>
             </div>
             {item.output && (
@@ -155,7 +163,7 @@ export const TerminalWindow: React.FC = () => {
 
         {/* Command Input Prompt */}
         <form onSubmit={handleSubmit} className="flex items-center space-x-2 pt-2">
-          <span className="text-[#00F0FF] font-bold shrink-0">rachit@archlinux:{currentPath}$</span>
+          <span className="text-[#00FF66] font-bold shrink-0">rachit@rachit-portfolio-os:{currentPath}$</span>
           <input
             ref={inputRef}
             type="text"

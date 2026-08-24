@@ -9,7 +9,6 @@ export type WorkspaceTab =
   | 'resume'
   | 'contact'
   | 'easter-egg-matrix'
-  | 'easter-egg-vim'
   | 'easter-egg-404';
 
 export interface CommandHistoryItem {
@@ -18,6 +17,7 @@ export interface CommandHistoryItem {
   output: string | React.ReactNode;
   timestamp: string;
   isError?: boolean;
+  promptPath?: string;
 }
 
 interface OSState {
@@ -28,6 +28,7 @@ interface OSState {
   matrixMode: boolean;
   crtEnabled: boolean;
   terminalFocused: boolean;
+  logoutMessage: string | null;
   commandHistory: CommandHistoryItem[];
 
   // Actions
@@ -40,16 +41,18 @@ interface OSState {
   setTerminalFocused: (focused: boolean) => void;
   addCommandHistory: (item: CommandHistoryItem) => void;
   clearCommandHistory: () => void;
+  logout: (msg?: string) => void;
 }
 
 export const useOSStore = create<OSState>((set) => ({
   booted: false,
   activeWorkspace: 'desktop',
   currentPath: '~',
-  selectedProjectSlug: 'secure-file-vault',
+  selectedProjectSlug: 'supply-lens',
   matrixMode: false,
   crtEnabled: true,
   terminalFocused: false,
+  logoutMessage: null,
   commandHistory: [],
 
   setBooted: (booted) => set({ booted }),
@@ -61,4 +64,9 @@ export const useOSStore = create<OSState>((set) => ({
   setTerminalFocused: (terminalFocused) => set({ terminalFocused }),
   addCommandHistory: (item) => set((state) => ({ commandHistory: [...state.commandHistory, item] })),
   clearCommandHistory: () => set({ commandHistory: [] }),
+  logout: (msg = "LOGGED OUT SUCCESSFULLY. SESSION TERMINATED.") => set({
+    booted: false,
+    activeWorkspace: 'desktop',
+    logoutMessage: msg,
+  }),
 }));

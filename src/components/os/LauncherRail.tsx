@@ -45,7 +45,7 @@ export const LauncherRail: React.FC = () => {
   };
 
   return (
-    <aside className="w-16 sm:w-20 bg-[#040D14] border-r border-[#00F0FF]/30 flex flex-col items-center py-4 space-y-3 z-20 select-none shrink-0">
+    <aside className="w-16 sm:w-20 bg-[#05140A] border-r border-[#39FF14]/30 flex flex-col items-center py-4 space-y-3 z-20 select-none shrink-0">
       {LAUNCHER_ITEMS.map((item) => {
         const Icon = item.icon;
         const isActive = activeWorkspace === item.id;
@@ -57,8 +57,8 @@ export const LauncherRail: React.FC = () => {
               aria-label={item.label}
               className={`w-11 h-11 sm:w-12 sm:h-12 rounded-lg flex flex-col items-center justify-center transition-all cursor-pointer relative ${
                 isActive
-                  ? 'bg-[#00F0FF]/20 border-2 border-[#00F0FF] text-[#00F0FF] glow-blue-sm'
-                  : 'bg-[#071520] border border-[#00F0FF]/15 text-[#8DAAC0] hover:text-[#00F0FF] hover:border-[#00F0FF]/50'
+                  ? 'bg-[#39FF14]/20 border-2 border-[#39FF14] text-[#39FF14] glow-green-sm'
+                  : 'bg-[#0A1C10] border border-[#39FF14]/15 text-[#70A080] hover:text-[#39FF14] hover:border-[#39FF14]/50'
               }`}
             >
               <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -67,9 +67,9 @@ export const LauncherRail: React.FC = () => {
               </span>
             </button>
 
-            <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 hidden group-hover:flex flex-col bg-[#071520] border border-[#00F0FF] text-[#F0F8FF] p-2.5 rounded shadow-2xl z-50 text-xs font-mono whitespace-nowrap glow-blue-sm">
-              <span className="font-extrabold text-[#00F0FF]">{item.label}</span>
-              <span className="text-[10px] text-[#39FF14]">CLI: {item.commandHint}</span>
+            <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 hidden group-hover:flex flex-col bg-[#0A1C10] border border-[#39FF14] text-[#E8FFE8] p-2.5 rounded shadow-2xl z-50 text-xs font-mono whitespace-nowrap glow-green-sm">
+              <span className="font-extrabold text-[#39FF14]">{item.label}</span>
+              <span className="text-[10px] text-[#00FF66]">CLI: {item.commandHint}</span>
             </div>
           </div>
         );

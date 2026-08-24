@@ -20,7 +20,12 @@ describe('VirtualFS & CommandRegistry Behavior', () => {
     expect(res.newPath).toBe('~');
   });
 
-  it('CommandRegistry neofetch produces Arch Linux metadata card', () => {
+  it('CommandRegistry exit command flags exit action', () => {
+    const res = CommandRegistry.execute('exit', '~');
+    expect(res.action).toBe('exit');
+  });
+
+  it('CommandRegistry neofetch produces Rachit Portfolio OS metadata card', () => {
     const res = CommandRegistry.execute('neofetch', '~');
     expect(res.output).toBeDefined();
   });

@@ -2,13 +2,57 @@ import { Project } from '../types/portfolio';
 
 export const projectsData: Project[] = [
   {
+    slug: "supply-lens",
+    name: "Supply Lens",
+    path: "~/projects/supply-lens",
+    tagline: "End-to-End AI-Powered Supply Chain Visibility and Risk Intelligence Platform.",
+    tier: "featured",
+    domainCategory: "Full Stack",
+    status: "Production Ready",
+    year: "2026",
+    languages: ["TypeScript", "Python"],
+    technologies: ["Next.js 15", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Groq AI", "Recharts"],
+    problem: "Global supply chains suffer from fragmented tracking data, delayed risk mitigation, and lack of real-time inventory anomaly detection.",
+    solution: "Engineered Supply Lens, a modern full-stack analytics platform delivering real-time shipment monitoring, AI risk scoring, route optimization, and supplier performance tracking.",
+    architecture: "Next.js App Router full-stack server architecture -> PostgreSQL database via Prisma ORM -> Groq AI API integration for predictive disruption assessment -> Recharts telemetry UI.",
+    keyFeatures: [
+      "Real-time shipment tracking dashboard with status indicators",
+      "AI-driven route risk & delay probability scoring engine",
+      "Interactive data visualizations for inventory throughput and bottlenecks",
+      "Supplier quality rating and compliance telemetry",
+      "Automated disruption alert notifications"
+    ],
+    engineeringDecisions: [
+      "Leveraged Next.js Server Components and Prisma for zero-latency database query rendering.",
+      "Integrated Groq LPU inference for sub-second predictive supply chain disruption analysis."
+    ],
+    challenges: [
+      "Aggregating asynchronous telemetry events without blocking UI rendering pipelines."
+    ],
+    outcomes: [
+      "Full-stack showcase repository with live production deployment potential."
+    ],
+    repoUrl: "https://github.com/Rachit2912/Supply_Lens",
+    liveUrl: "https://github.com/Rachit2912/Supply_Lens",
+    commands: {
+      open: "cd ~/projects/supply-lens",
+      cat: "cat ~/projects/supply-lens/README.md",
+      cd: "cd ~/projects/supply-lens"
+    },
+    readmeContent: `# Supply Lens // AI Supply Chain Risk Intelligence
+
+> AI-powered end-to-end supply chain visibility and risk analytics platform built with Next.js & PostgreSQL.
+`
+  },
+  {
     slug: "secure-file-vault",
     name: "Secure File Vault System",
     path: "~/projects/secure-file-vault",
     tagline: "High-performance encrypted file storage with JWT auth, deduplication, quota control, and rate limiting.",
     tier: "featured",
+    domainCategory: "Full Stack",
     status: "Production Ready",
-    year: "2024",
+    year: "2025",
     languages: ["Go", "TypeScript", "SQL"],
     technologies: ["Go", "React", "TypeScript", "PostgreSQL", "Docker", "JWT", "REST API"],
     problem: "Modern web applications require secure, authenticated multi-file uploading with strict access control, MIME verification, deduplication, and resource usage quotas.",
@@ -36,6 +80,7 @@ export const projectsData: Project[] = [
       "52+ structured commits, verified multi-user file isolation, zero-downtime containerized Docker environment."
     ],
     repoUrl: "https://github.com/Rachit2912/Secure-File-Vault-System",
+    liveUrl: "https://github.com/Rachit2912/Secure-File-Vault-System",
     commands: {
       open: "cd ~/projects/secure-file-vault",
       cat: "cat ~/projects/secure-file-vault/README.md",
@@ -44,12 +89,74 @@ export const projectsData: Project[] = [
     readmeContent: `# Secure File Vault System
 
 > High-performance encrypted file storage service built with Go, PostgreSQL, and React.
-
-## System Architecture
-- **Backend**: Go (Golang) REST API, JWT Middleware, Rate Limiter
-- **Database**: PostgreSQL with hashed indices for deduplication & storage metrics
-- **Frontend**: React + TypeScript + Tailwind CSS with drag-and-drop stream status
-- **Deployment**: Containerized Docker Compose environment
+`
+  },
+  {
+    slug: "node-atlas",
+    name: "Node Atlas",
+    path: "~/projects/node-atlas",
+    tagline: "Distributed Node Topology & Infrastructure Discovery Engine.",
+    tier: "featured",
+    domainCategory: "Backend & Systems",
+    status: "Active",
+    year: "2026",
+    languages: ["TypeScript"],
+    technologies: ["Node.js", "TypeScript", "Distributed Systems", "Graph Algorithms", "REST API"],
+    problem: "Visualizing and mapping dynamic cloud node topologies and service dependency graphs across microservices.",
+    solution: "Built Node Atlas, a lightweight TypeScript service discovery engine that continuously polls and maps interconnected network nodes and compute instances.",
+    architecture: "Node discovery workers poll endpoints -> Directed graph topology engine -> Health metrics aggregation -> REST API exposure.",
+    keyFeatures: [
+      "Automated node topology discovery and link status mapping",
+      "Latency and health metric telemetry tracking",
+      "Directed acyclic graph dependency resolution",
+      "Fast TypeScript REST API interface"
+    ],
+    engineeringDecisions: [
+      "Utilized breadth-first traversal algorithms to detect network cycles and dependency deadlocks."
+    ],
+    challenges: ["Handling asynchronous node heartbeats accurately during network partitioning."],
+    outcomes: ["Clean TypeScript system mapping tool for distributed microservice architectures."],
+    repoUrl: "https://github.com/Rachit2912/node-atlas",
+    commands: {
+      open: "cd ~/projects/node-atlas",
+      cat: "cat ~/projects/node-atlas/README.md",
+      cd: "cd ~/projects/node-atlas"
+    },
+    readmeContent: `# Node Atlas // Distributed Topology Engine
+`
+  },
+  {
+    slug: "tcp2http",
+    name: "TCP2HTTP Proxy",
+    path: "~/projects/tcp2http",
+    tagline: "Low-level Go TCP to HTTP protocol translator and socket tunneling proxy.",
+    tier: "featured",
+    domainCategory: "Backend & Systems",
+    status: "Completed",
+    year: "2025",
+    languages: ["Go"],
+    technologies: ["Go (Golang)", "TCP Sockets", "HTTP/1.1", "Network Buffering", "Concurrency"],
+    problem: "Understanding networking protocol boundaries requires translating raw TCP stream buffers into structured HTTP/1.1 request/response frames.",
+    solution: "Developed TCP2HTTP in Go, a custom network proxy that ingests raw TCP byte streams, parses HTTP packet headers, and forwards requests to target HTTP web servers.",
+    architecture: "Raw TCP socket listener -> Concurrency goroutine per connection -> Byte stream HTTP parser -> Target upstream HTTP client proxy -> Bi-directional response piping.",
+    keyFeatures: [
+      "Zero-dependency Go TCP socket server implementation",
+      "HTTP/1.1 header and payload parser written from scratch",
+      "Concurrent non-blocking goroutine worker pools",
+      "Detailed connection logging and latency stats"
+    ],
+    engineeringDecisions: [
+      "Avoided standard library http server abstractions to directly parse TCP byte buffers for educational network mastery."
+    ],
+    challenges: ["Correctly handling chunked transfer encodings and EOF byte streams over raw sockets."],
+    outcomes: ["High-throughput custom networking proxy in Go."],
+    repoUrl: "https://github.com/Rachit2912/TCP2HTTP",
+    commands: {
+      open: "cd ~/projects/tcp2http",
+      cat: "cat ~/projects/tcp2http/README.md",
+      cd: "cd ~/projects/tcp2http"
+    },
+    readmeContent: `# TCP2HTTP // Go Protocol Proxy
 `
   },
   {
@@ -58,8 +165,9 @@ export const projectsData: Project[] = [
     path: "~/projects/shellB",
     tagline: "Custom Unix REPL shell in C++ with process management, pipes, and I/O redirection.",
     tier: "featured",
+    domainCategory: "Backend & Systems",
     status: "Stable",
-    year: "2024",
+    year: "2025",
     languages: ["C++", "CMake", "Bash"],
     technologies: ["C++17", "CMake", "POSIX APIs", "Linux System Calls", "Bash"],
     problem: "Understanding operating system primitives like process creation, signal handling, environment management, and I/O redirection requires building shell engines from scratch.",
@@ -100,6 +208,7 @@ export const projectsData: Project[] = [
     path: "~/projects/deribit-oems",
     tagline: "C++ High-Performance Order Execution Management System connecting to Deribit Exchange.",
     tier: "featured",
+    domainCategory: "Backend & Systems",
     status: "Completed",
     year: "2024",
     languages: ["C++"],
@@ -141,8 +250,9 @@ export const projectsData: Project[] = [
     path: "~/projects/video-streaming",
     tagline: "Scalable Node.js & Express video backend with FFmpeg transcoding, chunked HLS/dash streaming, and RBAC.",
     tier: "featured",
+    domainCategory: "Backend & Systems",
     status: "Completed",
-    year: "2024",
+    year: "2025",
     languages: ["JavaScript", "Node.js"],
     technologies: ["Node.js", "Express.js", "MongoDB", "FFmpeg", "Cloudinary", "JWT", "RBAC"],
     problem: "Delivering video content requires multi-resolution video encoding, chunked HTTP adaptive streaming, role-based user permissions, and metadata search.",
@@ -177,13 +287,46 @@ export const projectsData: Project[] = [
 `
   },
   {
+    slug: "blogify",
+    name: "Blogify Backend & CMS",
+    path: "~/projects/blogify",
+    tagline: "Full-Stack Express & EJS blogging application with dynamic markdown publishing and user auth.",
+    tier: "secondary",
+    domainCategory: "Full Stack",
+    status: "Completed",
+    year: "2025",
+    languages: ["JavaScript"],
+    technologies: ["Node.js", "Express.js", "MongoDB", "EJS", "Bootstrap"],
+    problem: "Simple blogging platforms require fast content rendering, secure user authentication, and media uploads.",
+    solution: "Developed Blogify using Node.js, Express, MongoDB, and EJS templates for responsive blogging and discussion threads.",
+    architecture: "Express MVC pattern connecting MongoDB schemas with EJS server-rendered views.",
+    keyFeatures: [
+      "User registration and login authentication",
+      "Blog post creation with cover image upload",
+      "Interactive comment system under blog articles",
+      "User profile overview and post management"
+    ],
+    engineeringDecisions: ["Server-side rendering via EJS for lightweight deployment without client hydration lag."],
+    challenges: ["Sanitizing user inputs to prevent XSS vulnerability in blog posts."],
+    outcomes: ["Clean full-stack blogging web application."],
+    repoUrl: "https://github.com/Rachit2912/blogify",
+    commands: {
+      open: "cd ~/projects/blogify",
+      cat: "cat ~/projects/blogify/README.md",
+      cd: "cd ~/projects/blogify"
+    },
+    readmeContent: `# Blogify // Express Blogging Application
+`
+  },
+  {
     slug: "pad4note",
-    name: "Pad4Note",
+    name: "Pad4Note Desktop Editor",
     path: "~/projects/pad4note",
     tagline: "Desktop note-taking and editor application written in C++ and Qt framework.",
     tier: "secondary",
+    domainCategory: "Desktop Applications (C++)",
     status: "Completed",
-    year: "2024",
+    year: "2025",
     languages: ["C++"],
     technologies: ["C++", "Qt 6", "QMake / CMake", "Native GUI"],
     problem: "Lightweight, distraction-free desktop note utilities require fast native start times and responsive UI bindings.",
@@ -210,11 +353,46 @@ export const projectsData: Project[] = [
 `
   },
   {
+    slug: "genai-nutrition-app",
+    name: "GenAI Nutrition App",
+    path: "~/projects/genai-nutrition-app",
+    tagline: "AI-driven meal photo recognition and personalized calorie recommendation engine.",
+    tier: "secondary",
+    domainCategory: "AI / ML / CV",
+    status: "Completed",
+    year: "2025",
+    languages: ["Python", "JavaScript"],
+    technologies: ["Python", "Generative AI", "Computer Vision", "React", "Flask / FastAPI"],
+    problem: "Manual calorie counting is tedious; users need fast visual meal estimation and customized dietary guidance.",
+    solution: "Built a computer vision and LLM powered nutrition app that analyzes food photos, estimates macros, and generates personalized meal recommendations.",
+    architecture: "Frontend upload -> Image classification model -> LLM prompt enrichment -> Personal dietary profile matching -> Macro breakdown response.",
+    keyFeatures: [
+      "Multi-item food recognition from single photo",
+      "Automated caloric estimation and macro ratios",
+      "Personalized recommendation engine based on user goals",
+      "Interactive meal history and summary tracking"
+    ],
+    engineeringDecisions: [
+      "Combined visual feature classification with LLM reasoning for nuanced context awareness."
+    ],
+    challenges: ["Accurately estimating portion sizes from 2D images."],
+    outcomes: ["Direct output of the SmartBridge AI/ML Internship."],
+    repoUrl: "https://github.com/Rachit2912/GenAI-Nutrition-App-",
+    commands: {
+      open: "cd ~/projects/genai-nutrition-app",
+      cat: "cat ~/projects/genai-nutrition-app/README.md",
+      cd: "cd ~/projects/genai-nutrition-app"
+    },
+    readmeContent: `# GenAI Nutrition Application
+`
+  },
+  {
     slug: "simpsons-character-recognition",
     name: "Simpsons Character Recognition",
     path: "~/projects/simpsons-character-recognition",
     tagline: "Computer Vision CNN system classifying 55K+ character images with 95% accuracy.",
     tier: "secondary",
+    domainCategory: "AI / ML / CV",
     status: "Completed",
     year: "2024",
     languages: ["Python"],
@@ -248,6 +426,7 @@ export const projectsData: Project[] = [
     path: "~/projects/deepfake-filter",
     tagline: "Real-time OpenCV & facial landmark warping application for live video streams.",
     tier: "secondary",
+    domainCategory: "AI / ML / CV",
     status: "Completed",
     year: "2024",
     languages: ["Python"],
@@ -281,6 +460,7 @@ export const projectsData: Project[] = [
     path: "~/projects/yolov9-deepsort",
     tagline: "Real-time multi-object detection and tracking pipeline integrated with Google Colab.",
     tier: "secondary",
+    domainCategory: "AI / ML / CV",
     status: "Completed",
     year: "2024",
     languages: ["Python"],
@@ -306,39 +486,6 @@ export const projectsData: Project[] = [
       cd: "cd ~/projects/yolov9-deepsort"
     },
     readmeContent: `# YOLOv9 + DeepSORT Real-Time Object Tracking
-`
-  },
-  {
-    slug: "genai-nutrition-app",
-    name: "GenAI Nutrition App",
-    path: "~/projects/genai-nutrition-app",
-    tagline: "AI-driven meal photo recognition and personalized calorie recommendation engine.",
-    tier: "secondary",
-    status: "Completed",
-    year: "2024",
-    languages: ["Python", "JavaScript"],
-    technologies: ["Python", "Generative AI", "Computer Vision", "React", "Flask / FastAPI"],
-    problem: "Manual calorie counting is tedious; users need fast visual meal estimation and customized dietary guidance.",
-    solution: "Built a computer vision and LLM powered nutrition app that analyzes food photos, estimates macros, and generates personalized meal recommendations.",
-    architecture: "Frontend upload -> Image classification model -> LLM prompt enrichment -> Personal dietary profile matching -> Macro breakdown response.",
-    keyFeatures: [
-      "Multi-item food recognition from single photo",
-      "Automated caloric estimation and macro ratios",
-      "Personalized recommendation engine based on user goals",
-      "Interactive meal history and summary tracking"
-    ],
-    engineeringDecisions: [
-      "Combined visual feature classification with LLM reasoning for nuanced context awareness."
-    ],
-    challenges: ["Accurately estimating portion sizes from 2D images."],
-    outcomes: ["Direct output of the SmartBridge AI/ML Internship."],
-    repoUrl: "https://github.com/Rachit2912/GenAI-Nutrition-App-",
-    commands: {
-      open: "cd ~/projects/genai-nutrition-app",
-      cat: "cat ~/projects/genai-nutrition-app/README.md",
-      cd: "cd ~/projects/genai-nutrition-app"
-    },
-    readmeContent: `# GenAI Nutrition Application
 `
   }
 ];

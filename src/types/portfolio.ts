@@ -42,12 +42,19 @@ export interface ExperienceItem {
   technologies: string[];
 }
 
+export type DomainCategory =
+  | 'Full Stack'
+  | 'Backend & Systems'
+  | 'Desktop Applications (C++)'
+  | 'AI / ML / CV';
+
 export interface Project {
   slug: string;
   name: string;
   path: string;
   tagline: string;
   tier: 'featured' | 'secondary' | 'lab';
+  domainCategory: DomainCategory;
   status: string;
   year: string;
   languages: string[];
