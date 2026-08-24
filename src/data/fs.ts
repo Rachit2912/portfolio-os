@@ -3,6 +3,36 @@ import { projectsData } from './projects';
 import { experienceData } from './experience';
 import { profileData } from './profile';
 
+const categories: Array<'backend' | 'systems' | 'ai' | 'experiments'> = ['backend', 'systems', 'ai', 'experiments'];
+
+const projectCategoryNodes: VirtualFileNode[] = categories.map((cat) => {
+  const catProjects = projectsData.filter((p) => p.cliCategoryFolder === cat);
+  return {
+    name: cat,
+    type: 'directory',
+    path: `~/projects/${cat}`,
+    children: catProjects.map((p) => ({
+      name: p.slug,
+      type: 'directory',
+      path: `~/projects/${cat}/${p.slug}`,
+      children: [
+        {
+          name: 'README.md',
+          type: 'file',
+          path: `~/projects/${cat}/${p.slug}/README.md`,
+          content: p.readmeContent
+        },
+        {
+          name: 'architecture.info',
+          type: 'file',
+          path: `~/projects/${cat}/${p.slug}/architecture.info`,
+          content: `Project: ${p.name}\nCategory: ${p.categoryLabel}\nGitHub: ${p.githubUrl}\nDemo: ${p.demoUrl || 'N/A'}\nStack: ${p.technologies.join(', ')}\n\nProblem:\n${p.problem}\n\nSolution:\n${p.solution}\n\nArchitecture:\n${p.architecture}\n`
+        }
+      ]
+    }))
+  };
+});
+
 export const virtualFileSystem: VirtualFileNode = {
   name: "~",
   type: "directory",
@@ -34,25 +64,15 @@ ${profileData.achievements.map(a => `- **${a.title}** (${a.badge})`).join("\n")}
       name: "projects",
       type: "directory",
       path: "~/projects",
-      children: projectsData.map(p => ({
-        name: p.slug,
-        type: "directory",
-        path: `~/projects/${p.slug}`,
-        children: [
-          {
-            name: "README.md",
-            type: "file",
-            path: `~/projects/${p.slug}/README.md`,
-            content: p.readmeContent
-          },
-          {
-            name: "architecture.info",
-            type: "file",
-            path: `~/projects/${p.slug}/architecture.info`,
-            content: `Project: ${p.name}\nPath: ${p.path}\nStack: ${p.technologies.join(", ")}\n\nProblem:\n${p.problem}\n\nSolution:\n${p.solution}\n\nArchitecture:\n${p.architecture}\n`
-          }
-        ]
-      }))
+      children: [
+        ...projectCategoryNodes,
+        {
+          name: "summary.txt",
+          type: "file",
+          path: "~/projects/summary.txt",
+          content: projectsData.map(p => `[${p.portfolioTier.toUpperCase()}] ${p.name} (${p.categoryLabel}) - ${p.githubUrl}`).join("\n")
+        }
+      ]
     },
     {
       name: "experience",

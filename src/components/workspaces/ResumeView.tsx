@@ -89,10 +89,10 @@ export const ResumeView: React.FC = () => {
           {projectsData.slice(0, 5).map((p) => (
             <div key={p.slug} className="space-y-1">
               <div className="flex justify-between items-center font-bold text-xs text-[#E8FFE8]">
-                <span>{p.name} [{p.domainCategory}]</span>
+                <span>{p.name} [{p.categoryLabel}]</span>
                 <span className="text-[#00FF66]">{p.year}</span>
               </div>
-              <p className="text-xs text-[#70A080]">{p.tagline}</p>
+              <p className="text-xs text-[#70A080]">{p.shortDescription}</p>
             </div>
           ))}
         </div>

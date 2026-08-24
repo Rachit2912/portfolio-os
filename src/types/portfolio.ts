@@ -43,33 +43,48 @@ export interface ExperienceItem {
 }
 
 export type DomainCategory =
-  | 'Full Stack'
-  | 'Backend & Systems'
-  | 'Desktop Applications (C++)'
-  | 'AI / ML / CV';
+  | 'backend'
+  | 'systems'
+  | 'cpp'
+  | 'go'
+  | 'ai'
+  | 'computer-vision'
+  | 'cloud'
+  | 'developer-tools'
+  | 'experiments';
+
+export type PortfolioTier = 'tier1_featured' | 'tier2_secondary' | 'tier3_experiments';
 
 export interface Project {
-  slug: string;
+  id: string;
   name: string;
-  path: string;
-  tagline: string;
-  tier: 'featured' | 'secondary' | 'lab';
-  domainCategory: DomainCategory;
+  slug: string;
+  shortDescription: string;
+  fullDescription: string;
+  category: DomainCategory;
+  categoryLabel: string;
   status: string;
   year: string;
   languages: string[];
+  frameworks: string[];
+  databases: string[];
+  infrastructure: string[];
   technologies: string[];
   problem: string;
   solution: string;
   architecture: string;
   keyFeatures: string[];
-  engineeringDecisions: string[];
+  engineeringHighlights: string[];
   challenges: string[];
   outcomes: string[];
-  repoUrl: string;
-  liveUrl?: string;
+  githubUrl: string;
   demoUrl?: string;
-  commands: {
+  featured: boolean;
+  priority: number;
+  portfolioTier: PortfolioTier;
+  cliCategoryFolder: 'backend' | 'systems' | 'ai' | 'experiments';
+  cliPath: string;
+  cliCommands: {
     open: string;
     cat: string;
     cd: string;

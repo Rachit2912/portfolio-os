@@ -30,7 +30,7 @@ export class CommandRegistry {
     if (trimmed.toLowerCase().startsWith('git log')) {
       return {
         output: (
-          <div className="space-y-3 font-mono">
+          <div className="space-y-3 font-mono text-xs">
             <div className="text-[#39FF14] font-bold">git log --oneline --graph (Experience Commit Timeline)</div>
             {experienceData.map((exp) => (
               <div key={exp.id} className="border-l-2 border-[#00FF66] pl-3 py-1 space-y-1">
@@ -118,9 +118,12 @@ export class CommandRegistry {
         }
 
         let selectedProjectSlug: string | undefined = undefined;
-        if (targetPath.startsWith('~/projects')) {
-          const projectSlug = targetPath.split('/')[2];
-          if (projectSlug) selectedProjectSlug = projectSlug;
+        if (targetPath.startsWith('~/projects/')) {
+          const parts = targetPath.split('/');
+          const projectSlug = parts[parts.length - 1];
+          if (projectSlug && projectsData.some((p) => p.slug === projectSlug)) {
+            selectedProjectSlug = projectSlug;
+          }
         }
 
         return {
@@ -172,19 +175,27 @@ export class CommandRegistry {
       case 'projects': {
         return {
           output: (
-            <div className="space-y-2 font-mono text-xs text-[#E8FFE8]">
+            <div className="space-y-3 font-mono text-xs text-[#E8FFE8]">
               <div className="text-[#39FF14] font-bold border-b border-[#39FF14]/30 pb-1">
-                FEATURED & MAJOR PROJECTS SUMMARY (~/projects)
+                CANONICAL REPOSITORIES DATABASE (~/projects)
               </div>
-              {projectsData.map((p) => (
-                <div key={p.slug} className="bg-[#0A1C10] p-2 rounded border border-[#39FF14]/20 space-y-1">
-                  <div className="flex justify-between items-center text-[#39FF14] font-bold">
-                    <span>{p.name} [{p.domainCategory}]</span>
-                    <span className="text-[10px] text-[#00FF66]">{p.year}</span>
+              {['tier1_featured', 'tier2_secondary', 'tier3_experiments'].map((tier) => (
+                <div key={tier} className="space-y-1.5">
+                  <div className="text-[#39FF14] font-bold uppercase text-[11px]">
+                    {tier.replace('_', ' ')}
                   </div>
-                  <div className="text-[#70A080] text-[11px]">{p.tagline}</div>
-                  <div className="text-[#00FF66] text-[10px]">Stack: {p.technologies.join(', ')}</div>
-                  <div className="text-[#70A080] text-[10px]">Repo: {p.repoUrl}</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {projectsData.filter(p => p.portfolioTier === tier).map((p) => (
+                      <div key={p.slug} className="bg-[#0A1C10] p-2 rounded border border-[#39FF14]/20 space-y-1">
+                        <div className="flex justify-between items-center text-[#39FF14] font-bold">
+                          <span>{p.name}</span>
+                          <span className="text-[10px] text-[#00FF66]">{p.year}</span>
+                        </div>
+                        <div className="text-[#70A080] text-[10px]">{p.shortDescription}</div>
+                        <div className="text-[#00FF66] text-[10px]">Path: {p.cliPath}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

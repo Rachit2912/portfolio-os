@@ -9,70 +9,74 @@ import {
   Terminal,
   CheckCircle2,
   Cpu,
-  Globe
+  Globe,
+  Star,
+  BookOpen
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { projectsData } from '@/data/projects';
-import { DomainCategory } from '@/types/portfolio';
+import { PortfolioTier } from '@/types/portfolio';
 import { useOSStore } from '@/store/useOSStore';
 
-const DOMAIN_CATEGORIES: Array<DomainCategory | 'All Domains'> = [
-  'All Domains',
-  'Full Stack',
-  'Backend & Systems',
-  'Desktop Applications (C++)',
-  'AI / ML / CV'
+const TIER_TABS: Array<{ id: PortfolioTier | 'ALL'; label: string }> = [
+  { id: 'ALL', label: 'All Projects' },
+  { id: 'tier1_featured', label: 'Tier 1 // Featured' },
+  { id: 'tier2_secondary', label: 'Tier 2 // Secondary' },
+  { id: 'tier3_experiments', label: 'Tier 3 // Experiments' },
 ];
 
 export const ProjectsView: React.FC = () => {
   const { selectedProjectSlug, setSelectedProjectSlug, setCurrentPath } = useOSStore();
-  const [selectedDomain, setSelectedDomain] = useState<DomainCategory | 'All Domains'>('All Domains');
+  const [activeTier, setActiveTier] = useState<PortfolioTier | 'ALL'>('ALL');
 
   const filteredProjects = projectsData.filter((p) => {
-    if (selectedDomain === 'All Domains') return true;
-    return p.domainCategory === selectedDomain;
+    if (activeTier === 'ALL') return true;
+    return p.portfolioTier === activeTier;
   });
 
   const currentProject = projectsData.find((p) => p.slug === selectedProjectSlug) || filteredProjects[0] || projectsData[0];
 
-  const handleSelectProject = (slug: string) => {
+  const handleSelectProject = (slug: string, cliPath: string) => {
     setSelectedProjectSlug(slug);
-    setCurrentPath(`~/projects/${slug}`);
+    setCurrentPath(cliPath);
   };
 
   return (
     <div className="w-full h-full flex flex-col md:flex-row overflow-hidden font-mono text-xs bg-[#020904]">
+      {/* Sidebar List */}
       <aside className="w-full md:w-80 bg-[#05140A] border-b md:border-b-0 md:border-r border-[#39FF14]/25 p-4 space-y-4 overflow-y-auto shrink-0 select-none">
         <div className="flex items-center space-x-2 text-[#39FF14] font-bold border-b border-[#39FF14]/20 pb-2">
           <FolderGit2 className="w-4 h-4" />
-          <span>PROJECT REPOSITORIES ({filteredProjects.length})</span>
+          <span>CANONICAL REPOSITORIES ({filteredProjects.length})</span>
         </div>
 
+        {/* Tier Filter Tabs */}
         <div className="space-y-1.5">
-          <div className="text-[10px] text-[#70A080] font-semibold uppercase tracking-wider">Domain Filter</div>
+          <div className="text-[10px] text-[#70A080] font-semibold uppercase tracking-wider">Curation Tiers</div>
           <div className="flex flex-wrap gap-1">
-            {DOMAIN_CATEGORIES.map((cat) => (
+            {TIER_TABS.map((tab) => (
               <button
-                key={cat}
-                onClick={() => setSelectedDomain(cat)}
+                key={tab.id}
+                onClick={() => setActiveTier(tab.id)}
                 className={`px-2 py-1 rounded text-[10px] transition-all cursor-pointer font-semibold ${
-                  selectedDomain === cat
+                  activeTier === tab.id
                     ? 'bg-[#39FF14] text-[#020904] font-bold'
                     : 'bg-[#0A1C10] border border-[#39FF14]/20 text-[#70A080] hover:text-[#39FF14]'
                 }`}
               >
-                {cat}
+                {tab.label}
               </button>
             ))}
           </div>
         </div>
 
+        {/* Project List Items */}
         <div className="space-y-2 pt-2">
           {filteredProjects.map((p) => (
             <button
               key={p.slug}
-              onClick={() => handleSelectProject(p.slug)}
+              onClick={() => handleSelectProject(p.slug, p.cliPath)}
               className={`w-full text-left px-3 py-2.5 rounded flex items-center justify-between transition-all cursor-pointer ${
                 currentProject.slug === p.slug
                   ? 'bg-[#39FF14]/20 border border-[#39FF14] text-[#39FF14] font-bold glow-green-sm'
@@ -80,8 +84,11 @@ export const ProjectsView: React.FC = () => {
               }`}
             >
               <div className="truncate pr-2 space-y-0.5">
-                <div className="truncate font-semibold">{p.name}</div>
-                <div className="text-[10px] text-[#70A080] font-normal truncate">{p.domainCategory}</div>
+                <div className="truncate font-semibold flex items-center space-x-1">
+                  {p.featured && <Star className="w-3 h-3 text-[#39FF14] fill-[#39FF14] shrink-0" />}
+                  <span className="truncate">{p.name}</span>
+                </div>
+                <div className="text-[10px] text-[#70A080] font-normal truncate">{p.categoryLabel}</div>
               </div>
               <span className="text-[9px] bg-[#030D06] px-1.5 py-0.5 rounded border border-[#39FF14]/20 text-[#00FF66] shrink-0 font-bold">
                 {p.year}
@@ -91,33 +98,39 @@ export const ProjectsView: React.FC = () => {
         </div>
       </aside>
 
+      {/* Main Project Details */}
       <main className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
         <div className="os-panel p-5 border-[#39FF14]/30 space-y-3">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div className="space-y-1">
-              <div className="text-[#39FF14] text-xs font-mono font-bold">{currentProject.path}</div>
+              <div className="text-[#39FF14] text-xs font-mono font-bold">{currentProject.cliPath}</div>
               <h1 className="text-xl sm:text-2xl font-extrabold text-[#E8FFE8]">{currentProject.name}</h1>
-              <div className="inline-block bg-[#39FF14]/15 border border-[#39FF14]/40 px-2 py-0.5 rounded text-[10px] text-[#39FF14] font-bold">
-                DOMAIN: {currentProject.domainCategory}
+              <div className="flex items-center space-x-2">
+                <span className="bg-[#39FF14]/15 border border-[#39FF14]/40 px-2 py-0.5 rounded text-[10px] text-[#39FF14] font-bold">
+                  {currentProject.categoryLabel}
+                </span>
+                <span className="bg-[#0A1C10] border border-[#39FF14]/30 px-2 py-0.5 rounded text-[10px] text-[#00FF66] font-bold uppercase">
+                  {currentProject.portfolioTier.replace('_', ' ')}
+                </span>
               </div>
-              <p className="text-[#70A080] text-xs leading-relaxed pt-1">{currentProject.tagline}</p>
+              <p className="text-[#70A080] text-xs leading-relaxed pt-1">{currentProject.shortDescription}</p>
             </div>
 
             <div className="flex flex-wrap items-center gap-2 shrink-0">
-              {currentProject.liveUrl && (
+              {currentProject.demoUrl && (
                 <a
-                  href={currentProject.liveUrl}
+                  href={currentProject.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-3 py-1.5 bg-[#00FF66] text-[#020904] font-bold rounded flex items-center space-x-1.5 hover:bg-[#39FF14] transition-all glow-green-sm cursor-pointer text-xs"
                 >
                   <Globe className="w-3.5 h-3.5" />
-                  <span>Live Link</span>
+                  <span>Live Demo</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               )}
               <a
-                href={currentProject.repoUrl}
+                href={currentProject.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-1.5 bg-[#0A1C10] border border-[#39FF14]/60 text-[#39FF14] font-bold rounded flex items-center space-x-1.5 hover:bg-[#39FF14]/20 transition-all cursor-pointer text-xs"
@@ -138,19 +151,20 @@ export const ProjectsView: React.FC = () => {
           </div>
         </div>
 
+        {/* What & Why Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="os-panel p-5 space-y-3 border-[#39FF14]/30">
             <div className="flex items-center space-x-2 text-[#39FF14] font-bold text-sm border-b border-[#39FF14]/20 pb-2">
               <Layers className="w-4 h-4" />
-              <span>PROBLEM & SOLUTION</span>
+              <span>WHAT & WHY IT EXISTS</span>
             </div>
             <div className="space-y-3">
               <div>
-                <div className="text-[#70A080] font-bold text-[11px] mb-1">THE PROBLEM:</div>
+                <div className="text-[#70A080] font-bold text-[11px] mb-1">THE PROBLEM IT SOLVES:</div>
                 <div className="text-[#E8FFE8] text-xs leading-relaxed">{currentProject.problem}</div>
               </div>
               <div>
-                <div className="text-[#39FF14] font-bold text-[11px] mb-1">THE SOLUTION:</div>
+                <div className="text-[#39FF14] font-bold text-[11px] mb-1">THE IMPLEMENTATION SOLUTION:</div>
                 <div className="text-[#E8FFE8] text-xs leading-relaxed">{currentProject.solution}</div>
               </div>
             </div>
@@ -163,21 +177,22 @@ export const ProjectsView: React.FC = () => {
             </div>
             <p className="text-[#70A080] text-xs leading-relaxed">{currentProject.architecture}</p>
             <div className="bg-[#030D06] p-3 rounded border border-[#39FF14]/20 text-[11px] text-[#00FF66]">
-              <span className="font-bold text-[#39FF14]">CLI Command: </span>
-              <code>{currentProject.commands.cat}</code>
+              <span className="font-bold text-[#39FF14]">CLI Equivalent Command: </span>
+              <code>{currentProject.cliCommands.cat}</code>
             </div>
           </div>
         </div>
 
+        {/* Engineering Highlights & Verified Features */}
         <div className="os-panel p-5 space-y-3 border-[#39FF14]/20">
           <div className="flex items-center space-x-2 text-[#39FF14] font-bold text-sm border-b border-[#39FF14]/20 pb-2">
             <CheckCircle2 className="w-4 h-4" />
-            <span>KEY FEATURES & ENGINEERING DECISIONS</span>
+            <span>VERIFIED FEATURES & ENGINEERING HIGHLIGHTS</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <div className="text-[#00FF66] font-bold text-xs">Features Included</div>
+              <div className="text-[#00FF66] font-bold text-xs">Verified Features</div>
               <ul className="space-y-1 text-[#70A080] text-xs">
                 {currentProject.keyFeatures.map((kf, idx) => (
                   <li key={idx} className="flex items-start space-x-2">
@@ -189,12 +204,12 @@ export const ProjectsView: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <div className="text-[#39FF14] font-bold text-xs">Architectural Decisions</div>
+              <div className="text-[#39FF14] font-bold text-xs">Engineering Highlights</div>
               <ul className="space-y-1 text-[#70A080] text-xs">
-                {currentProject.engineeringDecisions.map((ed, idx) => (
+                {currentProject.engineeringHighlights.map((eh, idx) => (
                   <li key={idx} className="flex items-start space-x-2">
                     <span className="text-[#39FF14]">•</span>
-                    <span>{ed}</span>
+                    <span>{eh}</span>
                   </li>
                 ))}
               </ul>
@@ -202,10 +217,11 @@ export const ProjectsView: React.FC = () => {
           </div>
         </div>
 
+        {/* README Preview */}
         <div className="os-panel p-5 border-[#39FF14]/30 space-y-3">
           <div className="flex items-center space-x-2 text-[#39FF14] font-bold text-sm border-b border-[#39FF14]/20 pb-2">
-            <Terminal className="w-4 h-4" />
-            <span>README.md PREVIEW</span>
+            <BookOpen className="w-4 h-4" />
+            <span>CANONICAL README.md PREVIEW</span>
           </div>
 
           <div className="prose prose-invert max-w-none text-xs text-[#E8FFE8] bg-[#030D06] p-4 rounded border border-[#39FF14]/20">
