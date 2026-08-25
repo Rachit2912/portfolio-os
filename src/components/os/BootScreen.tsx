@@ -18,7 +18,7 @@ const BOOT_LOGS = [
 
 export const BootScreen: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { setBooted, setActiveWorkspace, logoutMessage } = useOSStore();
+  const { setBooted, setActiveWorkspace, logoutMessage, themeColor } = useOSStore();
   const [logs, setLogs] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -41,7 +41,7 @@ export const BootScreen: React.FC = () => {
       ctx.fillStyle = 'rgba(2, 9, 4, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = 'rgba(57, 255, 20, 0.65)';
+      ctx.fillStyle = themeColor;
       ctx.font = `bold ${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
@@ -103,10 +103,13 @@ export const BootScreen: React.FC = () => {
       {/* Active Vintage Matrix Rain Background */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-65" />
 
-      <div className="relative z-10 flex justify-between items-center border-b border-[#39FF14]/30 pb-3 shrink-0">
-        <div className="flex items-center space-x-2 text-[#39FF14]">
-          <Cpu className="w-5 h-5 animate-pulse" />
-          <span className="font-bold tracking-wider text-sm sm:text-base">RACHIT_PORTFOLIO_OS v2.5</span>
+      <div
+        className="relative z-10 flex justify-between items-center border-b pb-3 shrink-0"
+        style={{ borderColor: 'var(--border-dim)' }}
+      >
+        <div className="flex items-center space-x-2 text-theme font-bold">
+          <Cpu className="w-5 h-5 animate-pulse text-theme" />
+          <span className="tracking-wider text-sm sm:text-base">RACHIT_PORTFOLIO_OS v2.5</span>
         </div>
         <div className="text-xs text-[#70A080] hidden sm:block">
           SYS_STATUS: ONLINE | SECURITY: JWT_ENCRYPTED | LATENCY: 12ms
@@ -128,34 +131,39 @@ export const BootScreen: React.FC = () => {
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="inline-flex items-center justify-center p-3 rounded-full bg-[#0A1C10] border border-[#39FF14]/40 glow-green-sm mb-2"
+            className="inline-flex items-center justify-center p-3 rounded-full bg-[#0A1C10] border glow-green-sm mb-2"
+            style={{ borderColor: 'var(--border-bright)' }}
           >
-            <UserCheck className="w-10 h-10 text-[#39FF14]" />
+            <UserCheck className="w-10 h-10 text-theme" />
           </motion.div>
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#E8FFE8]">
-            RACHIT JOSHI <span className="text-[#39FF14]">// PORTFOLIO OS</span>
+            RACHIT JOSHI <span className="text-theme">// PORTFOLIO OS</span>
           </h1>
           <p className="text-xs sm:text-sm text-[#70A080]">
             Backend / Systems / Cloud / High-Performance C++ / AI Systems
           </p>
         </div>
 
-        <div className="bg-[#030D06] border border-[#39FF14]/30 rounded p-4 h-48 overflow-y-auto text-xs space-y-1 font-mono text-[#00FF66]">
+        <div
+          className="bg-[#030D06] border rounded p-4 h-48 overflow-y-auto text-xs space-y-1 font-mono text-theme"
+          style={{ borderColor: 'var(--border-dim)' }}
+        >
           {logs.map((log, idx) => (
             <div key={idx} className="flex space-x-2">
-              <span className="text-[#39FF14]">&gt;</span>
+              <span className="text-theme">&gt;</span>
               <span>{log}</span>
             </div>
           ))}
           {currentIndex < BOOT_LOGS.length && (
-            <div className="text-[#39FF14] animate-pulse">&gt; Loading system resources...</div>
+            <div className="text-theme animate-pulse">&gt; Loading system resources...</div>
           )}
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
           <button
             onClick={() => handleBoot('desktop')}
-            className="w-full sm:w-auto px-6 py-3 bg-[#39FF14] text-[#020904] font-bold rounded flex items-center justify-center space-x-2 hover:bg-[#00FF66] transition-all glow-green cursor-pointer"
+            style={{ backgroundColor: themeColor, color: '#020904' }}
+            className="w-full sm:w-auto px-6 py-3 font-bold rounded flex items-center justify-center space-x-2 hover:opacity-90 transition-all glow-green cursor-pointer"
           >
             <LogIn className="w-4 h-4" />
             <span>BOOT PORTFOLIO OS</span>
@@ -164,7 +172,8 @@ export const BootScreen: React.FC = () => {
 
           <button
             onClick={() => handleBoot('terminal')}
-            className="w-full sm:w-auto px-6 py-3 bg-[#0A1C10] border border-[#39FF14]/50 text-[#39FF14] font-bold rounded flex items-center justify-center space-x-2 hover:bg-[#39FF14]/15 transition-all cursor-pointer"
+            style={{ borderColor: 'var(--border-bright)', color: themeColor }}
+            className="w-full sm:w-auto px-6 py-3 bg-[#0A1C10] border font-bold rounded flex items-center justify-center space-x-2 hover:bg-white/5 transition-all cursor-pointer"
           >
             <Terminal className="w-4 h-4" />
             <span>TERMINAL MODE [T]</span>
@@ -172,13 +181,16 @@ export const BootScreen: React.FC = () => {
         </div>
 
         <div className="text-center text-xs text-[#70A080] space-x-4">
-          <span>Press <kbd className="bg-[#0A1C10] border border-[#39FF14]/30 px-1.5 py-0.5 rounded text-[#E8FFE8]">Enter</kbd> to Boot</span>
+          <span>Press <kbd className="bg-[#0A1C10] border border-white/20 px-1.5 py-0.5 rounded text-[#E8FFE8]">Enter</kbd> to Boot</span>
           <span>•</span>
-          <span>Press <kbd className="bg-[#0A1C10] border border-[#39FF14]/30 px-1.5 py-0.5 rounded text-[#E8FFE8]">T</kbd> for Terminal</span>
+          <span>Press <kbd className="bg-[#0A1C10] border border-white/20 px-1.5 py-0.5 rounded text-[#E8FFE8]">T</kbd> for Terminal</span>
         </div>
       </div>
 
-      <div className="relative z-10 border-t border-[#39FF14]/20 pt-3 flex flex-col sm:flex-row justify-between items-center text-xs text-[#70A080] shrink-0 mt-auto">
+      <div
+        className="relative z-10 border-t pt-3 flex flex-col sm:flex-row justify-between items-center text-xs text-[#70A080] shrink-0 mt-auto"
+        style={{ borderColor: 'var(--border-dim)' }}
+      >
         <div>VIT Vellore B.Tech IT | CGPA 8.87 | AWS Certified Solutions Architect</div>
         <div>Press any button to skip boot sequence</div>
       </div>

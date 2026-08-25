@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+  --color-accent: var(--sys-green);
+  --color-primary-green: var(--primary-green);
+  --color-border-dim: var(--border-dim);
+  --color-border-bright: var(--border-bright);
+}
+
 @layer base {
   :root {
     --bg-0: #020904;
@@ -11,6 +18,8 @@
     --theme-accent: #39FF14;
     --border-dim: rgba(57, 255, 20, 0.25);
     --border-bright: rgba(57, 255, 20, 0.7);
+    --text-primary: #E8FFE8;
+    --text-secondary: #70A080;
   }
 
   body {
@@ -23,11 +32,11 @@
   }
 }
 
-/* Background Micro-grid pattern with matrix green accent */
+/* Background Micro-grid pattern with dynamic accent */
 .bg-micro-grid {
   background-image:
-    linear-gradient(to right, rgba(57, 255, 20, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(57, 255, 20, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, var(--border-dim) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-dim) 1px, transparent 1px);
   background-size: 28px 24px;
 }
 
@@ -45,17 +54,30 @@
   opacity: 0.6;
 }
 
-/* Neon Glow utilities */
+/* Dynamic Glow utilities */
 .glow-green {
-  box-shadow: 0 0 20px rgba(57, 255, 20, 0.35), inset 0 0 12px rgba(57, 255, 20, 0.15);
+  box-shadow: 0 0 20px var(--border-bright), inset 0 0 12px var(--border-dim);
 }
 
 .glow-green-sm {
-  box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+  box-shadow: 0 0 10px var(--border-bright);
 }
 
 .text-glow-green {
-  text-shadow: 0 0 10px rgba(57, 255, 20, 0.8);
+  text-shadow: 0 0 10px var(--sys-green);
+}
+
+/* Dynamic Theme Accent helper classes */
+.text-theme {
+  color: var(--sys-green) !important;
+}
+
+.bg-theme {
+  background-color: var(--sys-green) !important;
+}
+
+.border-theme {
+  border-color: var(--sys-green) !important;
 }
 
 /* Dark panel container styling */
@@ -68,7 +90,7 @@
 
 .os-panel-active {
   border-color: var(--border-bright);
-  box-shadow: 0 0 16px rgba(57, 255, 20, 0.3);
+  box-shadow: 0 0 16px var(--border-bright);
 }
 
 /* Scrollbar styling */
@@ -80,9 +102,9 @@
   background: var(--bg-1);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(57, 255, 20, 0.3);
+  background: var(--border-dim);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(57, 255, 20, 0.7);
+  background: var(--border-bright);
 }

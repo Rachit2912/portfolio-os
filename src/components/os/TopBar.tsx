@@ -37,12 +37,12 @@ export const TopBar: React.FC = () => {
           <span>START</span>
         </button>
 
-        <div className="flex items-center space-x-2 text-[#39FF14] font-extrabold text-glow-green">
-          <UserCheck className="w-4.5 h-4.5 text-[#39FF14]" />
+        <div className="flex items-center space-x-2 text-theme font-extrabold text-glow-green">
+          <UserCheck className="w-4.5 h-4.5 text-theme" />
           <span className="hidden sm:inline tracking-wider">RACHIT_PORTFOLIO_OS</span>
         </div>
         <span className="text-[#70A080] hidden sm:inline">|</span>
-        <div className="text-[#00FF66] font-semibold flex items-center space-x-1">
+        <div className="text-theme font-semibold flex items-center space-x-1">
           <span className="text-[#70A080]">path:</span>
           <span>{currentPath}</span>
         </div>
@@ -67,12 +67,12 @@ export const TopBar: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-3 text-[#70A080]">
-          <div className="hidden md:flex items-center space-x-1 text-[#39FF14] text-[11px] font-bold">
+          <div className="hidden md:flex items-center space-x-1 text-theme text-[11px] font-bold">
             <Wifi className="w-3.5 h-3.5" />
             <span>ONLINE</span>
           </div>
 
-          <div className="text-[#00FF66] font-bold tracking-wider text-glow-green flex items-center space-x-2">
+          <div className="text-theme font-bold tracking-wider text-glow-green flex items-center space-x-2">
             <span className="text-[#70A080] text-[10px] hidden xl:inline">{dateStr}</span>
             <span>{timeStr || '00:00:00'}</span>
           </div>

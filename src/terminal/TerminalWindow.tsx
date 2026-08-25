@@ -43,7 +43,8 @@ export const TerminalWindow: React.FC = () => {
     neofetchHasRun,
     setNeofetchHasRun,
     neofetchCleared,
-    setNeofetchCleared
+    setNeofetchCleared,
+    themeColor
   } = useOSStore();
 
   const [inputVal, setInputVal] = useState('');
@@ -139,12 +140,15 @@ export const TerminalWindow: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#030D06] border border-[#39FF14]/40 rounded-lg shadow-2xl overflow-hidden font-mono text-xs">
+    <div
+      className="w-full h-full flex flex-col bg-[#030D06] border rounded-lg shadow-2xl overflow-hidden font-mono text-xs"
+      style={{ borderColor: 'var(--border-bright)' }}
+    >
       {/* Window Header */}
-      <div className="bg-[#0A1C10] border-b border-[#39FF14]/30 px-4 py-2 flex items-center justify-between select-none shrink-0">
-        <div className="flex items-center space-x-2 text-[#39FF14]">
-          <TerminalIcon className="w-4 h-4 text-[#39FF14]" />
-          <span className="font-bold tracking-wide">guest@rachit-portfolio-os:{currentPath}$</span>
+      <div className="bg-[#0A1C10] border-b px-4 py-2 flex items-center justify-between select-none shrink-0" style={{ borderColor: 'var(--border-dim)' }}>
+        <div className="flex items-center space-x-2 text-theme font-bold">
+          <TerminalIcon className="w-4 h-4 text-theme" />
+          <span className="tracking-wide">guest@rachit-portfolio-os:{currentPath}$</span>
         </div>
         <div className="flex items-center space-x-2">
           <span className="text-[10px] text-[#70A080] hidden sm:inline">Type 'help' for commands</span>
@@ -165,11 +169,11 @@ export const TerminalWindow: React.FC = () => {
       >
         {/* Pre-run Neofetch display only shown once on session load until cleared */}
         {!neofetchCleared && commandHistory.length === 0 && (
-          <div className="space-y-1 text-[#39FF14]">
-            <div className="text-[#39FF14] font-bold">guest@rachit-portfolio-os:~$ neofetch</div>
+          <div className="space-y-1 text-theme">
+            <div className="text-theme font-bold">guest@rachit-portfolio-os:~$ neofetch</div>
             {NEOFETCH_PRE_RUN}
             <div className="text-[#70A080] text-[11px] pt-1">
-              Rachit Portfolio OS Terminal Ready. Type <span className="text-[#39FF14] font-bold">'help'</span> for list of commands.
+              Rachit Portfolio OS Terminal Ready. Type <span className="text-theme font-bold">'help'</span> for list of commands.
             </div>
           </div>
         )}
@@ -177,11 +181,11 @@ export const TerminalWindow: React.FC = () => {
         {commandHistory.map((item) => (
           <div key={item.id} className="space-y-1">
             <div className="flex items-center space-x-2">
-              <span className="text-[#00FF66] font-bold">guest@rachit-portfolio-os:{item.promptPath || '~'}$</span>
-              <span className="font-bold text-[#39FF14]">{item.command}</span>
+              <span className="text-theme font-bold">guest@rachit-portfolio-os:{item.promptPath || '~'}$</span>
+              <span className="font-bold text-theme">{item.command}</span>
             </div>
             {item.output && (
-              <div className={`pl-3 ${item.isError ? 'text-[#FF2A55]' : 'text-[#39FF14]'}`}>
+              <div className={`pl-3 ${item.isError ? 'text-[#FF2A55]' : 'text-theme'}`}>
                 {item.output}
               </div>
             )}
@@ -190,14 +194,14 @@ export const TerminalWindow: React.FC = () => {
 
         {/* Command Input Prompt */}
         <form onSubmit={handleSubmit} className="flex items-center space-x-2 pt-2">
-          <span className="text-[#00FF66] font-bold shrink-0">guest@rachit-portfolio-os:{currentPath}$</span>
+          <span className="text-theme font-bold shrink-0">guest@rachit-portfolio-os:{currentPath}$</span>
           <input
             ref={inputRef}
             type="text"
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent border-none outline-none text-[#39FF14] font-mono text-xs focus:ring-0"
+            className="flex-1 bg-transparent border-none outline-none text-theme font-mono text-xs focus:ring-0"
             placeholder="Type command here..."
             autoFocus
           />

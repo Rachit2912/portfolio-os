@@ -47,7 +47,7 @@ interface StartMenuModalProps {
 }
 
 export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose }) => {
-  const { setActiveWorkspace, setCurrentPath, toggleMatrixMode } = useOSStore();
+  const { setActiveWorkspace, setCurrentPath, toggleMatrixMode, themeColor } = useOSStore();
   const [query, setQuery] = useState('');
 
   React.useEffect(() => {
@@ -90,13 +90,14 @@ export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose 
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#020904]/85 backdrop-blur-md select-none my-auto"
     >
       <div
-        className="w-full max-w-2xl bg-[#030D06] border-2 border-[#39FF14] rounded-lg shadow-2xl glow-green p-4 sm:p-6 space-y-4 font-mono text-xs overflow-hidden relative my-auto"
+        className="w-full max-w-2xl bg-[#030D06] border-2 rounded-lg shadow-2xl glow-green p-4 sm:p-6 space-y-4 font-mono text-xs overflow-hidden relative my-auto"
+        style={{ borderColor: themeColor }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex justify-between items-center border-b border-[#39FF14]/30 pb-3">
-          <div className="flex items-center space-x-2 text-[#39FF14]">
-            <UserCheck className="w-5 h-5" />
+        <div className="flex justify-between items-center border-b pb-3" style={{ borderColor: 'var(--border-dim)' }}>
+          <div className="flex items-center space-x-2 text-theme font-bold">
+            <UserCheck className="w-5 h-5 text-theme" />
             <h2 className="text-base font-extrabold tracking-wide text-[#E8FFE8]">
               RACHIT_PORTFOLIO_OS // START MENU
             </h2>
@@ -111,13 +112,14 @@ export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose 
 
         {/* Search input */}
         <div className="relative">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#39FF14]" />
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-theme" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search apps, games, CLI commands (e.g., snake, projects, resume)..."
-            className="w-full pl-9 pr-4 py-2.5 bg-[#0A1C10] border border-[#39FF14]/40 rounded text-[#39FF14] placeholder-[#70A080] focus:outline-none focus:border-[#39FF14] text-xs"
+            className="w-full pl-9 pr-4 py-2.5 bg-[#0A1C10] border rounded text-theme placeholder-[#70A080] focus:outline-none text-xs"
+            style={{ borderColor: 'var(--border-dim)' }}
             autoFocus
           />
         </div>
@@ -131,24 +133,31 @@ export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose 
                 <button
                   key={item.id}
                   onClick={() => handleLaunch(item)}
-                  className="flex items-start space-x-3 p-3 bg-[#0A1C10] border border-[#39FF14]/20 hover:border-[#39FF14] hover:bg-[#39FF14]/10 rounded transition-all text-left group cursor-pointer"
+                  className="flex items-start space-x-3 p-3 bg-[#0A1C10] border hover:bg-white/5 rounded transition-all text-left group cursor-pointer"
+                  style={{ borderColor: 'var(--border-dim)' }}
                 >
-                  <div className="p-2 rounded bg-[#030D06] border border-[#39FF14]/30 text-[#39FF14] group-hover:glow-green-sm shrink-0">
+                  <div
+                    className="p-2 rounded bg-[#030D06] border text-theme group-hover:glow-green-sm shrink-0"
+                    style={{ borderColor: 'var(--border-dim)' }}
+                  >
                     <Icon className="w-4 h-4" />
                   </div>
                   <div className="space-y-0.5 overflow-hidden">
                     <div className="flex items-center space-x-2">
-                      <span className="font-bold text-[#E8FFE8] group-hover:text-[#39FF14] truncate">
+                      <span className="font-bold text-[#E8FFE8] group-hover:text-theme truncate">
                         {item.title}
                       </span>
                       {item.badge && (
-                        <span className="px-1.5 py-0.2 bg-[#39FF14] text-[#020904] text-[9px] font-extrabold rounded">
+                        <span
+                          style={{ backgroundColor: themeColor, color: '#020904' }}
+                          className="px-1.5 py-0.2 text-[9px] font-extrabold rounded"
+                        >
                           {item.badge}
                         </span>
                       )}
                     </div>
                     <p className="text-[#70A080] text-[11px] truncate">{item.description}</p>
-                    <p className="text-[#00FF66] text-[10px] font-mono">CLI: {item.cliCmd}</p>
+                    <p className="text-theme text-[10px] font-mono">CLI: {item.cliCmd}</p>
                   </div>
                 </button>
               );
@@ -157,7 +166,7 @@ export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose 
         </div>
 
         {/* Footer info & external links */}
-        <div className="border-t border-[#39FF14]/20 pt-3 flex flex-col sm:flex-row justify-between items-center text-[11px] text-[#70A080] gap-2">
+        <div className="border-t pt-3 flex flex-col sm:flex-row justify-between items-center text-[11px] text-[#70A080] gap-2" style={{ borderColor: 'var(--border-dim)' }}>
           <div className="flex items-center space-x-3">
             {socialLinks.slice(0, 3).map((link) => (
               <a
@@ -165,15 +174,15 @@ export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose 
                 href={link.url}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[#00FF66] hover:text-[#39FF14] flex items-center space-x-1"
+                className="text-theme hover:underline flex items-center space-x-1"
               >
                 <span>{link.name}</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             ))}
           </div>
-          <div className="flex items-center space-x-1 text-[#39FF14] font-bold">
-            <Cpu className="w-3.5 h-3.5" />
+          <div className="flex items-center space-x-1 text-theme font-bold">
+            <Cpu className="w-3.5 h-3.5 text-theme" />
             <span>Rachit Joshi // VIT Vellore</span>
           </div>
         </div>

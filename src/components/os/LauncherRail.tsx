@@ -35,7 +35,7 @@ const LAUNCHER_ITEMS: LauncherItem[] = [
 ];
 
 export const LauncherRail: React.FC = () => {
-  const { activeWorkspace, setActiveWorkspace, setCurrentPath } = useOSStore();
+  const { activeWorkspace, setActiveWorkspace, setCurrentPath, themeColor } = useOSStore();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [gamesOpen, setGamesOpen] = useState(false);
 
@@ -54,7 +54,10 @@ export const LauncherRail: React.FC = () => {
   };
 
   return (
-    <aside className="w-22 sm:w-28 bg-[#05140A] border-r border-[#39FF14]/30 flex flex-col items-center py-3 space-y-2 z-20 select-none shrink-0 overflow-y-auto">
+    <aside
+      className="w-22 sm:w-28 bg-[#05140A] border-r flex flex-col items-center py-3 space-y-2 z-20 select-none shrink-0 overflow-y-auto"
+      style={{ borderColor: 'var(--border-dim)' }}
+    >
       {LAUNCHER_ITEMS.map((item) => {
         const Icon = item.icon;
         const isActive = activeWorkspace === item.id;
@@ -64,11 +67,12 @@ export const LauncherRail: React.FC = () => {
             <button
               onClick={() => handleSelect(item)}
               aria-label={item.label}
-              className={`w-full py-2 px-1 rounded-lg flex flex-col items-center justify-center transition-all cursor-pointer relative ${
-                isActive
-                  ? 'bg-[#39FF14]/20 border-2 border-[#39FF14] text-[#39FF14] glow-green-sm'
-                  : 'bg-[#0A1C10] border border-[#39FF14]/15 text-[#70A080] hover:text-[#39FF14] hover:border-[#39FF14]/50'
-              }`}
+              style={{
+                borderColor: isActive ? themeColor : 'var(--border-dim)',
+                backgroundColor: isActive ? `${themeColor}30` : '#0A1C10',
+                color: isActive ? themeColor : '#70A080'
+              }}
+              className="w-full py-2 px-1 rounded-lg flex flex-col items-center justify-center transition-all cursor-pointer relative border font-bold"
             >
               <Icon className="w-5 h-5" />
               <span className="text-[10px] font-mono mt-1 font-bold whitespace-nowrap tracking-tight">
@@ -76,19 +80,23 @@ export const LauncherRail: React.FC = () => {
               </span>
             </button>
 
-            <div className="fixed left-24 sm:left-30 pointer-events-none hidden group-hover:flex flex-col bg-[#0A1C10] border border-[#39FF14] text-[#E8FFE8] p-2.5 rounded shadow-2xl z-[100] text-xs font-mono whitespace-nowrap glow-green-sm">
-              <span className="font-extrabold text-[#39FF14]">{item.label}</span>
-              <span className="text-[10px] text-[#00FF66]">CLI: {item.commandHint}</span>
+            <div
+              style={{ borderColor: themeColor }}
+              className="fixed left-24 sm:left-30 pointer-events-none hidden group-hover:flex flex-col bg-[#0A1C10] border text-[#E8FFE8] p-2.5 rounded shadow-2xl z-[100] text-xs font-mono whitespace-nowrap glow-green-sm"
+            >
+              <span className="font-extrabold" style={{ color: themeColor }}>{item.label}</span>
+              <span className="text-[10px]" style={{ color: themeColor }}>CLI: {item.commandHint}</span>
             </div>
           </div>
         );
       })}
 
-      <div className="mt-auto pt-2 w-full px-1.5 border-t border-[#39FF14]/20">
+      <div className="mt-auto pt-2 w-full px-1.5 border-t border-white/15">
         <button
           onClick={() => setSettingsOpen(true)}
           aria-label="Settings"
-          className="w-full py-2 px-1 rounded-lg bg-[#0A1C10] border border-[#39FF14]/30 text-[#39FF14] hover:bg-[#39FF14]/20 hover:border-[#39FF14] transition-all cursor-pointer flex flex-col items-center justify-center glow-green-sm"
+          style={{ borderColor: themeColor, color: themeColor }}
+          className="w-full py-2 px-1 rounded-lg bg-[#0A1C10] border hover:bg-[#39FF14]/20 transition-all cursor-pointer flex flex-col items-center justify-center glow-green-sm"
           title="System Settings / Change Theme Color"
         >
           <Settings className="w-5 h-5 animate-spin" style={{ animationDuration: '10s' }} />

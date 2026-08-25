@@ -20,7 +20,7 @@ const TETROMINOS = {
 type TetrominoKey = keyof typeof TETROMINOS;
 
 export const TetrisGame: React.FC = () => {
-  const { setActiveWorkspace } = useOSStore();
+  const { setActiveWorkspace, themeColor } = useOSStore();
   const [board, setBoard] = useState<string[][]>(
     Array.from({ length: ROWS }, () => Array(COLS).fill(''))
   );
@@ -205,20 +205,24 @@ export const TetrisGame: React.FC = () => {
   return (
     <div className="w-full h-full overflow-y-auto p-2 sm:p-4 bg-[#020904] text-[#E8FFE8] font-mono select-none flex flex-col items-center justify-start space-y-3">
       {/* Header Bar */}
-      <div className="os-panel p-3 border-[#39FF14]/40 glow-green-sm w-full flex items-center justify-between shrink-0">
-        <div className="flex items-center space-x-2 text-[#39FF14]">
-          <Gamepad2 className="w-5 h-5 animate-pulse" />
+      <div
+        className="os-panel p-3 glow-green-sm w-full flex items-center justify-between shrink-0 border"
+        style={{ borderColor: 'var(--border-bright)' }}
+      >
+        <div className="flex items-center space-x-2 text-theme font-bold">
+          <Gamepad2 className="w-5 h-5 animate-pulse text-theme" />
           <h1 className="text-sm sm:text-base font-extrabold text-[#E8FFE8]">MATRIX TETRIS ARCADE</h1>
         </div>
         <div className="text-xs flex items-center space-x-3">
           <div className="space-y-0.5 text-right">
-            <div className="text-[#00FF66] font-bold">SCORE: <span className="text-[#39FF14]">{score}</span></div>
-            <div className="text-[#70A080]">LINES: <span className="text-[#39FF14]">{lines}</span></div>
+            <div className="text-theme font-bold">SCORE: <span className="text-theme">{score}</span></div>
+            <div className="text-[#70A080]">LINES: <span className="text-theme">{lines}</span></div>
           </div>
           {isStarted && !gameOver && (
             <button
               onClick={() => setIsPaused((prev) => !prev)}
-              className="px-2 py-1 bg-[#0A1C10] border border-[#39FF14]/50 text-[#39FF14] font-bold rounded flex items-center space-x-1 hover:bg-[#39FF14]/20 transition-all cursor-pointer text-[10px]"
+              style={{ borderColor: themeColor, color: themeColor }}
+              className="px-2 py-1 bg-[#0A1C10] border font-bold rounded flex items-center space-x-1 hover:bg-white/10 transition-all cursor-pointer text-[10px]"
             >
               {isPaused ? <Play className="w-3 h-3" /> : <Pause className="w-3 h-3" />}
               <span>{isPaused ? 'RESUME' : 'PAUSE'}</span>
@@ -236,7 +240,10 @@ export const TetrisGame: React.FC = () => {
       </div>
 
       {/* Tetris Board Grid Maximized */}
-      <div className="relative border-2 border-[#39FF14] bg-[#030D06] p-2 sm:p-3 rounded shadow-2xl glow-green w-full flex-1 flex justify-center items-center min-h-[380px] overflow-hidden">
+      <div
+        className="relative border-2 bg-[#030D06] p-2 sm:p-3 rounded shadow-2xl glow-green w-full flex-1 flex justify-center items-center min-h-[380px] overflow-hidden"
+        style={{ borderColor: themeColor }}
+      >
         <div
           className="grid gap-0.5 w-full max-w-[380px] h-[580px]"
           style={{
@@ -248,7 +255,7 @@ export const TetrisGame: React.FC = () => {
               <div
                 key={`${rIdx}-${cIdx}`}
                 className={`rounded-xs transition-colors duration-75 ${
-                  cellColor || 'bg-[#0A1C10]/40 border border-[#39FF14]/5'
+                  cellColor || 'bg-[#0A1C10]/40 border border-white/5'
                 }`}
               />
             ))
@@ -260,11 +267,12 @@ export const TetrisGame: React.FC = () => {
           <div className="absolute inset-0 bg-[#020904]/85 backdrop-blur-xs flex flex-col items-center justify-center p-4 text-center space-y-3">
             {!isStarted ? (
               <>
-                <h2 className="text-base font-extrabold text-[#39FF14]">READY FOR TETRIS?</h2>
+                <h2 className="text-base font-extrabold text-theme">READY FOR TETRIS?</h2>
                 <p className="text-[11px] text-[#70A080]">Arrows: Move & Rotate | Down: Soft Drop</p>
                 <button
                   onClick={resetGame}
-                  className="px-5 py-2.5 bg-[#39FF14] text-[#020904] font-extrabold rounded flex items-center space-x-2 hover:bg-[#00FF66] transition-all cursor-pointer glow-green-sm text-xs"
+                  style={{ backgroundColor: themeColor, color: '#020904' }}
+                  className="px-5 py-2.5 font-extrabold rounded flex items-center space-x-2 hover:opacity-90 transition-all cursor-pointer glow-green-sm text-xs"
                 >
                   <Play className="w-4 h-4" />
                   <span>START GAME</span>
@@ -273,10 +281,11 @@ export const TetrisGame: React.FC = () => {
             ) : (
               <>
                 <div className="text-[#FF2A55] font-extrabold text-lg">GAME OVER</div>
-                <div className="text-xs text-[#E8FFE8]">Final Score: <span className="text-[#39FF14] font-bold">{score}</span></div>
+                <div className="text-xs text-[#E8FFE8]">Final Score: <span className="text-theme font-bold">{score}</span></div>
                 <button
                   onClick={resetGame}
-                  className="px-5 py-2.5 bg-[#39FF14] text-[#020904] font-extrabold rounded flex items-center space-x-2 hover:bg-[#00FF66] transition-all cursor-pointer glow-green-sm text-xs"
+                  style={{ backgroundColor: themeColor, color: '#020904' }}
+                  className="px-5 py-2.5 font-extrabold rounded flex items-center space-x-2 hover:opacity-90 transition-all cursor-pointer glow-green-sm text-xs"
                 >
                   <RotateCcw className="w-4 h-4" />
                   <span>PLAY AGAIN</span>
@@ -289,16 +298,16 @@ export const TetrisGame: React.FC = () => {
 
       {/* On-screen Controls */}
       <div className="flex items-center space-x-2">
-        <button onClick={moveLeft} className="p-2.5 bg-[#0A1C10] border border-[#39FF14]/40 rounded text-[#39FF14]">
+        <button onClick={moveLeft} style={{ borderColor: 'var(--border-dim)', color: themeColor }} className="p-2.5 bg-[#0A1C10] border rounded">
           <ArrowLeft className="w-4 h-4" />
         </button>
-        <button onClick={rotatePiece} className="p-2.5 bg-[#0A1C10] border border-[#39FF14]/40 rounded text-[#39FF14]">
+        <button onClick={rotatePiece} style={{ borderColor: 'var(--border-dim)', color: themeColor }} className="p-2.5 bg-[#0A1C10] border rounded">
           <RotateCw className="w-4 h-4" />
         </button>
-        <button onClick={dropPiece} className="p-2.5 bg-[#0A1C10] border border-[#39FF14]/40 rounded text-[#39FF14]">
+        <button onClick={dropPiece} style={{ borderColor: 'var(--border-dim)', color: themeColor }} className="p-2.5 bg-[#0A1C10] border rounded">
           <ArrowDown className="w-4 h-4" />
         </button>
-        <button onClick={moveRight} className="p-2.5 bg-[#0A1C10] border border-[#39FF14]/40 rounded text-[#39FF14]">
+        <button onClick={moveRight} style={{ borderColor: 'var(--border-dim)', color: themeColor }} className="p-2.5 bg-[#0A1C10] border rounded">
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>

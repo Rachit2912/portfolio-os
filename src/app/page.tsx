@@ -18,7 +18,7 @@ import { TetrisGame } from '@/components/games/TetrisGame';
 import { MatrixRainOverlay } from '@/components/effects/MatrixRainOverlay';
 
 export default function PortfolioOS() {
-  const { booted, activeWorkspace } = useOSStore();
+  const { booted, activeWorkspace, themeColor } = useOSStore();
 
   if (!booted) {
     return <BootScreen />;
@@ -36,15 +36,18 @@ export default function PortfolioOS() {
 
         <main className="flex-1 overflow-hidden p-2 sm:p-4 bg-[#020904]/90">
           {activeWorkspace === 'desktop' && (
-            <div className="w-full h-full flex flex-col items-center justify-center space-y-6 text-center p-6 os-panel border-[#39FF14]/30">
+            <div
+              className="w-full h-full flex flex-col items-center justify-center space-y-6 text-center p-6 os-panel border"
+              style={{ borderColor: 'var(--border-dim)' }}
+            >
               <div className="space-y-2 max-w-2xl">
-                <div className="text-[#39FF14] text-xs font-bold tracking-widest uppercase">
+                <div className="text-theme text-xs font-bold tracking-widest uppercase text-glow-green">
                   SYSTEM READY // DUAL NAVIGATION PORTFOLIO OS
                 </div>
                 <h1 className="text-3xl sm:text-5xl font-extrabold text-[#E8FFE8] tracking-tight">
                   RACHIT JOSHI
                 </h1>
-                <p className="text-[#00FF66] text-sm sm:text-base font-semibold">
+                <p className="text-theme text-sm sm:text-base font-semibold">
                   Backend / Systems / High-Performance C++ / AI Systems
                 </p>
                 <p className="text-[#70A080] text-xs leading-relaxed pt-2">
@@ -55,9 +58,10 @@ export default function PortfolioOS() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl pt-4">
                 <div
                   onClick={() => useOSStore.setState({ activeWorkspace: 'projects', currentPath: '~/projects' })}
-                  className="os-panel p-4 border-[#39FF14]/30 hover:border-[#39FF14] hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
+                  className="os-panel p-4 border hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
+                  style={{ borderColor: 'var(--border-dim)' }}
                 >
-                  <div className="text-[#39FF14] font-bold text-sm group-hover:text-[#00FF66]">
+                  <div className="text-theme font-bold text-sm">
                     📁 ~/projects
                   </div>
                   <div className="text-[#70A080] text-xs">
@@ -67,9 +71,10 @@ export default function PortfolioOS() {
 
                 <div
                   onClick={() => useOSStore.setState({ activeWorkspace: 'terminal' })}
-                  className="os-panel p-4 border-[#39FF14]/30 hover:border-[#39FF14] hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
+                  className="os-panel p-4 border hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
+                  style={{ borderColor: 'var(--border-dim)' }}
                 >
-                  <div className="text-[#00FF66] font-bold text-sm group-hover:text-[#39FF14]">
+                  <div className="text-theme font-bold text-sm">
                     💻 Terminal CLI
                   </div>
                   <div className="text-[#70A080] text-xs">
@@ -79,9 +84,10 @@ export default function PortfolioOS() {
 
                 <div
                   onClick={() => useOSStore.setState({ activeWorkspace: 'experience', currentPath: '~/experience' })}
-                  className="os-panel p-4 border-[#39FF14]/30 hover:border-[#39FF14] hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
+                  className="os-panel p-4 border hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
+                  style={{ borderColor: 'var(--border-dim)' }}
                 >
-                  <div className="text-[#39FF14] font-bold text-sm group-hover:text-[#00FF66]">
+                  <div className="text-theme font-bold text-sm">
                     ⚡ git log
                   </div>
                   <div className="text-[#70A080] text-xs">

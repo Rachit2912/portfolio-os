@@ -11,7 +11,7 @@ type Position = { x: number; y: number };
 type Direction = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
 
 export const SnakeGame: React.FC = () => {
-  const { setActiveWorkspace } = useOSStore();
+  const { setActiveWorkspace, themeColor } = useOSStore();
   const [snake, setSnake] = useState<Position[]>([
     { x: 10, y: 10 },
     { x: 10, y: 11 },
@@ -131,18 +131,22 @@ export const SnakeGame: React.FC = () => {
   return (
     <div className="w-full h-full overflow-y-auto p-2 sm:p-4 bg-[#020904] text-[#E8FFE8] font-mono select-none flex flex-col items-center justify-start space-y-3">
       {/* Game Bar */}
-      <div className="os-panel p-3 border-[#39FF14]/40 glow-green-sm w-full flex items-center justify-between shrink-0">
-        <div className="flex items-center space-x-2 text-[#39FF14]">
-          <Gamepad2 className="w-5 h-5 animate-pulse" />
+      <div
+        className="os-panel p-3 glow-green-sm w-full flex items-center justify-between shrink-0 border"
+        style={{ borderColor: 'var(--border-bright)' }}
+      >
+        <div className="flex items-center space-x-2 text-theme font-bold">
+          <Gamepad2 className="w-5 h-5 animate-pulse text-theme" />
           <h1 className="text-sm sm:text-base font-extrabold text-[#E8FFE8]">MATRIX SNAKE ARCADE</h1>
         </div>
         <div className="flex items-center space-x-3 text-xs">
-          <div className="text-[#00FF66] font-bold">SCORE: <span className="text-[#39FF14]">{score}</span></div>
-          <div className="text-[#70A080]">HIGH: <span className="text-[#39FF14]">{highScore}</span></div>
+          <div className="text-theme font-bold">SCORE: <span className="text-theme">{score}</span></div>
+          <div className="text-[#70A080]">HIGH: <span className="text-theme">{highScore}</span></div>
           {isStarted && !gameOver && (
             <button
               onClick={() => setIsPaused((prev) => !prev)}
-              className="px-2 py-1 bg-[#0A1C10] border border-[#39FF14]/50 text-[#39FF14] font-bold rounded flex items-center space-x-1 hover:bg-[#39FF14]/20 transition-all cursor-pointer text-[10px]"
+              style={{ borderColor: themeColor, color: themeColor }}
+              className="px-2 py-1 bg-[#0A1C10] border font-bold rounded flex items-center space-x-1 hover:bg-white/10 transition-all cursor-pointer text-[10px]"
             >
               {isPaused ? <Play className="w-3 h-3" /> : <Pause className="w-3 h-3" />}
               <span>{isPaused ? 'RESUME' : 'PAUSE'}</span>
@@ -160,7 +164,10 @@ export const SnakeGame: React.FC = () => {
       </div>
 
       {/* Grid Canvas Area Maximized */}
-      <div className="relative border-2 border-[#39FF14] bg-[#030D06] p-2 rounded shadow-2xl glow-green w-full flex-1 flex justify-center items-center min-h-[360px] overflow-hidden">
+      <div
+        className="relative border-2 bg-[#030D06] p-2 rounded shadow-2xl glow-green w-full flex-1 flex justify-center items-center min-h-[360px] overflow-hidden"
+        style={{ borderColor: themeColor }}
+      >
         <div
           className="grid gap-0.5 w-full max-w-[620px] aspect-square"
           style={{
@@ -196,11 +203,12 @@ export const SnakeGame: React.FC = () => {
           <div className="absolute inset-0 bg-[#020904]/85 backdrop-blur-xs flex flex-col items-center justify-center p-4 text-center space-y-3">
             {!isStarted ? (
               <>
-                <h2 className="text-lg font-extrabold text-[#39FF14]">READY TO PLAY SNAKE?</h2>
+                <h2 className="text-lg font-extrabold text-theme">READY TO PLAY SNAKE?</h2>
                 <p className="text-xs text-[#70A080]">Use Arrow Keys to Navigate & Space to Pause</p>
                 <button
                   onClick={resetGame}
-                  className="px-5 py-2.5 bg-[#39FF14] text-[#020904] font-extrabold rounded flex items-center space-x-2 hover:bg-[#00FF66] transition-all cursor-pointer glow-green-sm text-xs"
+                  style={{ backgroundColor: themeColor, color: '#020904' }}
+                  className="px-5 py-2.5 font-extrabold rounded flex items-center space-x-2 hover:opacity-90 transition-all cursor-pointer glow-green-sm text-xs"
                 >
                   <Play className="w-4 h-4" />
                   <span>START GAME</span>
@@ -209,10 +217,11 @@ export const SnakeGame: React.FC = () => {
             ) : gameOver ? (
               <>
                 <div className="text-[#FF2A55] font-extrabold text-lg">GAME OVER</div>
-                <div className="text-xs text-[#E8FFE8]">Final Score: <span className="text-[#39FF14] font-bold">{score}</span></div>
+                <div className="text-xs text-[#E8FFE8]">Final Score: <span className="text-theme font-bold">{score}</span></div>
                 <button
                   onClick={resetGame}
-                  className="px-5 py-2.5 bg-[#39FF14] text-[#020904] font-extrabold rounded flex items-center space-x-2 hover:bg-[#00FF66] transition-all cursor-pointer glow-green-sm text-xs"
+                  style={{ backgroundColor: themeColor, color: '#020904' }}
+                  className="px-5 py-2.5 font-extrabold rounded flex items-center space-x-2 hover:opacity-90 transition-all cursor-pointer glow-green-sm text-xs"
                 >
                   <RotateCcw className="w-4 h-4" />
                   <span>PLAY AGAIN</span>
@@ -220,10 +229,11 @@ export const SnakeGame: React.FC = () => {
               </>
             ) : (
               <>
-                <div className="text-[#39FF14] font-extrabold text-lg">GAME PAUSED</div>
+                <div className="text-theme font-extrabold text-lg">GAME PAUSED</div>
                 <button
                   onClick={() => setIsPaused(false)}
-                  className="px-5 py-2.5 bg-[#39FF14] text-[#020904] font-extrabold rounded flex items-center space-x-2 hover:bg-[#00FF66] transition-all cursor-pointer glow-green-sm text-xs"
+                  style={{ backgroundColor: themeColor, color: '#020904' }}
+                  className="px-5 py-2.5 font-extrabold rounded flex items-center space-x-2 hover:opacity-90 transition-all cursor-pointer glow-green-sm text-xs"
                 >
                   <Play className="w-4 h-4" />
                   <span>RESUME</span>
