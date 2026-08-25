@@ -17,7 +17,7 @@ import { KernelPanic404 } from '@/components/effects/KernelPanic404';
 import { MatrixRainOverlay } from '@/components/effects/MatrixRainOverlay';
 
 export default function PortfolioOS() {
-  const { booted, activeWorkspace, crtEnabled } = useOSStore();
+  const { booted, activeWorkspace } = useOSStore();
 
   if (!booted) {
     return <BootScreen />;
@@ -25,7 +25,7 @@ export default function PortfolioOS() {
 
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden bg-[#020904] text-[#E8FFE8] font-mono select-none bg-micro-grid">
-      <CRTOverlay enabled={crtEnabled} />
+      <CRTOverlay enabled={true} />
       <MatrixRainOverlay />
 
       <TopBar />

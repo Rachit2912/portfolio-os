@@ -6,7 +6,7 @@ import { useOSStore } from '@/store/useOSStore';
 import { socialLinks } from '@/data/links';
 
 export const TopBar: React.FC = () => {
-  const { currentPath, activeWorkspace, crtEnabled, toggleCRT, logout } = useOSStore();
+  const { currentPath, activeWorkspace, logout } = useOSStore();
   const [timeStr, setTimeStr] = useState<string>('');
 
   useEffect(() => {
@@ -56,18 +56,6 @@ export const TopBar: React.FC = () => {
             <Wifi className="w-3.5 h-3.5" />
             <span>ONLINE</span>
           </div>
-
-          <button
-            onClick={() => toggleCRT()}
-            className={`px-2 py-0.5 rounded border text-[10px] cursor-pointer transition-colors font-bold ${
-              crtEnabled
-                ? 'bg-[#39FF14]/15 border-[#39FF14] text-[#39FF14] glow-green-sm'
-                : 'bg-[#0A1C10] border-[#70A080]/30 text-[#70A080]'
-            }`}
-            title="Toggle CRT Overlay"
-          >
-            CRT: {crtEnabled ? 'ON' : 'OFF'}
-          </button>
 
           <div className="text-[#00FF66] font-bold tracking-wider text-glow-green">
             {timeStr || '00:00:00'}
