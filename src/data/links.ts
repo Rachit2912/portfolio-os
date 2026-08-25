@@ -131,6 +131,12 @@ export const cliCommands: CLICommand[] = [
     usage: "clear"
   },
   {
+    name: "logout",
+    description: "Logout and reboot Rachit Portfolio OS",
+    category: "System",
+    usage: "logout / shutdown"
+  },
+  {
     name: "snake",
     description: "Launch Matrix Snake retro arcade game",
     category: "Easter Eggs",

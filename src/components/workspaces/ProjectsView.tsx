@@ -10,7 +10,10 @@ import {
   CheckCircle2,
   Cpu,
   Globe,
-  Star,
+  Server,
+  Brain,
+  Eye,
+  Activity,
   BookOpen
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -29,8 +32,20 @@ const DOMAIN_TABS: Array<{ id: DomainCategory | 'ALL'; label: string }> = [
   { id: 'ai', label: 'AI' },
   { id: 'ml', label: 'ML' },
   { id: 'cv', label: 'Computer Vision' },
-  { id: 'hobby', label: 'Hobby & Dotfiles' },
+  { id: 'developer-tools', label: 'Frontend' },
+  { id: 'hobby', label: 'Hobby' },
 ];
+
+const getProjectDomainIcon = (p: { category: string; cliCategoryFolder: string }) => {
+  if (p.cliCategoryFolder === 'ai' || p.category === 'ai') return Brain;
+  if (p.cliCategoryFolder === 'cv' || p.category === 'cv' || p.category === 'computer-vision') return Eye;
+  if (p.cliCategoryFolder === 'ml' || p.category === 'ml') return Activity;
+  if (p.cliCategoryFolder === 'cpp-systems' || p.category === 'cpp-systems' || p.category === 'cpp') return Cpu;
+  if (p.cliCategoryFolder === 'backend' || p.category === 'backend' || p.category === 'go') return Server;
+  if (p.cliCategoryFolder === 'full-stack' || p.category === 'full-stack') return Layers;
+  if (p.category === 'developer-tools' || p.category === 'cloud') return Globe;
+  return Terminal;
+};
 
 export const ProjectsView: React.FC = () => {
   const { selectedProjectSlug, setSelectedProjectSlug, setCurrentPath } = useOSStore();
@@ -79,28 +94,31 @@ export const ProjectsView: React.FC = () => {
 
         {/* Project List Items */}
         <div className="space-y-2 pt-2">
-          {filteredProjects.map((p) => (
-            <button
-              key={p.slug}
-              onClick={() => handleSelectProject(p.slug, p.cliPath)}
-              className={`w-full text-left px-3 py-2.5 rounded flex items-center justify-between transition-all cursor-pointer ${
-                currentProject.slug === p.slug
-                  ? 'bg-[#39FF14]/20 border border-[#39FF14] text-[#39FF14] font-bold glow-green-sm'
-                  : 'bg-[#0A1C10] border border-[#39FF14]/15 text-[#70A080] hover:text-[#E8FFE8] hover:border-[#39FF14]/40'
-              }`}
-            >
-              <div className="truncate pr-2 space-y-0.5">
-                <div className="truncate font-semibold flex items-center space-x-1">
-                  {p.featured && <Star className="w-3 h-3 text-[#39FF14] fill-[#39FF14] shrink-0" />}
-                  <span className="truncate">{p.name}</span>
+          {filteredProjects.map((p) => {
+            const DomainIcon = getProjectDomainIcon(p);
+            return (
+              <button
+                key={p.slug}
+                onClick={() => handleSelectProject(p.slug, p.cliPath)}
+                className={`w-full text-left px-3 py-2.5 rounded flex items-center justify-between transition-all cursor-pointer ${
+                  currentProject.slug === p.slug
+                    ? 'bg-[#39FF14]/20 border border-[#39FF14] text-[#39FF14] font-bold glow-green-sm'
+                    : 'bg-[#0A1C10] border border-[#39FF14]/15 text-[#70A080] hover:text-[#E8FFE8] hover:border-[#39FF14]/40'
+                }`}
+              >
+                <div className="truncate pr-2 space-y-0.5">
+                  <div className="truncate font-semibold flex items-center space-x-1.5">
+                    <DomainIcon className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                    <span className="truncate">{p.name}</span>
+                  </div>
+                  <div className="text-[10px] text-[#70A080] font-normal truncate">{p.categoryLabel}</div>
                 </div>
-                <div className="text-[10px] text-[#70A080] font-normal truncate">{p.categoryLabel}</div>
-              </div>
-              <span className="text-[9px] bg-[#030D06] px-1.5 py-0.5 rounded border border-[#39FF14]/20 text-[#00FF66] shrink-0 font-bold">
-                {p.year}
-              </span>
-            </button>
-          ))}
+                <span className="text-[9px] bg-[#030D06] px-1.5 py-0.5 rounded border border-[#39FF14]/20 text-[#00FF66] shrink-0 font-bold">
+                  {p.year}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </aside>
 

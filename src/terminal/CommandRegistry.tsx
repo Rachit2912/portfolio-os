@@ -10,7 +10,7 @@ export interface CommandResult {
   newPath?: string;
   selectedProjectSlug?: string;
   isError?: boolean;
-  action?: 'exit';
+  action?: 'exit' | 'logout';
 }
 
 export class CommandRegistry {
@@ -383,6 +383,18 @@ Hot cup of developer fuel prepared. Ready to write clean backend code!
 `}
             </pre>
           )
+        };
+      }
+
+      case 'logout':
+      case 'shutdown':
+      case 'poweroff':
+      case 'reboot':
+      case 'init 0':
+      case 'exit 0': {
+        return {
+          output: 'Initiating system logout and shutdown sequence...',
+          action: 'logout'
         };
       }
 

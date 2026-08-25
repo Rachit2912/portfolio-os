@@ -1,20 +1,24 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Terminal, SquareCode, ExternalLink, Wifi, LogOut, LayoutGrid } from 'lucide-react';
+import { Terminal, UserCheck, ExternalLink, Wifi, LogOut, LayoutGrid } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 import { socialLinks } from '@/data/links';
 import { StartMenuModal } from './StartMenuModal';
 
 export const TopBar: React.FC = () => {
-  const { currentPath, activeWorkspace, logout } = useOSStore();
+  const { currentPath, activeWorkspace, themeColor, logout } = useOSStore();
   const [timeStr, setTimeStr] = useState<string>('');
+  const [dateStr, setDateStr] = useState<string>('');
   const [startOpen, setStartOpen] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      setTimeStr(now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+      const datePart = now.toISOString().split('T')[0];
+      const timePart = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      setDateStr(`${datePart} (GST)`);
+      setTimeStr(timePart);
     };
     updateTime();
     const timer = setInterval(updateTime, 1000);
@@ -26,14 +30,15 @@ export const TopBar: React.FC = () => {
       <div className="flex items-center space-x-3">
         <button
           onClick={() => setStartOpen(true)}
-          className="px-2.5 py-1 bg-[#39FF14] text-[#020904] font-extrabold rounded flex items-center space-x-1.5 hover:bg-[#00FF66] transition-all cursor-pointer glow-green-sm text-xs shrink-0"
+          style={{ backgroundColor: themeColor, color: '#020904' }}
+          className="px-2.5 py-1 font-extrabold rounded flex items-center space-x-1.5 transition-all cursor-pointer glow-green-sm text-xs shrink-0"
         >
           <LayoutGrid className="w-3.5 h-3.5" />
           <span>START</span>
         </button>
 
         <div className="flex items-center space-x-2 text-[#39FF14] font-extrabold text-glow-green">
-          <SquareCode className="w-4.5 h-4.5 text-[#39FF14]" />
+          <UserCheck className="w-4.5 h-4.5 text-[#39FF14]" />
           <span className="hidden sm:inline tracking-wider">RACHIT_PORTFOLIO_OS</span>
         </div>
         <span className="text-[#70A080] hidden sm:inline">|</span>
@@ -67,8 +72,9 @@ export const TopBar: React.FC = () => {
             <span>ONLINE</span>
           </div>
 
-          <div className="text-[#00FF66] font-bold tracking-wider text-glow-green">
-            {timeStr || '00:00:00'}
+          <div className="text-[#00FF66] font-bold tracking-wider text-glow-green flex items-center space-x-2">
+            <span className="text-[#70A080] text-[10px] hidden xl:inline">{dateStr}</span>
+            <span>{timeStr || '00:00:00'}</span>
           </div>
 
           <button

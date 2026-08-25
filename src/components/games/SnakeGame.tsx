@@ -136,16 +136,25 @@ export const SnakeGame: React.FC = () => {
           <Gamepad2 className="w-5 h-5 animate-pulse" />
           <h1 className="text-sm sm:text-base font-extrabold text-[#E8FFE8]">MATRIX SNAKE ARCADE</h1>
         </div>
-        <div className="flex items-center space-x-4 text-xs">
+        <div className="flex items-center space-x-3 text-xs">
           <div className="text-[#00FF66] font-bold">SCORE: <span className="text-[#39FF14]">{score}</span></div>
           <div className="text-[#70A080]">HIGH: <span className="text-[#39FF14]">{highScore}</span></div>
+          {isStarted && !gameOver && (
+            <button
+              onClick={() => setIsPaused((prev) => !prev)}
+              className="px-2 py-1 bg-[#0A1C10] border border-[#39FF14]/50 text-[#39FF14] font-bold rounded flex items-center space-x-1 hover:bg-[#39FF14]/20 transition-all cursor-pointer text-[10px]"
+            >
+              {isPaused ? <Play className="w-3 h-3" /> : <Pause className="w-3 h-3" />}
+              <span>{isPaused ? 'RESUME' : 'PAUSE'}</span>
+            </button>
+          )}
           <button
             onClick={() => setActiveWorkspace('desktop')}
             className="px-2.5 py-1 bg-[#FF2A55]/15 border border-[#FF2A55] text-[#FF2A55] font-bold rounded flex items-center space-x-1 hover:bg-[#FF2A55] hover:text-[#000] transition-colors cursor-pointer text-[10px]"
             title="Press Esc or Q to Exit"
           >
             <LogOut className="w-3 h-3" />
-            <span>EXIT [ESC / Q]</span>
+            <span>EXIT</span>
           </button>
         </div>
       </div>

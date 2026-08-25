@@ -7,16 +7,17 @@ import {
   User,
   FileText,
   Mail,
-  Sparkles,
+  Gamepad2,
   GitBranch,
   Monitor,
   Settings
 } from 'lucide-react';
 import { useOSStore, WorkspaceTab } from '@/store/useOSStore';
 import { SettingsModal } from './SettingsModal';
+import { GamesFunModal } from './GamesFunModal';
 
 interface LauncherItem {
-  id: WorkspaceTab;
+  id: WorkspaceTab | 'games-fun';
   label: string;
   commandHint: string;
   icon: React.ComponentType<{ className?: string }>;
@@ -30,16 +31,17 @@ const LAUNCHER_ITEMS: LauncherItem[] = [
   { id: 'experience', label: 'Experience', commandHint: 'git log', icon: GitBranch },
   { id: 'resume', label: 'Resume', commandHint: 'cat resume.md', icon: FileText },
   { id: 'contact', label: 'Contact', commandHint: './contact', icon: Mail },
-  { id: 'easter-egg-matrix', label: 'Matrix Mode', commandHint: 'matrix', icon: Sparkles },
+  { id: 'games-fun', label: 'Games & Fun', commandHint: 'snake / tetris / matrix', icon: Gamepad2 },
 ];
 
 export const LauncherRail: React.FC = () => {
   const { activeWorkspace, setActiveWorkspace, setCurrentPath } = useOSStore();
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [gamesOpen, setGamesOpen] = useState(false);
 
   const handleSelect = (item: LauncherItem) => {
-    if (item.id === 'easter-egg-matrix') {
-      useOSStore.getState().toggleMatrixMode(true);
+    if (item.id === 'games-fun') {
+      setGamesOpen(true);
       return;
     }
     setActiveWorkspace(item.id);
@@ -74,7 +76,7 @@ export const LauncherRail: React.FC = () => {
               </span>
             </button>
 
-            <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 hidden group-hover:flex flex-col bg-[#0A1C10] border border-[#39FF14] text-[#E8FFE8] p-2.5 rounded shadow-2xl z-50 text-xs font-mono whitespace-nowrap glow-green-sm">
+            <div className="fixed left-24 sm:left-30 pointer-events-none hidden group-hover:flex flex-col bg-[#0A1C10] border border-[#39FF14] text-[#E8FFE8] p-2.5 rounded shadow-2xl z-[100] text-xs font-mono whitespace-nowrap glow-green-sm">
               <span className="font-extrabold text-[#39FF14]">{item.label}</span>
               <span className="text-[10px] text-[#00FF66]">CLI: {item.commandHint}</span>
             </div>
@@ -97,6 +99,7 @@ export const LauncherRail: React.FC = () => {
       </div>
 
       <SettingsModal isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <GamesFunModal isOpen={gamesOpen} onClose={() => setGamesOpen(false)} />
     </aside>
   );
 };

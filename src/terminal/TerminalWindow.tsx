@@ -41,13 +41,14 @@ export const TerminalWindow: React.FC = () => {
     setActiveWorkspace,
     setSelectedProjectSlug,
     neofetchHasRun,
-    setNeofetchHasRun
+    setNeofetchHasRun,
+    neofetchCleared,
+    setNeofetchCleared
   } = useOSStore();
 
   const [inputVal, setInputVal] = useState('');
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [pastInputs, setPastInputs] = useState<string[]>([]);
-  const [clearedSession, setClearedSession] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -68,7 +69,7 @@ export const TerminalWindow: React.FC = () => {
 
     if (trimmed.toLowerCase() === 'clear') {
       clearCommandHistory();
-      setClearedSession(true);
+      setNeofetchCleared(true);
       setInputVal('');
       setHistoryIndex(-1);
       return;
@@ -83,6 +84,12 @@ export const TerminalWindow: React.FC = () => {
       setActiveWorkspace('game-snake');
     } else if (trimmed.toLowerCase() === 'tetris') {
       setActiveWorkspace('game-tetris');
+    }
+
+    if (res.action === 'logout') {
+      useOSStore.getState().logout('CLI LOGOUT TRIGGERED (shutdown / init 0).');
+      setInputVal('');
+      return;
     }
 
     if (res.action === 'exit') {
@@ -157,7 +164,7 @@ export const TerminalWindow: React.FC = () => {
         onClick={() => inputRef.current?.focus()}
       >
         {/* Pre-run Neofetch display only shown once on session load until cleared */}
-        {!clearedSession && commandHistory.length === 0 && pastInputs.length === 0 && (
+        {!neofetchCleared && commandHistory.length === 0 && (
           <div className="space-y-1 text-[#39FF14]">
             <div className="text-[#39FF14] font-bold">guest@rachit-portfolio-os:~$ neofetch</div>
             {NEOFETCH_PRE_RUN}

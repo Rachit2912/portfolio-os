@@ -13,7 +13,7 @@ import {
   Gamepad2,
   Sparkles,
   ExternalLink,
-  SquareCode,
+  UserCheck,
   Cpu
 } from 'lucide-react';
 import { useOSStore, WorkspaceTab } from '@/store/useOSStore';
@@ -53,11 +53,6 @@ export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose 
   React.useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't close if user is typing in the search input
-      if (document.activeElement?.tagName === 'INPUT') {
-        if (e.key === 'Escape') onClose();
-        return;
-      }
       if (e.key === 'Escape' || e.key.toLowerCase() === 'q') {
         onClose();
       }
@@ -101,7 +96,7 @@ export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose 
         {/* Header */}
         <div className="flex justify-between items-center border-b border-[#39FF14]/30 pb-3">
           <div className="flex items-center space-x-2 text-[#39FF14]">
-            <SquareCode className="w-5 h-5" />
+            <UserCheck className="w-5 h-5" />
             <h2 className="text-base font-extrabold tracking-wide text-[#E8FFE8]">
               RACHIT_PORTFOLIO_OS // START MENU
             </h2>

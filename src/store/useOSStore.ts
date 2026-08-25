@@ -33,6 +33,7 @@ interface OSState {
   commandHistory: CommandHistoryItem[];
   themeColor: string;
   neofetchHasRun: boolean;
+  neofetchCleared: boolean;
 
   // Actions
   setBooted: (booted: boolean) => void;
@@ -47,6 +48,7 @@ interface OSState {
   setThemeColor: (color: string) => void;
   resetTheme: () => void;
   setNeofetchHasRun: (hasRun: boolean) => void;
+  setNeofetchCleared: (cleared: boolean) => void;
   logout: (msg?: string) => void;
 }
 
@@ -62,6 +64,7 @@ export const useOSStore = create<OSState>((set) => ({
   commandHistory: [],
   themeColor: '#39FF14',
   neofetchHasRun: false,
+  neofetchCleared: false,
 
   setBooted: (booted) => set({ booted }),
   setActiveWorkspace: (activeWorkspace) => set({ activeWorkspace }),
@@ -72,13 +75,36 @@ export const useOSStore = create<OSState>((set) => ({
   setTerminalFocused: (terminalFocused) => set({ terminalFocused }),
   addCommandHistory: (item) => set((state) => ({ commandHistory: [...state.commandHistory, item] })),
   clearCommandHistory: () => set({ commandHistory: [] }),
-  setThemeColor: (themeColor) => set({ themeColor }),
-  resetTheme: () => set({ themeColor: '#39FF14' }),
+  setThemeColor: (themeColor) => {
+    if (typeof document !== 'undefined') {
+      const root = document.documentElement;
+      root.style.setProperty('--sys-green', themeColor);
+      root.style.setProperty('--primary-green', themeColor);
+      root.style.setProperty('--theme-accent', themeColor);
+      root.style.setProperty('--border-dim', `${themeColor}40`);
+      root.style.setProperty('--border-bright', `${themeColor}B3`);
+    }
+    set({ themeColor });
+  },
+  resetTheme: () => {
+    if (typeof document !== 'undefined') {
+      const root = document.documentElement;
+      root.style.setProperty('--sys-green', '#39FF14');
+      root.style.setProperty('--primary-green', '#00FF66');
+      root.style.setProperty('--theme-accent', '#39FF14');
+      root.style.setProperty('--border-dim', 'rgba(57, 255, 20, 0.25)');
+      root.style.setProperty('--border-bright', 'rgba(57, 255, 20, 0.7)');
+    }
+    set({ themeColor: '#39FF14' });
+  },
   setNeofetchHasRun: (neofetchHasRun) => set({ neofetchHasRun }),
+  setNeofetchCleared: (neofetchCleared) => set({ neofetchCleared }),
   logout: (msg = "LOGGED OUT SUCCESSFULLY. SESSION TERMINATED.") => set({
     booted: false,
     activeWorkspace: 'desktop',
     logoutMessage: msg,
     neofetchHasRun: false,
+    neofetchCleared: false,
+    commandHistory: [],
   }),
 }));

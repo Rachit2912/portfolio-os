@@ -706,8 +706,8 @@ Full-stack blog application built using Node.js, Express, MongoDB, EJS templatin
     name: "Product Explorer",
     shortDescription: "Next.js 14 + Zustand + LocalStorage e-commerce cart interface.",
     fullDescription: "A mini e-commerce web app built with Next.js 14 (App Router), featuring Zustand state management, optimistic UI updates, and LocalStorage cart persistence.",
-    category: "hobby",
-    categoryLabel: "Hobby / Frontend Demo",
+    category: "full-stack",
+    categoryLabel: "Full-Stack & Next.js App Router",
     status: "Completed",
     year: "2025",
     languages: ["TypeScript"],
@@ -727,16 +727,93 @@ Full-stack blog application built using Node.js, Express, MongoDB, EJS templatin
     featured: false,
     priority: 16,
     portfolioTier: "tier3_experiments",
-    cliCategoryFolder: "hobby",
-    cliPath: "~/projects/hobby/product-explorer",
+    cliCategoryFolder: "full-stack",
+    cliPath: "~/projects/full-stack/product-explorer",
     cliCommands: {
-      open: "cd ~/projects/hobby/product-explorer",
-      cat: "cat ~/projects/hobby/product-explorer/README.md",
-      cd: "cd ~/projects/hobby/product-explorer"
+      open: "cd ~/projects/full-stack/product-explorer",
+      cat: "cat ~/projects/full-stack/product-explorer/README.md",
+      cd: "cd ~/projects/full-stack/product-explorer"
     },
     readmeContent: `# Product Explorer // Next.js & Zustand Cart Demo
 
 Mini e-commerce web application featuring Next.js 14 App Router, Zustand state management, and LocalStorage persistence.
+`
+  },
+  {
+    id: "smart-water-bottle",
+    slug: "smart-water-bottle",
+    name: "Smart Water Bottle System",
+    shortDescription: "Python + Arduino IoT hydration tracking system with Flask backend & PyWhatKit WhatsApp alerts.",
+    fullDescription: "Full-stack IoT water bottle tracking system built with Arduino C++ sensor logging, Flask REST backend, and PyWhatKit automated WhatsApp hydration reminders.",
+    category: "full-stack",
+    categoryLabel: "Full-Stack & IoT Systems",
+    status: "Completed",
+    year: "2024",
+    languages: ["Python", "C++", "Arduino C/C++"],
+    frameworks: ["Flask", "Arduino C/C++"],
+    databases: [],
+    infrastructure: ["Arduino", "Serial Port", "IoT Sensors"],
+    technologies: ["Arduino", "Arduino C/C++", "Python", "Python Arduino Module", "Flask", "PyWhatKit", "IoT Sensors", "OpenCV"],
+    problem: "Automating hydration tracking with hardware weight sensors and automated messaging alerts.",
+    solution: "Connected Arduino load cell sensor outputs to Python backend for hydration logging.",
+    architecture: "Arduino Load Cell -> Serial Port -> Python Backend -> PyWhatKit WhatsApp Alert.",
+    keyFeatures: ["Arduino weight sensor reading", "Python hydration log plotter", "Automated WhatsApp reminders"],
+    engineeringHighlights: ["Serial communication reading between Arduino microcontrollers and Python."],
+    challenges: ["Handling sensor calibration drift."],
+    outcomes: ["Working IoT hydration prototype."],
+    githubUrl: "https://github.com/Rachit2912/Smart_Water_Bottle",
+    featured: false,
+    priority: 17,
+    portfolioTier: "tier3_experiments",
+    cliCategoryFolder: "full-stack",
+    cliPath: "~/projects/full-stack/smart-water-bottle",
+    cliCommands: {
+      open: "cd ~/projects/full-stack/smart-water-bottle",
+      cat: "cat ~/projects/full-stack/smart-water-bottle/README.md",
+      cd: "cd ~/projects/full-stack/smart-water-bottle"
+    },
+    readmeContent: `# Smart Water Bottle System
+
+IoT hydration tracking system combining Arduino C++ hardware sensor logging, Flask backend, and Python WhatsApp reminders.
+`
+  },
+  {
+    id: "zomato-clone",
+    slug: "zomato-clone",
+    name: "Zomato Frontend Clone",
+    shortDescription: "Responsive HTML5/CSS3 frontend clone of Zomato website.",
+    fullDescription: "A responsive static frontend clone of the Zomato restaurant discovery website built purely with HTML5 and CSS3.",
+    category: "developer-tools",
+    categoryLabel: "Frontend / HTML & CSS",
+    status: "Completed",
+    year: "2024",
+    languages: ["HTML", "CSS"],
+    frameworks: [],
+    databases: [],
+    infrastructure: ["GitHub Pages"],
+    technologies: ["HTML5", "CSS3", "Flexbox", "CSS Grid"],
+    problem: "Recreating complex commercial web layouts using raw CSS Flexbox and Grid.",
+    solution: "Developed a pixel-replica static frontend layout of Zomato.",
+    architecture: "HTML5 Semantic Markup -> CSS Grid & Flexbox Layout.",
+    keyFeatures: ["Responsive restaurant cards", "GitHub Pages deployment"],
+    engineeringHighlights: ["Pure CSS layout without external framework dependencies."],
+    challenges: ["Cross-browser CSS media query alignment."],
+    outcomes: ["Deployed on GitHub Pages."],
+    githubUrl: "https://github.com/Rachit2912/Zomato-FrontEnd-Clone",
+    demoUrl: "https://rachit2912.github.io/Zomato-FrontEnd-Clone/",
+    featured: false,
+    priority: 18,
+    portfolioTier: "tier3_experiments",
+    cliCategoryFolder: "experiments",
+    cliPath: "~/projects/experiments/zomato-clone",
+    cliCommands: {
+      open: "cd ~/projects/experiments/zomato-clone",
+      cat: "cat ~/projects/experiments/zomato-clone/README.md",
+      cd: "cd ~/projects/experiments/zomato-clone"
+    },
+    readmeContent: `# Zomato Frontend Clone
+
+Responsive frontend clone of Zomato built using HTML5 and CSS3.
 `
   },
   {
@@ -763,7 +840,7 @@ Mini e-commerce web application featuring Next.js 14 App Router, Zustand state m
     outcomes: ["Personal Linux development workspace."],
     githubUrl: "https://github.com/Rachit2912/rachit_archlinux-dotfiles",
     featured: false,
-    priority: 17,
+    priority: 19,
     portfolioTier: "tier3_experiments",
     cliCategoryFolder: "hobby",
     cliPath: "~/projects/hobby/archlinux-dotfiles",
@@ -775,83 +852,6 @@ Mini e-commerce web application featuring Next.js 14 App Router, Zustand state m
     readmeContent: `# Arch Linux Dotfiles
 
 Custom Hyprland, Neovim (Lua), Waybar, and Kitty environment for Arch Linux.
-`
-  },
-  {
-    id: "smart-water-bottle",
-    slug: "smart-water-bottle",
-    name: "Smart Water Bottle System",
-    shortDescription: "Python + Arduino hydration tracking system with PyWhatKit WhatsApp reminders.",
-    fullDescription: "IoT water bottle tracking system built with Arduino C++ sensor data logging, Python backend, and PyWhatKit automated WhatsApp hydration reminders.",
-    category: "hobby",
-    categoryLabel: "Hobby / IoT Prototype",
-    status: "Completed",
-    year: "2024",
-    languages: ["Python", "C++"],
-    frameworks: ["Flask"],
-    databases: [],
-    infrastructure: ["Arduino"],
-    technologies: ["Python", "Arduino", "PyWhatKit", "OpenCV / Matplotlib"],
-    problem: "Automating hydration tracking with hardware weight sensors and automated messaging alerts.",
-    solution: "Connected Arduino load cell sensor outputs to Python backend for hydration logging.",
-    architecture: "Arduino Load Cell -> Serial Port -> Python Backend -> PyWhatKit WhatsApp Alert.",
-    keyFeatures: ["Arduino weight sensor reading", "Python hydration log plotter", "Automated WhatsApp reminders"],
-    engineeringHighlights: ["Serial communication reading between Arduino microcontrollers and Python."],
-    challenges: ["Handling sensor calibration drift."],
-    outcomes: ["Working IoT hydration prototype."],
-    githubUrl: "https://github.com/Rachit2912/Smart_Water_Bottle",
-    featured: false,
-    priority: 18,
-    portfolioTier: "tier3_experiments",
-    cliCategoryFolder: "hobby",
-    cliPath: "~/projects/hobby/smart-water-bottle",
-    cliCommands: {
-      open: "cd ~/projects/hobby/smart-water-bottle",
-      cat: "cat ~/projects/hobby/smart-water-bottle/README.md",
-      cd: "cd ~/projects/hobby/smart-water-bottle"
-    },
-    readmeContent: `# Smart Water Bottle System
-
-IoT hydration tracking system combining Arduino C++ hardware sensor logging and Python WhatsApp reminders.
-`
-  },
-  {
-    id: "zomato-clone",
-    slug: "zomato-clone",
-    name: "Zomato Frontend Clone",
-    shortDescription: "Responsive HTML/CSS frontend clone of Zomato website.",
-    fullDescription: "A responsive static frontend clone of the Zomato restaurant discovery website built purely with HTML5 and CSS3.",
-    category: "hobby",
-    categoryLabel: "Hobby / Frontend Layout",
-    status: "Completed",
-    year: "2024",
-    languages: ["HTML", "CSS"],
-    frameworks: [],
-    databases: [],
-    infrastructure: ["GitHub Pages"],
-    technologies: ["HTML5", "CSS3", "Flexbox", "CSS Grid"],
-    problem: "Recreating complex commercial web layouts using raw CSS Flexbox and Grid.",
-    solution: "Developed a pixel-replica static frontend layout of Zomato.",
-    architecture: "HTML5 Semantic Markup -> CSS Grid & Flexbox Layout.",
-    keyFeatures: ["Responsive restaurant cards", "GitHub Pages deployment"],
-    engineeringHighlights: ["Pure CSS layout without external framework dependencies."],
-    challenges: ["Cross-browser CSS media query alignment."],
-    outcomes: ["Deployed on GitHub Pages."],
-    githubUrl: "https://github.com/Rachit2912/Zomato-FrontEnd-Clone",
-    demoUrl: "https://rachit2912.github.io/Zomato-FrontEnd-Clone/",
-    featured: false,
-    priority: 19,
-    portfolioTier: "tier3_experiments",
-    cliCategoryFolder: "hobby",
-    cliPath: "~/projects/hobby/zomato-clone",
-    cliCommands: {
-      open: "cd ~/projects/hobby/zomato-clone",
-      cat: "cat ~/projects/hobby/zomato-clone/README.md",
-      cd: "cd ~/projects/hobby/zomato-clone"
-    },
-    readmeContent: `# Zomato Frontend Clone
-
-Responsive frontend clone of Zomato built using HTML5 and CSS3.
 `
   }
 ];

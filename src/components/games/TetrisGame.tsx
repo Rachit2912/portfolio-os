@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Gamepad2, RotateCcw, Play, ArrowLeft, ArrowRight, ArrowDown, RotateCw, LogOut } from 'lucide-react';
+import { Gamepad2, RotateCcw, Play, Pause, ArrowLeft, ArrowRight, ArrowDown, RotateCw, LogOut } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 
 const COLS = 12;
@@ -34,6 +34,7 @@ export const TetrisGame: React.FC = () => {
   const [score, setScore] = useState(0);
   const [lines, setLines] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
 
   const spawnPiece = () => {
@@ -79,6 +80,7 @@ export const TetrisGame: React.FC = () => {
     setScore(0);
     setLines(0);
     setGameOver(false);
+    setIsPaused(false);
     setIsStarted(true);
     setCurrentPiece(spawnPiece());
   };
@@ -88,21 +90,21 @@ export const TetrisGame: React.FC = () => {
   };
 
   const moveLeft = () => {
-    if (!currentPiece || gameOver) return;
+    if (!currentPiece || gameOver || isPaused) return;
     if (!checkCollision(currentPiece.shape, currentPiece.x - 1, currentPiece.y, board)) {
       setCurrentPiece({ ...currentPiece, x: currentPiece.x - 1 });
     }
   };
 
   const moveRight = () => {
-    if (!currentPiece || gameOver) return;
+    if (!currentPiece || gameOver || isPaused) return;
     if (!checkCollision(currentPiece.shape, currentPiece.x + 1, currentPiece.y, board)) {
       setCurrentPiece({ ...currentPiece, x: currentPiece.x + 1 });
     }
   };
 
   const rotatePiece = () => {
-    if (!currentPiece || gameOver) return;
+    if (!currentPiece || gameOver || isPaused) return;
     const rotated = rotate(currentPiece.shape);
     if (!checkCollision(rotated, currentPiece.x, currentPiece.y, board)) {
       setCurrentPiece({ ...currentPiece, shape: rotated });
@@ -110,7 +112,7 @@ export const TetrisGame: React.FC = () => {
   };
 
   const dropPiece = () => {
-    if (!currentPiece || gameOver) return;
+    if (!currentPiece || gameOver || isPaused) return;
 
     if (!checkCollision(currentPiece.shape, currentPiece.x, currentPiece.y + 1, board)) {
       setCurrentPiece((prev) => (prev ? { ...prev, y: prev.y + 1 } : null));
@@ -177,12 +179,12 @@ export const TetrisGame: React.FC = () => {
   }, [isStarted, gameOver, currentPiece, board]);
 
   useEffect(() => {
-    if (!isStarted || gameOver) return;
+    if (!isStarted || gameOver || isPaused) return;
     const interval = setInterval(() => {
       dropPiece();
     }, 500);
     return () => clearInterval(interval);
-  }, [isStarted, gameOver, currentPiece, board]);
+  }, [isStarted, gameOver, isPaused, currentPiece, board]);
 
   // Combine board and current falling piece for rendering
   const renderBoard = board.map((row) => [...row]);
@@ -213,13 +215,22 @@ export const TetrisGame: React.FC = () => {
             <div className="text-[#00FF66] font-bold">SCORE: <span className="text-[#39FF14]">{score}</span></div>
             <div className="text-[#70A080]">LINES: <span className="text-[#39FF14]">{lines}</span></div>
           </div>
+          {isStarted && !gameOver && (
+            <button
+              onClick={() => setIsPaused((prev) => !prev)}
+              className="px-2 py-1 bg-[#0A1C10] border border-[#39FF14]/50 text-[#39FF14] font-bold rounded flex items-center space-x-1 hover:bg-[#39FF14]/20 transition-all cursor-pointer text-[10px]"
+            >
+              {isPaused ? <Play className="w-3 h-3" /> : <Pause className="w-3 h-3" />}
+              <span>{isPaused ? 'RESUME' : 'PAUSE'}</span>
+            </button>
+          )}
           <button
             onClick={() => setActiveWorkspace('desktop')}
             className="px-2.5 py-1 bg-[#FF2A55]/15 border border-[#FF2A55] text-[#FF2A55] font-bold rounded flex items-center space-x-1 hover:bg-[#FF2A55] hover:text-[#000] transition-colors cursor-pointer text-[10px]"
             title="Press Esc or Q to Exit"
           >
             <LogOut className="w-3 h-3" />
-            <span>EXIT [ESC / Q]</span>
+            <span>EXIT</span>
           </button>
         </div>
       </div>

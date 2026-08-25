@@ -8,14 +8,7 @@
     --terminal: #030D06;
     --sys-green: #39FF14;
     --primary-green: #00FF66;
-    --deep-green: #008037;
-    --soft-green: #7DFFB3;
-    --cyan: #00F5FF;
-    --amber: #FFB000;
-    --magenta: #FF007F;
-    --text-primary: #E8FFE8;
-    --text-secondary: #70A080;
-    --danger: #FF2A55;
+    --theme-accent: #39FF14;
     --border-dim: rgba(57, 255, 20, 0.25);
     --border-bright: rgba(57, 255, 20, 0.7);
   }
