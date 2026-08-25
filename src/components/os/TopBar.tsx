@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Terminal, UserCheck, ExternalLink, Wifi, LogOut, LayoutGrid } from 'lucide-react';
+import { Terminal, UserCheck, ExternalLink, Wifi, LogOut, LayoutGrid, Sun, Moon } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 import { socialLinks } from '@/data/links';
 import { StartMenuModal } from './StartMenuModal';
 
 export const TopBar: React.FC = () => {
-  const { currentPath, activeWorkspace, themeColor, logout } = useOSStore();
+  const { currentPath, activeWorkspace, themeColor, isDarkMode, toggleDarkMode, logout } = useOSStore();
   const [timeStr, setTimeStr] = useState<string>('');
   const [dateStr, setDateStr] = useState<string>('');
   const [startOpen, setStartOpen] = useState(false);
@@ -76,6 +76,15 @@ export const TopBar: React.FC = () => {
             <span className="text-[#70A080] text-[10px] hidden xl:inline">{dateStr}</span>
             <span>{timeStr || '00:00:00'}</span>
           </div>
+
+          <button
+            onClick={() => toggleDarkMode()}
+            className="p-1.5 rounded bg-[#0A1C10] border border-white/20 text-theme hover:border-theme transition-all cursor-pointer flex items-center space-x-1 text-[11px] font-bold"
+            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          >
+            {isDarkMode ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+            <span className="hidden sm:inline">{isDarkMode ? 'LIGHT' : 'DARK'}</span>
+          </button>
 
           <button
             onClick={() => logout("USER LOGGED OUT. SESSION TERMINATED.")}

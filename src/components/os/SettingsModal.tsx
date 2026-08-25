@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { X, Settings, RotateCcw, Palette, Check } from 'lucide-react';
+import { X, Settings, RotateCcw, Palette, Check, Sun, Moon } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 
 interface SettingsModalProps {
@@ -20,7 +20,7 @@ const PRESET_THEMES = [
 ];
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
-  const { themeColor, setThemeColor, resetTheme } = useOSStore();
+  const { themeColor, setThemeColor, isDarkMode, toggleDarkMode, resetTheme } = useOSStore();
 
   if (!isOpen) return null;
 
@@ -48,6 +48,40 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
           >
             <X className="w-5 h-5" />
           </button>
+        </div>
+
+        {/* Color mode (Light/Dark) */}
+        <div className="space-y-2 border-b border-white/10 pb-3">
+          <div className="flex items-center space-x-2 text-[#E8FFE8] font-bold">
+            {isDarkMode ? <Moon className="w-4 h-4" style={{ color: themeColor }} /> : <Sun className="w-4 h-4" style={{ color: themeColor }} />}
+            <span>COLOR MODE (LIGHT / DARK)</span>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              onClick={() => { if (!isDarkMode) toggleDarkMode(); }}
+              style={{
+                borderColor: isDarkMode ? themeColor : 'rgba(255,255,255,0.15)',
+                backgroundColor: isDarkMode ? `${themeColor}20` : '#0A1C10',
+                color: isDarkMode ? themeColor : '#E8FFE8'
+              }}
+              className="flex items-center justify-center space-x-2 p-2 rounded border transition-all cursor-pointer font-bold"
+            >
+              <Moon className="w-4 h-4" />
+              <span>DARK MODE</span>
+            </button>
+            <button
+              onClick={() => { if (isDarkMode) toggleDarkMode(); }}
+              style={{
+                borderColor: !isDarkMode ? themeColor : 'rgba(255,255,255,0.15)',
+                backgroundColor: !isDarkMode ? `${themeColor}20` : '#0A1C10',
+                color: !isDarkMode ? themeColor : '#E8FFE8'
+              }}
+              className="flex items-center justify-center space-x-2 p-2 rounded border transition-all cursor-pointer font-bold"
+            >
+              <Sun className="w-4 h-4" />
+              <span>LIGHT MODE</span>
+            </button>
+          </div>
         </div>
 
         {/* Theme customization presets */}
