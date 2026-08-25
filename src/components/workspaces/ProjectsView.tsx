@@ -103,24 +103,33 @@ export const ProjectsView: React.FC = () => {
         <div className="space-y-2 pt-2">
           {filteredProjects.map((p) => {
             const DomainIcon = getProjectDomainIcon(p);
+            const isSelected = currentProject.slug === p.slug;
             return (
               <button
                 key={p.slug}
                 onClick={() => handleSelectProject(p.slug, p.cliPath)}
-                className={`w-full text-left px-3 py-2.5 rounded flex items-center justify-between transition-all cursor-pointer ${
-                  currentProject.slug === p.slug
-                    ? 'bg-[#39FF14]/20 border border-[#39FF14] text-[#39FF14] font-bold glow-green-sm'
-                    : 'bg-[#0A1C10] border border-[#39FF14]/15 text-[#70A080] hover:text-[#E8FFE8] hover:border-[#39FF14]/40'
+                style={
+                  isSelected
+                    ? { backgroundColor: `${themeColor}20`, borderColor: themeColor, color: themeColor }
+                    : { borderColor: 'var(--border-dim)' }
+                }
+                className={`w-full text-left px-3 py-2.5 rounded flex items-center justify-between transition-all cursor-pointer border ${
+                  isSelected
+                    ? 'font-bold glow-green-sm'
+                    : 'bg-[#0A1C10] text-[#70A080] hover:text-[#E8FFE8]'
                 }`}
               >
                 <div className="truncate pr-2 space-y-0.5">
                   <div className="truncate font-semibold flex items-center space-x-1.5">
-                    <DomainIcon className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                    <DomainIcon className="w-3.5 h-3.5 shrink-0" style={{ color: isSelected ? themeColor : 'var(--sys-green)' }} />
                     <span className="truncate">{p.name}</span>
                   </div>
                   <div className="text-[10px] text-[#70A080] font-normal truncate">{p.categoryLabel}</div>
                 </div>
-                <span className="text-[9px] bg-[#030D06] px-1.5 py-0.5 rounded border border-[#39FF14]/20 text-[#00FF66] shrink-0 font-bold">
+                <span
+                  className="text-[9px] bg-[#030D06] px-1.5 py-0.5 rounded border shrink-0 font-bold"
+                  style={{ borderColor: 'var(--border-dim)', color: isSelected ? themeColor : 'var(--sys-green)' }}
+                >
                   {p.year}
                 </span>
               </button>
