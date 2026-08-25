@@ -8,7 +8,7 @@ RachitOS is a futuristic Linux/Unix-inspired personal operating system portfolio
 
 ### 1. Dual Navigation Engine
 - **Visual Desktop GUI**: Left vertical launcher rail, persistent system status top bar, and live HUD telemetry panel.
-- **Functional CLI Terminal**: Interactive Unix REPL supporting `ls`, `cd`, `pwd`, `cat`, `tree`, `neofetch`, `git log`, `projects`, `about`, `experience`, `resume`, `contact`, `ping`, `whoami`, `sudo`, `vim`, `matrix`, `404`, `coffee`, `clear`, and `exit`.
+- **Functional CLI Terminal**: Interactive Unix REPL supporting `ls`, `cd`, `pwd`, `cat`, `tree`, `neofetch`, `git log`, `projects`, `about`, `experience`, `resume`, `contact`, `ping`, `whoami`, `sudo`, `matrix`, `404`, `coffee`, `clear`, and `exit`.
 
 ### 2. Tailored Engineer Identity & Data
 - **Verified Metrics**: Hitwicket SDE Intern production impact (+49% Payer Conversion, +52% Premium Purchase Sales, +$100/day Ad Revenue, 30s -> 10s SLT Execution Time).
@@ -18,7 +18,7 @@ RachitOS is a futuristic Linux/Unix-inspired personal operating system portfolio
 ### 3. Visual System & Atmospheric Touches
 - **Futuristic Palette**: Charcoal dark surfaces (`#020604`, `#07100D`, `#0A1411`) with system neon green (`#42F59B`), cyan (`#44E8FF`), and purple (`#A66CFF`) highlights.
 - **Micro-Grid & CRT Scanlines**: Toggleable CRT scanline overlay and subtle ambient background grid.
-- **Interactive Easter Eggs**: Mini Vim text editor simulator, Matrix rain canvas pulse overlay, and Kernel Panic 404 simulation screen.
+- **Interactive Easter Eggs**: Matrix rain canvas pulse overlay and Kernel Panic 404 simulation screen.
 
 ---
 

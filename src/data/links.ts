@@ -137,12 +137,6 @@ export const cliCommands: CLICommand[] = [
     usage: "sudo"
   },
   {
-    name: "vim",
-    description: "Launch mini vim text editor (Easter Egg)",
-    category: "Easter Eggs",
-    usage: "vim"
-  },
-  {
     name: "matrix",
     description: "Trigger Matrix rain effect (Easter Egg)",
     category: "Easter Eggs",

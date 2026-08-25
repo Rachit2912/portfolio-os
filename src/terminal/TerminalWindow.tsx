@@ -67,6 +67,10 @@ export const TerminalWindow: React.FC = () => {
     const savedPromptPath = currentPath;
     const res = CommandRegistry.execute(trimmed, currentPath);
 
+    if (trimmed.toLowerCase() === 'matrix') {
+      useOSStore.getState().toggleMatrixMode(true);
+    }
+
     if (res.action === 'exit') {
       setActiveWorkspace('desktop');
       setInputVal('');

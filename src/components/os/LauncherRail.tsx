@@ -35,6 +35,10 @@ export const LauncherRail: React.FC = () => {
   const { activeWorkspace, setActiveWorkspace, setCurrentPath } = useOSStore();
 
   const handleSelect = (item: LauncherItem) => {
+    if (item.id === 'easter-egg-matrix') {
+      useOSStore.getState().toggleMatrixMode(true);
+      return;
+    }
     setActiveWorkspace(item.id);
     if (item.id === 'projects') setCurrentPath('~/projects');
     else if (item.id === 'about') setCurrentPath('~/about.md');
