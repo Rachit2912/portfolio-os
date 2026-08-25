@@ -9,6 +9,14 @@ export const MatrixRainOverlay: React.FC = () => {
 
   useEffect(() => {
     if (!matrixMode) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key.toLowerCase() === 'q') {
+        toggleMatrixMode(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -52,8 +60,9 @@ export const MatrixRainOverlay: React.FC = () => {
     return () => {
       clearInterval(interval);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [matrixMode]);
+  }, [matrixMode, toggleMatrixMode]);
 
   if (!matrixMode) return null;
 

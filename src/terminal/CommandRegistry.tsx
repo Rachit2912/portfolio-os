@@ -177,27 +177,31 @@ export class CommandRegistry {
           output: (
             <div className="space-y-3 font-mono text-xs text-[#E8FFE8]">
               <div className="text-[#39FF14] font-bold border-b border-[#39FF14]/30 pb-1">
-                CANONICAL REPOSITORIES DATABASE (~/projects)
+                CANONICAL REPOSITORIES DATABASE BY DOMAIN (~/projects)
               </div>
-              {['tier1_featured', 'tier2_secondary', 'tier3_experiments'].map((tier) => (
-                <div key={tier} className="space-y-1.5">
-                  <div className="text-[#39FF14] font-bold uppercase text-[11px]">
-                    {tier.replace('_', ' ')}
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {projectsData.filter(p => p.portfolioTier === tier).map((p) => (
-                      <div key={p.slug} className="bg-[#0A1C10] p-2 rounded border border-[#39FF14]/20 space-y-1">
-                        <div className="flex justify-between items-center text-[#39FF14] font-bold">
-                          <span>{p.name}</span>
-                          <span className="text-[10px] text-[#00FF66]">{p.year}</span>
+              {['full-stack', 'backend', 'cpp-systems', 'ai', 'ml', 'cv', 'hobby'].map((catFolder) => {
+                const catProjects = projectsData.filter(p => p.cliCategoryFolder === catFolder);
+                if (catProjects.length === 0) return null;
+                return (
+                  <div key={catFolder} className="space-y-1.5">
+                    <div className="text-[#39FF14] font-bold uppercase text-[11px]">
+                      ~/projects/{catFolder} ({catProjects.length})
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {catProjects.map((p) => (
+                        <div key={p.slug} className="bg-[#0A1C10] p-2 rounded border border-[#39FF14]/20 space-y-1">
+                          <div className="flex justify-between items-center text-[#39FF14] font-bold">
+                            <span>{p.name}</span>
+                            <span className="text-[10px] text-[#00FF66]">{p.year}</span>
+                          </div>
+                          <div className="text-[#70A080] text-[10px]">{p.shortDescription}</div>
+                          <div className="text-[#00FF66] text-[10px]">Path: {p.cliPath}</div>
                         </div>
-                        <div className="text-[#70A080] text-[10px]">{p.shortDescription}</div>
-                        <div className="text-[#00FF66] text-[10px]">Path: {p.cliPath}</div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )
         };

@@ -19,20 +19,26 @@ import { projectsData } from '@/data/projects';
 import { PortfolioTier } from '@/types/portfolio';
 import { useOSStore } from '@/store/useOSStore';
 
-const TIER_TABS: Array<{ id: PortfolioTier | 'ALL'; label: string }> = [
-  { id: 'ALL', label: 'All Projects' },
-  { id: 'tier1_featured', label: 'Tier 1 // Featured' },
-  { id: 'tier2_secondary', label: 'Tier 2 // Secondary' },
-  { id: 'tier3_experiments', label: 'Tier 3 // Experiments' },
+import { DomainCategory } from '@/types/portfolio';
+
+const DOMAIN_TABS: Array<{ id: DomainCategory | 'ALL'; label: string }> = [
+  { id: 'ALL', label: 'All Domains' },
+  { id: 'full-stack', label: 'Full-Stack' },
+  { id: 'backend', label: 'Backend' },
+  { id: 'cpp-systems', label: 'C++ Systems' },
+  { id: 'ai', label: 'AI' },
+  { id: 'ml', label: 'ML' },
+  { id: 'cv', label: 'Computer Vision' },
+  { id: 'hobby', label: 'Hobby & Dotfiles' },
 ];
 
 export const ProjectsView: React.FC = () => {
   const { selectedProjectSlug, setSelectedProjectSlug, setCurrentPath } = useOSStore();
-  const [activeTier, setActiveTier] = useState<PortfolioTier | 'ALL'>('ALL');
+  const [activeCategory, setActiveCategory] = useState<DomainCategory | 'ALL'>('ALL');
 
   const filteredProjects = projectsData.filter((p) => {
-    if (activeTier === 'ALL') return true;
-    return p.portfolioTier === activeTier;
+    if (activeCategory === 'ALL') return true;
+    return p.cliCategoryFolder === activeCategory || p.category === activeCategory;
   });
 
   const currentProject = projectsData.find((p) => p.slug === selectedProjectSlug) || filteredProjects[0] || projectsData[0];
@@ -51,16 +57,16 @@ export const ProjectsView: React.FC = () => {
           <span>CANONICAL REPOSITORIES ({filteredProjects.length})</span>
         </div>
 
-        {/* Tier Filter Tabs */}
+        {/* Domain Filter Tabs */}
         <div className="space-y-1.5">
-          <div className="text-[10px] text-[#70A080] font-semibold uppercase tracking-wider">Curation Tiers</div>
+          <div className="text-[10px] text-[#70A080] font-semibold uppercase tracking-wider">Domain Categories</div>
           <div className="flex flex-wrap gap-1">
-            {TIER_TABS.map((tab) => (
+            {DOMAIN_TABS.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTier(tab.id)}
+                onClick={() => setActiveCategory(tab.id)}
                 className={`px-2 py-1 rounded text-[10px] transition-all cursor-pointer font-semibold ${
-                  activeTier === tab.id
+                  activeCategory === tab.id
                     ? 'bg-[#39FF14] text-[#020904] font-bold'
                     : 'bg-[#0A1C10] border border-[#39FF14]/20 text-[#70A080] hover:text-[#39FF14]'
                 }`}
