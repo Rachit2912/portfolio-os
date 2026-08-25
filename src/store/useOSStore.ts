@@ -8,6 +8,8 @@ export type WorkspaceTab =
   | 'experience'
   | 'resume'
   | 'contact'
+  | 'game-snake'
+  | 'game-tetris'
   | 'easter-egg-matrix'
   | 'easter-egg-404';
 

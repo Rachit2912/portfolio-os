@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Terminal, Shield, ExternalLink, Wifi, LogOut } from 'lucide-react';
+import { Terminal, Shield, ExternalLink, Wifi, LogOut, LayoutGrid } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 import { socialLinks } from '@/data/links';
+import { StartMenuModal } from './StartMenuModal';
 
 export const TopBar: React.FC = () => {
   const { currentPath, activeWorkspace, logout } = useOSStore();
   const [timeStr, setTimeStr] = useState<string>('');
+  const [startOpen, setStartOpen] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -22,6 +24,14 @@ export const TopBar: React.FC = () => {
   return (
     <header className="h-10 bg-[#05140A]/90 border-b border-[#39FF14]/30 px-4 flex items-center justify-between text-xs font-mono select-none z-30 backdrop-blur-md">
       <div className="flex items-center space-x-3">
+        <button
+          onClick={() => setStartOpen(true)}
+          className="px-2.5 py-1 bg-[#39FF14] text-[#020904] font-extrabold rounded flex items-center space-x-1.5 hover:bg-[#00FF66] transition-all cursor-pointer glow-green-sm text-xs shrink-0"
+        >
+          <LayoutGrid className="w-3.5 h-3.5" />
+          <span>START</span>
+        </button>
+
         <div className="flex items-center space-x-2 text-[#39FF14] font-extrabold text-glow-green">
           <Shield className="w-4 h-4 text-[#39FF14]" />
           <span className="hidden sm:inline tracking-wider">RACHIT_PORTFOLIO_OS</span>
@@ -71,6 +81,8 @@ export const TopBar: React.FC = () => {
           </button>
         </div>
       </div>
+
+      <StartMenuModal isOpen={startOpen} onClose={() => setStartOpen(false)} />
     </header>
   );
 };

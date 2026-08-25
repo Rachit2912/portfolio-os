@@ -131,6 +131,18 @@ export const cliCommands: CLICommand[] = [
     usage: "clear"
   },
   {
+    name: "snake",
+    description: "Launch Matrix Snake retro arcade game",
+    category: "Easter Eggs",
+    usage: "snake"
+  },
+  {
+    name: "tetris",
+    description: "Launch Matrix Tetris retro arcade game",
+    category: "Easter Eggs",
+    usage: "tetris"
+  },
+  {
     name: "sudo",
     description: "Execute root privileges check (Easter Egg)",
     category: "Easter Eggs",

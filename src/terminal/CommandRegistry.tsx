@@ -341,6 +341,18 @@ export class CommandRegistry {
         };
       }
 
+      case 'snake': {
+        return {
+          output: 'Launching Matrix Snake Arcade Game...',
+        };
+      }
+
+      case 'tetris': {
+        return {
+          output: 'Launching Matrix Tetris Arcade Game...',
+        };
+      }
+
       case 'matrix': {
         return {
           output: 'Initiating Matrix visual mode...',

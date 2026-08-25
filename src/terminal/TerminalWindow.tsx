@@ -69,6 +69,10 @@ export const TerminalWindow: React.FC = () => {
 
     if (trimmed.toLowerCase() === 'matrix') {
       useOSStore.getState().toggleMatrixMode(true);
+    } else if (trimmed.toLowerCase() === 'snake') {
+      setActiveWorkspace('game-snake');
+    } else if (trimmed.toLowerCase() === 'tetris') {
+      setActiveWorkspace('game-tetris');
     }
 
     if (res.action === 'exit') {
