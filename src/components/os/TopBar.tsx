@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Terminal, UserCheck, ExternalLink, Wifi, LogOut, LayoutGrid, Sun, Moon } from 'lucide-react';
+import { Cpu, ExternalLink, Wifi, LogOut, LayoutGrid } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 import { socialLinks } from '@/data/links';
 import { StartMenuModal } from './StartMenuModal';
 
 export const TopBar: React.FC = () => {
-  const { currentPath, activeWorkspace, themeColor, isDarkMode, toggleDarkMode, logout } = useOSStore();
+  const { currentPath, activeWorkspace, themeColor, logout } = useOSStore();
   const [timeStr, setTimeStr] = useState<string>('');
   const [dateStr, setDateStr] = useState<string>('');
   const [startOpen, setStartOpen] = useState(false);
@@ -17,7 +17,7 @@ export const TopBar: React.FC = () => {
       const now = new Date();
       const datePart = now.toISOString().split('T')[0];
       const timePart = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      setDateStr(`${datePart} (GST)`);
+      setDateStr(datePart);
       setTimeStr(timePart);
     };
     updateTime();
@@ -38,7 +38,7 @@ export const TopBar: React.FC = () => {
         </button>
 
         <div className="flex items-center space-x-2 text-theme font-extrabold text-glow-green">
-          <UserCheck className="w-4.5 h-4.5 text-theme" />
+          <Cpu className="w-4.5 h-4.5 text-theme" />
           <span className="hidden sm:inline tracking-wider">RACHIT_PORTFOLIO_OS</span>
         </div>
         <span className="text-[#70A080] hidden sm:inline">|</span>
@@ -76,15 +76,6 @@ export const TopBar: React.FC = () => {
             <span className="text-[#70A080] text-[10px] hidden xl:inline">{dateStr}</span>
             <span>{timeStr || '00:00:00'}</span>
           </div>
-
-          <button
-            onClick={() => toggleDarkMode()}
-            className="p-1.5 rounded bg-[#0A1C10] border border-white/20 text-theme hover:border-theme transition-all cursor-pointer flex items-center space-x-1 text-[11px] font-bold"
-            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-          >
-            {isDarkMode ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
-            <span className="hidden sm:inline">{isDarkMode ? 'LIGHT' : 'DARK'}</span>
-          </button>
 
           <button
             onClick={() => logout("USER LOGGED OUT. SESSION TERMINATED.")}

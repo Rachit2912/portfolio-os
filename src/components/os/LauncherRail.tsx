@@ -99,7 +99,7 @@ export const LauncherRail: React.FC = () => {
           className="w-full py-2 px-1 rounded-lg bg-[#0A1C10] border hover:bg-[#39FF14]/20 transition-all cursor-pointer flex flex-col items-center justify-center glow-green-sm"
           title="System Settings / Change Theme Color"
         >
-          <Settings className="w-5 h-5 animate-spin" style={{ animationDuration: '10s' }} />
+          <Settings className="w-5 h-5" />
           <span className="text-[10px] font-mono mt-1 font-bold whitespace-nowrap">
             Settings
           </span>

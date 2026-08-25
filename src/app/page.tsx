@@ -16,6 +16,7 @@ import { ContactView } from '@/components/workspaces/ContactView';
 import { SnakeGame } from '@/components/games/SnakeGame';
 import { TetrisGame } from '@/components/games/TetrisGame';
 import { MatrixRainOverlay } from '@/components/effects/MatrixRainOverlay';
+import { SubtleMatrixBackground } from '@/components/effects/SubtleMatrixBackground';
 
 export default function PortfolioOS() {
   const { booted, activeWorkspace, themeColor } = useOSStore();
@@ -25,16 +26,17 @@ export default function PortfolioOS() {
   }
 
   return (
-    <div className="flex flex-col h-screen w-screen overflow-hidden bg-[#020904] text-[#E8FFE8] font-mono select-none bg-micro-grid">
+    <div className="flex flex-col h-screen w-screen overflow-hidden bg-[#020904] text-[#E8FFE8] font-mono select-none bg-micro-grid relative">
+      <SubtleMatrixBackground />
       <CRTOverlay enabled={true} />
       <MatrixRainOverlay />
 
       <TopBar />
 
-      <div className="flex flex-1 overflow-hidden relative">
+      <div className="flex flex-1 overflow-hidden relative z-10">
         <LauncherRail />
 
-        <main className="flex-1 overflow-hidden p-2 sm:p-4 bg-[#020904]/90">
+        <main className="flex-1 overflow-hidden p-2 sm:p-4 bg-[#020904]/80 backdrop-blur-xs">
           {activeWorkspace === 'desktop' && (
             <div
               className="w-full h-full flex flex-col items-center justify-center space-y-6 text-center p-6 os-panel border"

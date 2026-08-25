@@ -9,7 +9,7 @@
 
 @layer base {
   html {
-    font-size: 17.5px; /* ~120% scaled visual base font for enhanced readability */
+    font-size: 21px; /* +20% visual font scale as requested for large readable text layout */
   }
 
   :root {

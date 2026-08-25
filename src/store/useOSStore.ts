@@ -32,7 +32,6 @@ interface OSState {
   logoutMessage: string | null;
   commandHistory: CommandHistoryItem[];
   themeColor: string;
-  isDarkMode: boolean;
   neofetchHasRun: boolean;
   neofetchCleared: boolean;
 
@@ -47,7 +46,6 @@ interface OSState {
   addCommandHistory: (item: CommandHistoryItem) => void;
   clearCommandHistory: () => void;
   setThemeColor: (color: string) => void;
-  toggleDarkMode: () => void;
   resetTheme: () => void;
   setNeofetchHasRun: (hasRun: boolean) => void;
   setNeofetchCleared: (cleared: boolean) => void;
@@ -65,7 +63,6 @@ export const useOSStore = create<OSState>((set) => ({
   logoutMessage: null,
   commandHistory: [],
   themeColor: '#39FF14',
-  isDarkMode: true,
   neofetchHasRun: false,
   neofetchCleared: false,
 
@@ -89,30 +86,6 @@ export const useOSStore = create<OSState>((set) => ({
     }
     set({ themeColor });
   },
-  toggleDarkMode: () => {
-    set((state) => {
-      const nextDarkMode = !state.isDarkMode;
-      if (typeof document !== 'undefined') {
-        const root = document.documentElement;
-        if (nextDarkMode) {
-          root.style.setProperty('--bg-0', '#020904');
-          root.style.setProperty('--bg-1', '#05140A');
-          root.style.setProperty('--panel', '#0A1C10');
-          root.style.setProperty('--terminal', '#030D06');
-          root.style.setProperty('--text-primary', '#E8FFE8');
-          root.style.setProperty('--text-secondary', '#70A080');
-        } else {
-          root.style.setProperty('--bg-0', '#F2F6F3');
-          root.style.setProperty('--bg-1', '#E1E9E3');
-          root.style.setProperty('--panel', '#FFFFFF');
-          root.style.setProperty('--terminal', '#FAFCFA');
-          root.style.setProperty('--text-primary', '#08170C');
-          root.style.setProperty('--text-secondary', '#3D6146');
-        }
-      }
-      return { isDarkMode: nextDarkMode };
-    });
-  },
   resetTheme: () => {
     if (typeof document !== 'undefined') {
       const root = document.documentElement;
@@ -128,7 +101,7 @@ export const useOSStore = create<OSState>((set) => ({
       root.style.setProperty('--text-primary', '#E8FFE8');
       root.style.setProperty('--text-secondary', '#70A080');
     }
-    set({ themeColor: '#39FF14', isDarkMode: true });
+    set({ themeColor: '#39FF14' });
   },
   setNeofetchHasRun: (neofetchHasRun) => set({ neofetchHasRun }),
   setNeofetchCleared: (neofetchCleared) => set({ neofetchCleared }),
