@@ -1,10 +1,17 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Cpu, ExternalLink, Wifi, LogOut, LayoutGrid } from 'lucide-react';
+import { ExternalLink, Wifi, LogOut, LayoutGrid, Terminal, Cpu, ShieldAlert } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 import { socialLinks } from '@/data/links';
 import { StartMenuModal } from './StartMenuModal';
+
+// Arch Linux SVG Icon Component
+const ArchLinuxIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <svg className={className} viewBox="0 0 300 300" fill="currentColor">
+    <path d="M141.3 22.4c-3 6.9-9.1 20.3-15.3 33.9-19.1 41.7-37.1 81.3-58.4 127.3-19.7 42.5-39 84.1-41.9 90.3l-5.3 11.3 11.2-6.5c10-5.8 21.8-11.2 31.7-14.7 18.8-6.6 37.3-9.7 58-9.7 13.6 0 22.8 1.2 34.5 4.5l5.2 1.5-3.6 5.8c-12 19.3-19.6 37.3-21.9 51.8-1 6.5-.5 11.1 1.6 14.5 2 3.3 6.8 5 13.8 5 9.7 0 22.2-3.8 38.2-11.7 15.6-7.7 32-18.9 47.9-32.8 2.2-1.9 4.2-3.5 4.5-3.5.3 0 2.3 1.6 4.5 3.5 15.9 13.9 32.3 25.1 47.9 32.8 16 7.9 28.5 11.7 38.2 11.7 7 0 11.8-1.7 13.8-5 2.1-3.4 2.6-8 1.6-14.5-2.3-14.5-9.9-32.5-21.9-51.8l-3.6-5.8 5.2-1.5c11.7-3.3 20.9-4.5 34.5-4.5 20.7 0 39.2 3.1 58 9.7 9.9 3.5 21.7 8.9 31.7 14.7l11.2 6.5-5.3-11.3c-2.9-6.2-22.2-47.8-41.9-90.3-21.3-46-39.3-85.6-58.4-127.3-6.2-13.6-12.3-27-15.3-33.9l-5.5-12.4H146.8l-5.5 12.4z"/>
+  </svg>
+);
 
 export const TopBar: React.FC = () => {
   const { currentPath, activeWorkspace, themeColor, logout } = useOSStore();
@@ -37,8 +44,8 @@ export const TopBar: React.FC = () => {
           <span>START</span>
         </button>
 
-        <div className="flex items-center space-x-2 text-theme font-extrabold text-glow-green">
-          <Cpu className="w-4.5 h-4.5 text-theme" />
+        <div className="flex items-center space-x-2 text-theme font-extrabold text-glow-green" title="Arch Linux / RachitOS Kernel">
+          <ArchLinuxIcon className="w-4.5 h-4.5 text-theme" />
           <span className="hidden sm:inline tracking-wider">RACHIT_PORTFOLIO_OS</span>
         </div>
         <span className="text-[#70A080] hidden sm:inline">|</span>

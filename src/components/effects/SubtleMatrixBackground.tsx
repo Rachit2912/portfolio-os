@@ -52,7 +52,7 @@ export const SubtleMatrixBackground: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none opacity-15 overflow-hidden">
+    <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.07] overflow-hidden">
       <canvas ref={canvasRef} className="w-full h-full block" />
     </div>
   );
