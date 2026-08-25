@@ -38,11 +38,11 @@ export const BootScreen: React.FC = () => {
     const drops: number[] = Array(columns).fill(1);
 
     const draw = () => {
-      ctx.fillStyle = 'rgba(2, 9, 4, 0.12)';
+      ctx.fillStyle = 'rgba(2, 9, 4, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = 'rgba(57, 255, 20, 0.35)';
-      ctx.font = `${fontSize}px monospace`;
+      ctx.fillStyle = 'rgba(57, 255, 20, 0.65)';
+      ctx.font = `bold ${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const text = characters.charAt(Math.floor(Math.random() * characters.length));
@@ -55,7 +55,7 @@ export const BootScreen: React.FC = () => {
       }
     };
 
-    const interval = setInterval(draw, 50);
+    const interval = setInterval(draw, 35);
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
@@ -99,11 +99,11 @@ export const BootScreen: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-[#020904] text-[#E8FFE8] flex flex-col justify-between p-6 sm:p-12 z-50 font-mono select-none bg-micro-grid relative overflow-hidden">
-      {/* Subtle Vintage Matrix Rain Background */}
-      <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-40" />
+    <div className="fixed inset-0 h-screen w-screen bg-[#020904] text-[#E8FFE8] flex flex-col justify-between p-4 sm:p-6 z-50 font-mono select-none bg-micro-grid relative overflow-hidden">
+      {/* Active Vintage Matrix Rain Background */}
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-65" />
 
-      <div className="relative z-10 flex justify-between items-center border-b border-[#39FF14]/30 pb-4">
+      <div className="relative z-10 flex justify-between items-center border-b border-[#39FF14]/30 pb-3 shrink-0">
         <div className="flex items-center space-x-2 text-[#39FF14]">
           <Cpu className="w-5 h-5 animate-pulse" />
           <span className="font-bold tracking-wider text-sm sm:text-base">RACHIT_PORTFOLIO_OS v2.5</span>
@@ -113,7 +113,7 @@ export const BootScreen: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative z-10 my-auto max-w-3xl w-full mx-auto space-y-6">
+      <div className="relative z-10 max-w-3xl w-full mx-auto space-y-5 my-auto">
         {logoutMessage && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -178,7 +178,7 @@ export const BootScreen: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative z-10 border-t border-[#39FF14]/20 pt-4 flex flex-col sm:flex-row justify-between items-center text-xs text-[#70A080]">
+      <div className="relative z-10 border-t border-[#39FF14]/20 pt-3 flex flex-col sm:flex-row justify-between items-center text-xs text-[#70A080] shrink-0 mt-auto">
         <div>VIT Vellore B.Tech IT | CGPA 8.87 | AWS Certified Solutions Architect</div>
         <div>Press any button to skip boot sequence</div>
       </div>
