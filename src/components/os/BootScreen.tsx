@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Terminal, Shield, Cpu, ArrowRight, LogIn } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
@@ -17,9 +17,57 @@ const BOOT_LOGS = [
 ];
 
 export const BootScreen: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const { setBooted, setActiveWorkspace, logoutMessage } = useOSStore();
   const [logs, setLogs] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Background subtle vintage Matrix rain
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const characters = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ_RACHIT_PORTFOLIO_OS_C++_GO_PYTHON_AWS_GRAPHS_';
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops: number[] = Array(columns).fill(1);
+
+    const draw = () => {
+      ctx.fillStyle = 'rgba(2, 9, 4, 0.12)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'rgba(57, 255, 20, 0.35)';
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    };
+
+    const interval = setInterval(draw, 50);
+
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (currentIndex < BOOT_LOGS.length) {
@@ -51,8 +99,11 @@ export const BootScreen: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-[#020904] text-[#E8FFE8] flex flex-col justify-between p-6 sm:p-12 z-50 font-mono select-none bg-micro-grid">
-      <div className="flex justify-between items-center border-b border-[#39FF14]/30 pb-4">
+    <div className="fixed inset-0 bg-[#020904] text-[#E8FFE8] flex flex-col justify-between p-6 sm:p-12 z-50 font-mono select-none bg-micro-grid relative overflow-hidden">
+      {/* Subtle Vintage Matrix Rain Background */}
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-40" />
+
+      <div className="relative z-10 flex justify-between items-center border-b border-[#39FF14]/30 pb-4">
         <div className="flex items-center space-x-2 text-[#39FF14]">
           <Cpu className="w-5 h-5 animate-pulse" />
           <span className="font-bold tracking-wider text-sm sm:text-base">RACHIT_PORTFOLIO_OS v2.5</span>
@@ -62,7 +113,7 @@ export const BootScreen: React.FC = () => {
         </div>
       </div>
 
-      <div className="my-auto max-w-3xl w-full mx-auto space-y-6">
+      <div className="relative z-10 my-auto max-w-3xl w-full mx-auto space-y-6">
         {logoutMessage && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -127,7 +178,7 @@ export const BootScreen: React.FC = () => {
         </div>
       </div>
 
-      <div className="border-t border-[#39FF14]/20 pt-4 flex flex-col sm:flex-row justify-between items-center text-xs text-[#70A080]">
+      <div className="relative z-10 border-t border-[#39FF14]/20 pt-4 flex flex-col sm:flex-row justify-between items-center text-xs text-[#70A080]">
         <div>VIT Vellore B.Tech IT | CGPA 8.87 | AWS Certified Solutions Architect</div>
         <div>Press any button to skip boot sequence</div>
       </div>
