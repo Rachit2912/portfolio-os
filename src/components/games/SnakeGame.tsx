@@ -124,7 +124,7 @@ export const SnakeGame: React.FC = () => {
   return (
     <div className="w-full h-full overflow-y-auto p-4 sm:p-6 bg-[#020904] text-[#E8FFE8] font-mono select-none flex flex-col items-center justify-center space-y-4">
       {/* Game Bar */}
-      <div className="os-panel p-4 border-[#39FF14]/40 glow-green-sm w-full max-w-lg flex items-center justify-between">
+      <div className="os-panel p-4 border-[#39FF14]/40 glow-green-sm w-full max-w-2xl flex items-center justify-between">
         <div className="flex items-center space-x-2 text-[#39FF14]">
           <Gamepad2 className="w-5 h-5 animate-pulse" />
           <h1 className="text-base font-extrabold text-[#E8FFE8]">MATRIX SNAKE ARCADE</h1>
@@ -136,13 +136,11 @@ export const SnakeGame: React.FC = () => {
       </div>
 
       {/* Grid Canvas Area */}
-      <div className="relative border-2 border-[#39FF14] bg-[#030D06] p-2 rounded shadow-2xl glow-green">
+      <div className="relative border-2 border-[#39FF14] bg-[#030D06] p-2 sm:p-3 rounded shadow-2xl glow-green w-full max-w-2xl flex justify-center">
         <div
-          className="grid gap-0.5"
+          className="grid gap-0.5 w-full aspect-square max-w-[540px] max-h-[540px]"
           style={{
-            gridTemplateColumns: `repeat(${GRID_SIZE}, minmax(0, 1fr))`,
-            width: '320px',
-            height: '320px'
+            gridTemplateColumns: `repeat(${GRID_SIZE}, minmax(0, 1fr))`
           }}
         >
           {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, index) => {

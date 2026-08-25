@@ -197,7 +197,7 @@ export const TetrisGame: React.FC = () => {
   return (
     <div className="w-full h-full overflow-y-auto p-4 sm:p-6 bg-[#020904] text-[#E8FFE8] font-mono select-none flex flex-col items-center justify-center space-y-4">
       {/* Header Bar */}
-      <div className="os-panel p-4 border-[#39FF14]/40 glow-green-sm w-full max-w-sm flex items-center justify-between">
+      <div className="os-panel p-4 border-[#39FF14]/40 glow-green-sm w-full max-w-md flex items-center justify-between">
         <div className="flex items-center space-x-2 text-[#39FF14]">
           <Gamepad2 className="w-5 h-5 animate-pulse" />
           <h1 className="text-base font-extrabold text-[#E8FFE8]">MATRIX TETRIS ARCADE</h1>
@@ -209,13 +209,11 @@ export const TetrisGame: React.FC = () => {
       </div>
 
       {/* Tetris Board Grid */}
-      <div className="relative border-2 border-[#39FF14] bg-[#030D06] p-2 rounded shadow-2xl glow-green">
+      <div className="relative border-2 border-[#39FF14] bg-[#030D06] p-2 sm:p-3 rounded shadow-2xl glow-green w-full max-w-md flex justify-center">
         <div
-          className="grid gap-0.5"
+          className="grid gap-0.5 w-full max-w-[320px] h-[520px]"
           style={{
-            gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))`,
-            width: '240px',
-            height: '400px'
+            gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))`
           }}
         >
           {renderBoard.flatMap((row, rIdx) =>
