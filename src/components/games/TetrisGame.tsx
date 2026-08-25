@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Gamepad2, RotateCcw, Play, ArrowLeft, ArrowRight, ArrowDown, RotateCw } from 'lucide-react';
+import { Gamepad2, RotateCcw, Play, ArrowLeft, ArrowRight, ArrowDown, RotateCw, LogOut } from 'lucide-react';
+import { useOSStore } from '@/store/useOSStore';
 
 const COLS = 10;
 const ROWS = 20;
@@ -19,6 +20,7 @@ const TETROMINOS = {
 type TetrominoKey = keyof typeof TETROMINOS;
 
 export const TetrisGame: React.FC = () => {
+  const { setActiveWorkspace } = useOSStore();
   const [board, setBoard] = useState<string[][]>(
     Array.from({ length: ROWS }, () => Array(COLS).fill(''))
   );
@@ -159,6 +161,10 @@ export const TetrisGame: React.FC = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key.toLowerCase() === 'q') {
+        setActiveWorkspace('desktop');
+        return;
+      }
       if (!isStarted || gameOver) return;
       if (e.key === 'ArrowLeft') moveLeft();
       else if (e.key === 'ArrowRight') moveRight();
@@ -202,9 +208,19 @@ export const TetrisGame: React.FC = () => {
           <Gamepad2 className="w-5 h-5 animate-pulse" />
           <h1 className="text-base font-extrabold text-[#E8FFE8]">MATRIX TETRIS ARCADE</h1>
         </div>
-        <div className="text-xs space-y-0.5 text-right">
-          <div className="text-[#00FF66] font-bold">SCORE: <span className="text-[#39FF14]">{score}</span></div>
-          <div className="text-[#70A080]">LINES: <span className="text-[#39FF14]">{lines}</span></div>
+        <div className="text-xs flex items-center space-x-3">
+          <div className="space-y-0.5 text-right">
+            <div className="text-[#00FF66] font-bold">SCORE: <span className="text-[#39FF14]">{score}</span></div>
+            <div className="text-[#70A080]">LINES: <span className="text-[#39FF14]">{lines}</span></div>
+          </div>
+          <button
+            onClick={() => setActiveWorkspace('desktop')}
+            className="px-2 py-1 bg-[#FF2A55]/15 border border-[#FF2A55] text-[#FF2A55] font-bold rounded flex items-center space-x-1 hover:bg-[#FF2A55] hover:text-[#000] transition-colors cursor-pointer text-[10px]"
+            title="Press Esc or Q to Exit"
+          >
+            <LogOut className="w-3 h-3" />
+            <span>EXIT [ESC / Q]</span>
+          </button>
         </div>
       </div>
 

@@ -252,7 +252,7 @@ export class CommandRegistry {
             <div className="os-panel p-4 border-[#39FF14] glow-green-sm space-y-3 font-mono text-xs max-w-xl my-1 bg-[#030D06]">
               <div className="flex items-center space-x-4 border-b border-[#39FF14]/30 pb-2">
                 <div className="text-[#39FF14] font-extrabold text-sm tracking-wider text-glow-green">
-                  rachit@rachit-portfolio-os
+                  guest@rachit-portfolio-os
                 </div>
               </div>
 
@@ -359,11 +359,6 @@ export class CommandRegistry {
         };
       }
 
-      case '404': {
-        return {
-          output: 'Simulating System Fault Kernel Panic...',
-        };
-      }
 
       case 'coffee': {
         return {

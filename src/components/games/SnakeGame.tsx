@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Gamepad2, RotateCcw, Trophy, Play, Pause, ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Gamepad2, RotateCcw, Trophy, Play, Pause, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, LogOut } from 'lucide-react';
+import { useOSStore } from '@/store/useOSStore';
 
 const GRID_SIZE = 20;
 const INITIAL_SPEED = 120;
@@ -10,6 +11,7 @@ type Position = { x: number; y: number };
 type Direction = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
 
 export const SnakeGame: React.FC = () => {
+  const { setActiveWorkspace } = useOSStore();
   const [snake, setSnake] = useState<Position[]>([
     { x: 10, y: 10 },
     { x: 10, y: 11 },
@@ -58,6 +60,11 @@ export const SnakeGame: React.FC = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isStarted || gameOver) return;
+
+      if (e.key === 'Escape' || e.key.toLowerCase() === 'q') {
+        setActiveWorkspace('desktop');
+        return;
+      }
 
       if (e.key === 'ArrowUp' && directionRef.current !== 'DOWN') {
         setDirection('UP');
@@ -132,6 +139,14 @@ export const SnakeGame: React.FC = () => {
         <div className="flex items-center space-x-4 text-xs">
           <div className="text-[#00FF66] font-bold">SCORE: <span className="text-[#39FF14]">{score}</span></div>
           <div className="text-[#70A080]">HIGH: <span className="text-[#39FF14]">{highScore}</span></div>
+          <button
+            onClick={() => setActiveWorkspace('desktop')}
+            className="px-2 py-1 bg-[#FF2A55]/15 border border-[#FF2A55] text-[#FF2A55] font-bold rounded flex items-center space-x-1 hover:bg-[#FF2A55] hover:text-[#000] transition-colors cursor-pointer text-[10px]"
+            title="Press Esc or Q to Exit"
+          >
+            <LogOut className="w-3 h-3" />
+            <span>EXIT [ESC / Q]</span>
+          </button>
         </div>
       </div>
 

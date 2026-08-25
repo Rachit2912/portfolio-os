@@ -8,8 +8,8 @@ export const projectsData: Project[] = [
     name: "Supply Lens",
     shortDescription: "Interactive Supply Chain Risk Studio with CognoDB Graph Engine & openCypher Protocol.",
     fullDescription: "Supply Lens is a production-quality supply chain intelligence studio built with Next.js 16, TypeScript, openCypher/Bolt graph protocol, and CognoDB Cloud graph database for real-time shipment graph modeling.",
-    category: "backend",
-    categoryLabel: "Backend & Graph Engine",
+    category: "full-stack",
+    categoryLabel: "Full-Stack & Graph Engine",
     status: "Production Ready",
     year: "2026",
     languages: ["TypeScript"],
@@ -38,12 +38,12 @@ export const projectsData: Project[] = [
     featured: true,
     priority: 1,
     portfolioTier: "tier1_featured",
-    cliCategoryFolder: "backend",
-    cliPath: "~/projects/backend/supply-lens",
+    cliCategoryFolder: "full-stack",
+    cliPath: "~/projects/full-stack/supply-lens",
     cliCommands: {
-      open: "cd ~/projects/backend/supply-lens",
-      cat: "cat ~/projects/backend/supply-lens/README.md",
-      cd: "cd ~/projects/backend/supply-lens"
+      open: "cd ~/projects/full-stack/supply-lens",
+      cat: "cat ~/projects/full-stack/supply-lens/README.md",
+      cd: "cd ~/projects/full-stack/supply-lens"
     },
     readmeContent: `# Supply Lens — Interactive Supply Chain Risk Studio
 
@@ -61,8 +61,8 @@ Supply Lens connects directly to **CognoDB Cloud** using openCypher and the Bolt
     name: "Secure File Vault System",
     shortDescription: "High-performance encrypted file storage with Go, PostgreSQL SHA-256 deduplication, JWT, and rate limiting.",
     fullDescription: "A secure file storage and sharing application with backend in Go, frontend in React + TypeScript, PostgreSQL for metadata, SHA-256 content deduplication, and quota control.",
-    category: "go",
-    categoryLabel: "Go / Security / Storage",
+    category: "backend",
+    categoryLabel: "Backend / Go / Security",
     status: "Production Ready",
     year: "2025",
     languages: ["Go", "TypeScript", "SQL"],
@@ -117,8 +117,8 @@ A secure file storage and sharing application with backend in **Go**, frontend i
     name: "shellB Shell Engine",
     shortDescription: "Custom Unix REPL command interpreter built in C++ with POSIX system call primitives.",
     fullDescription: "A modern C++ command-line interpreter (REPL) supporting command execution via PATH resolution, process fork/exec, piping (|), and file descriptor I/O redirection.",
-    category: "cpp",
-    categoryLabel: "C++ / Systems / POSIX",
+    category: "cpp-systems",
+    categoryLabel: "C++ Systems & POSIX",
     status: "Stable",
     year: "2025",
     languages: ["C++"],
@@ -147,12 +147,12 @@ A secure file storage and sharing application with backend in **Go**, frontend i
     featured: true,
     priority: 3,
     portfolioTier: "tier1_featured",
-    cliCategoryFolder: "systems",
-    cliPath: "~/projects/systems/shellb",
+    cliCategoryFolder: "cpp-systems",
+    cliPath: "~/projects/cpp-systems/shellb",
     cliCommands: {
-      open: "cd ~/projects/systems/shellb",
-      cat: "cat ~/projects/systems/shellb/README.md",
-      cd: "cd ~/projects/systems/shellb"
+      open: "cd ~/projects/cpp-systems/shellb",
+      cat: "cat ~/projects/cpp-systems/shellb/README.md",
+      cd: "cd ~/projects/cpp-systems/shellb"
     },
     readmeContent: `# shellB // Modern C++ REPL Shell Engine
 
@@ -170,8 +170,8 @@ A basic command-line tool (REPL) that supports executing commands, handling exec
     name: "Deribit OEMS Trading Engine",
     shortDescription: "High-Performance C++ Order Execution Management System for Deribit Test Exchange.",
     fullDescription: "A high-efficiency trading system implemented in C++20 for Deribit Test Exchange, supporting real-time WebSocket market data streaming, order management, and low-latency order placement.",
-    category: "cpp",
-    categoryLabel: "C++ / Low-Latency Trading",
+    category: "cpp-systems",
+    categoryLabel: "C++ Low-Latency Systems",
     status: "Completed",
     year: "2024",
     languages: ["C++"],
@@ -199,12 +199,12 @@ A basic command-line tool (REPL) that supports executing commands, handling exec
     featured: true,
     priority: 4,
     portfolioTier: "tier1_featured",
-    cliCategoryFolder: "systems",
-    cliPath: "~/projects/systems/deribit-oems",
+    cliCategoryFolder: "cpp-systems",
+    cliPath: "~/projects/cpp-systems/deribit-oems",
     cliCommands: {
-      open: "cd ~/projects/systems/deribit-oems",
-      cat: "cat ~/projects/systems/deribit-oems/README.md",
-      cd: "cd ~/projects/systems/deribit-oems"
+      open: "cd ~/projects/cpp-systems/deribit-oems",
+      cat: "cat ~/projects/cpp-systems/deribit-oems/README.md",
+      cd: "cd ~/projects/cpp-systems/deribit-oems"
     },
     readmeContent: `# Deribit OEMS // High-Performance C++ Trading System
 
@@ -217,8 +217,8 @@ A high-efficiency trading system implemented in C++ designed for Deribit Test. S
     name: "TCP2HTTP Proxy",
     shortDescription: "Go TCP Socket Listener & Raw HTTP/1.1 Stream Translator Proxy.",
     fullDescription: "Low-level network socket translation tool written in Go that listens on raw TCP sockets, parses incoming HTTP byte frames, and forwards requests to target HTTP web servers.",
-    category: "go",
-    categoryLabel: "Go / Networking",
+    category: "backend",
+    categoryLabel: "Backend / Go Networking",
     status: "Completed",
     year: "2025",
     languages: ["Go"],
@@ -244,12 +244,12 @@ A high-efficiency trading system implemented in C++ designed for Deribit Test. S
     featured: true,
     priority: 5,
     portfolioTier: "tier1_featured",
-    cliCategoryFolder: "systems",
-    cliPath: "~/projects/systems/tcp2http",
+    cliCategoryFolder: "backend",
+    cliPath: "~/projects/backend/tcp2http",
     cliCommands: {
-      open: "cd ~/projects/systems/tcp2http",
-      cat: "cat ~/projects/systems/tcp2http/README.md",
-      cd: "cd ~/projects/systems/tcp2http"
+      open: "cd ~/projects/backend/tcp2http",
+      cat: "cat ~/projects/backend/tcp2http/README.md",
+      cd: "cd ~/projects/backend/tcp2http"
     },
     readmeContent: `# TCP2HTTP Proxy
 
@@ -349,7 +349,7 @@ Backend system built using **Node.js**, **Express**, **MongoDB**, and **FFmpeg**
 `
   },
 
-  // --- TIER 2 SECONDARY TECHNICAL PROJECTS ---
+  // --- SECONDARY TECHNICAL PROJECTS ---
   {
     id: "genai-nutrition-app",
     slug: "genai-nutrition-app",
@@ -357,7 +357,7 @@ Backend system built using **Node.js**, **Express**, **MongoDB**, and **FFmpeg**
     shortDescription: "Streamlit AI app offering personalized diet plans and meal photo recognition powered by Gemini AI.",
     fullDescription: "A GenAI app offering personalized diet plans and nutritional guidance powered by AI, built during the SmartBridge AI/ML Internship. Live on Streamlit Cloud.",
     category: "ai",
-    categoryLabel: "AI / Generative AI",
+    categoryLabel: "AI & Generative AI",
     status: "Completed",
     year: "2024",
     languages: ["Python"],
@@ -400,8 +400,8 @@ A GenAI app offering personalized diet plans and nutritional guidance powered by
     name: "BlogOn AWS Gemini App",
     shortDescription: "Express blog application deployed on AWS EC2 integrating Google Gemini API for AI summarization.",
     fullDescription: "Node.js and Express blogging web application deployed on an AWS EC2 instance, utilizing Google Gemini API to generate dynamic article summaries from text prompts.",
-    category: "cloud",
-    categoryLabel: "Cloud / AWS / AI",
+    category: "backend",
+    categoryLabel: "Backend & Cloud AI",
     status: "Completed",
     year: "2024",
     languages: ["JavaScript"],
@@ -444,8 +444,8 @@ Blog App utilizing Google Gemini API for automated AI text summarization, deploy
     name: "Pad4Note Desktop Editor",
     shortDescription: "Native desktop text editor written in C++ and Qt 6 framework.",
     fullDescription: "Pad4Note is a desktop GUI text editor built with modern C++ and Qt 6, providing file management (new, open, save), custom dark theme styling, and text buffer statistics.",
-    category: "developer-tools",
-    categoryLabel: "C++ / Desktop GUI",
+    category: "cpp-systems",
+    categoryLabel: "C++ & Qt Desktop GUI",
     status: "Completed",
     year: "2025",
     languages: ["C++"],
@@ -469,12 +469,12 @@ Blog App utilizing Google Gemini API for automated AI text summarization, deploy
     featured: false,
     priority: 10,
     portfolioTier: "tier2_secondary",
-    cliCategoryFolder: "systems",
-    cliPath: "~/projects/systems/pad4note",
+    cliCategoryFolder: "cpp-systems",
+    cliPath: "~/projects/cpp-systems/pad4note",
     cliCommands: {
-      open: "cd ~/projects/systems/pad4note",
-      cat: "cat ~/projects/systems/pad4note/README.md",
-      cd: "cd ~/projects/systems/pad4note"
+      open: "cd ~/projects/cpp-systems/pad4note",
+      cat: "cat ~/projects/cpp-systems/pad4note/README.md",
+      cd: "cd ~/projects/cpp-systems/pad4note"
     },
     readmeContent: `# Pad4Note : Notepad Clone in Qt and C++
 
@@ -487,8 +487,8 @@ Simple notepad application built using Qt 6 and modern C++ with essential text e
     name: "Simpsons Character Recognition",
     shortDescription: "Computer Vision CNN model classifying 55K+ character images with 95% validation accuracy.",
     fullDescription: "Computer vision system trained on Kaggle Simpsons Character Dataset (55,000+ images) using PyTorch/Keras CNNs, achieving 95% classification accuracy across 20+ character classes. Research presented at SCIS 2025.",
-    category: "computer-vision",
-    categoryLabel: "Computer Vision / CNN",
+    category: "cv",
+    categoryLabel: "Computer Vision & Deep Learning",
     status: "Completed",
     year: "2024",
     languages: ["Python"],
@@ -512,12 +512,12 @@ Simple notepad application built using Qt 6 and modern C++ with essential text e
     featured: false,
     priority: 11,
     portfolioTier: "tier2_secondary",
-    cliCategoryFolder: "ai",
-    cliPath: "~/projects/ai/simpsons-character-recognition",
+    cliCategoryFolder: "cv",
+    cliPath: "~/projects/cv/simpsons-character-recognition",
     cliCommands: {
-      open: "cd ~/projects/ai/simpsons-character-recognition",
-      cat: "cat ~/projects/ai/simpsons-character-recognition/README.md",
-      cd: "cd ~/projects/ai/simpsons-character-recognition"
+      open: "cd ~/projects/cv/simpsons-character-recognition",
+      cat: "cat ~/projects/cv/simpsons-character-recognition/README.md",
+      cd: "cd ~/projects/cv/simpsons-character-recognition"
     },
     readmeContent: `# Simpsons Character Recognition // Computer Vision
 
@@ -530,7 +530,7 @@ Deep CNN model trained on 55,000+ Simpsons character images reaching 95% classif
     name: "DeepFake Filter",
     shortDescription: "Real-time OpenCV & dlib 68-point facial landmark warping application.",
     fullDescription: "Real-time computer vision deepfake filter applied on live webcam streams using OpenCV face detection, dlib 68 facial landmark detector, Delaunay triangulation, and Poisson blending.",
-    category: "computer-vision",
+    category: "cv",
     categoryLabel: "Computer Vision / Real-Time",
     status: "Completed",
     year: "2024",
@@ -556,12 +556,12 @@ Deep CNN model trained on 55,000+ Simpsons character images reaching 95% classif
     featured: false,
     priority: 12,
     portfolioTier: "tier2_secondary",
-    cliCategoryFolder: "ai",
-    cliPath: "~/projects/ai/deepfake-filter",
+    cliCategoryFolder: "cv",
+    cliPath: "~/projects/cv/deepfake-filter",
     cliCommands: {
-      open: "cd ~/projects/ai/deepfake-filter",
-      cat: "cat ~/projects/ai/deepfake-filter/README.md",
-      cd: "cd ~/projects/ai/deepfake-filter"
+      open: "cd ~/projects/cv/deepfake-filter",
+      cat: "cat ~/projects/cv/deepfake-filter/README.md",
+      cd: "cd ~/projects/cv/deepfake-filter"
     },
     readmeContent: `# DeepFake Filter // Real-Time Computer Vision
 
@@ -574,7 +574,7 @@ Deepfake filter using OpenCV face detection, dlib 68-landmark detector, Delaunay
     name: "YOLOv9 + DeepSORT Object Tracking",
     shortDescription: "Real-time object detection & tracking pipeline integrated in Google Colab.",
     fullDescription: "Real-time multi-object detection and tracking system combining YOLOv9 for object bounding box detection and DeepSORT for persistent ID tracking across video frames.",
-    category: "computer-vision",
+    category: "cv",
     categoryLabel: "Computer Vision / Tracking",
     status: "Completed",
     year: "2024",
@@ -600,12 +600,12 @@ Deepfake filter using OpenCV face detection, dlib 68-landmark detector, Delaunay
     featured: false,
     priority: 13,
     portfolioTier: "tier2_secondary",
-    cliCategoryFolder: "ai",
-    cliPath: "~/projects/ai/yolov9-deepsort",
+    cliCategoryFolder: "cv",
+    cliPath: "~/projects/cv/yolov9-deepsort",
     cliCommands: {
-      open: "cd ~/projects/ai/yolov9-deepsort",
-      cat: "cat ~/projects/ai/yolov9-deepsort/README.md",
-      cd: "cd ~/projects/ai/yolov9-deepsort"
+      open: "cd ~/projects/cv/yolov9-deepsort",
+      cat: "cat ~/projects/cv/yolov9-deepsort/README.md",
+      cd: "cd ~/projects/cv/yolov9-deepsort"
     },
     readmeContent: `# YOLOv9 + DeepSORT Object Tracking
 
@@ -618,8 +618,8 @@ Real-time object detection and tracking pipeline combining YOLOv9 and DeepSORT, 
     name: "Amazon ML Challenge 2024 Solution",
     shortDescription: "ML model extracting entity values from product images for Amazon ML Challenge 2024.",
     fullDescription: "Machine learning solution developed by Team Seven Nation Army for the Amazon ML Challenge 2024, extracting text and entity metrics (weight, dimensions, voltage) from e-commerce product images.",
-    category: "computer-vision",
-    categoryLabel: "Machine Learning / OCR",
+    category: "ml",
+    categoryLabel: "Machine Learning & OCR",
     status: "Completed",
     year: "2024",
     languages: ["Python", "Jupyter Notebook"],
@@ -643,12 +643,12 @@ Real-time object detection and tracking pipeline combining YOLOv9 and DeepSORT, 
     featured: false,
     priority: 14,
     portfolioTier: "tier2_secondary",
-    cliCategoryFolder: "ai",
-    cliPath: "~/projects/ai/amazon-ml-challenge",
+    cliCategoryFolder: "ml",
+    cliPath: "~/projects/ml/amazon-ml-challenge",
     cliCommands: {
-      open: "cd ~/projects/ai/amazon-ml-challenge",
-      cat: "cat ~/projects/ai/amazon-ml-challenge/README.md",
-      cd: "cd ~/projects/ai/amazon-ml-challenge"
+      open: "cd ~/projects/ml/amazon-ml-challenge",
+      cat: "cat ~/projects/ml/amazon-ml-challenge/README.md",
+      cd: "cd ~/projects/ml/amazon-ml-challenge"
     },
     readmeContent: `# Amazon ML Challenge 2024 Solution
 
@@ -661,8 +661,8 @@ Machine learning model extracting entity values (weight, volume, dimensions) fro
     name: "Blogify CMS Engine",
     shortDescription: "Full-Stack Express & EJS blogging application with user auth, comments, and Docker.",
     fullDescription: "Full-stack blogging web application built with Node.js, Express, MongoDB, EJS templates, and Docker containerization supporting user authentication, post publishing, and comments.",
-    category: "backend",
-    categoryLabel: "Full Stack / Express",
+    category: "full-stack",
+    categoryLabel: "Full-Stack & CMS Engine",
     status: "Completed",
     year: "2025",
     languages: ["JavaScript"],
@@ -686,12 +686,12 @@ Machine learning model extracting entity values (weight, volume, dimensions) fro
     featured: false,
     priority: 15,
     portfolioTier: "tier2_secondary",
-    cliCategoryFolder: "backend",
-    cliPath: "~/projects/backend/blogify",
+    cliCategoryFolder: "full-stack",
+    cliPath: "~/projects/full-stack/blogify",
     cliCommands: {
-      open: "cd ~/projects/backend/blogify",
-      cat: "cat ~/projects/backend/blogify/README.md",
-      cd: "cd ~/projects/backend/blogify"
+      open: "cd ~/projects/full-stack/blogify",
+      cat: "cat ~/projects/full-stack/blogify/README.md",
+      cd: "cd ~/projects/full-stack/blogify"
     },
     readmeContent: `# Blogify // Express & EJS Blog App
 
@@ -699,15 +699,15 @@ Full-stack blog application built using Node.js, Express, MongoDB, EJS templatin
 `
   },
 
-  // --- TIER 3 EXPERIMENTS, TOOLS & ARCHIVE ---
+  // --- HOBBY, DOTFILES & FUN EXPERIMENTS ---
   {
     id: "product-explorer",
     slug: "product-explorer",
     name: "Product Explorer",
     shortDescription: "Next.js 14 + Zustand + LocalStorage e-commerce cart interface.",
     fullDescription: "A mini e-commerce web app built with Next.js 14 (App Router), featuring Zustand state management, optimistic UI updates, and LocalStorage cart persistence.",
-    category: "experiments",
-    categoryLabel: "Frontend / Experiment",
+    category: "hobby",
+    categoryLabel: "Hobby / Frontend Demo",
     status: "Completed",
     year: "2025",
     languages: ["TypeScript"],
@@ -727,12 +727,12 @@ Full-stack blog application built using Node.js, Express, MongoDB, EJS templatin
     featured: false,
     priority: 16,
     portfolioTier: "tier3_experiments",
-    cliCategoryFolder: "experiments",
-    cliPath: "~/projects/experiments/product-explorer",
+    cliCategoryFolder: "hobby",
+    cliPath: "~/projects/hobby/product-explorer",
     cliCommands: {
-      open: "cd ~/projects/experiments/product-explorer",
-      cat: "cat ~/projects/experiments/product-explorer/README.md",
-      cd: "cd ~/projects/experiments/product-explorer"
+      open: "cd ~/projects/hobby/product-explorer",
+      cat: "cat ~/projects/hobby/product-explorer/README.md",
+      cd: "cd ~/projects/hobby/product-explorer"
     },
     readmeContent: `# Product Explorer // Next.js & Zustand Cart Demo
 
@@ -745,8 +745,8 @@ Mini e-commerce web application featuring Next.js 14 App Router, Zustand state m
     name: "Arch Linux Hyprland Dotfiles",
     shortDescription: "Personal reproducible Arch Linux ecosystem featuring Hyprland WM, Neovim, and Waybar.",
     fullDescription: "Fully customized, reproducible Arch Linux environment featuring Hyprland window manager, Neovim IDE setup, Waybar, and custom shell/automation scripts.",
-    category: "developer-tools",
-    categoryLabel: "Linux / Dotfiles",
+    category: "hobby",
+    categoryLabel: "Hobby / Arch Linux Dotfiles",
     status: "Active",
     year: "2025",
     languages: ["Lua", "Bash"],
@@ -765,12 +765,12 @@ Mini e-commerce web application featuring Next.js 14 App Router, Zustand state m
     featured: false,
     priority: 17,
     portfolioTier: "tier3_experiments",
-    cliCategoryFolder: "experiments",
-    cliPath: "~/projects/experiments/archlinux-dotfiles",
+    cliCategoryFolder: "hobby",
+    cliPath: "~/projects/hobby/archlinux-dotfiles",
     cliCommands: {
-      open: "cd ~/projects/experiments/archlinux-dotfiles",
-      cat: "cat ~/projects/experiments/archlinux-dotfiles/README.md",
-      cd: "cd ~/projects/experiments/archlinux-dotfiles"
+      open: "cd ~/projects/hobby/archlinux-dotfiles",
+      cat: "cat ~/projects/hobby/archlinux-dotfiles/README.md",
+      cd: "cd ~/projects/hobby/archlinux-dotfiles"
     },
     readmeContent: `# Arch Linux Dotfiles
 
@@ -783,8 +783,8 @@ Custom Hyprland, Neovim (Lua), Waybar, and Kitty environment for Arch Linux.
     name: "Smart Water Bottle System",
     shortDescription: "Python + Arduino hydration tracking system with PyWhatKit WhatsApp reminders.",
     fullDescription: "IoT water bottle tracking system built with Arduino C++ sensor data logging, Python backend, and PyWhatKit automated WhatsApp hydration reminders.",
-    category: "experiments",
-    categoryLabel: "IoT / Python",
+    category: "hobby",
+    categoryLabel: "Hobby / IoT Prototype",
     status: "Completed",
     year: "2024",
     languages: ["Python", "C++"],
@@ -803,12 +803,12 @@ Custom Hyprland, Neovim (Lua), Waybar, and Kitty environment for Arch Linux.
     featured: false,
     priority: 18,
     portfolioTier: "tier3_experiments",
-    cliCategoryFolder: "experiments",
-    cliPath: "~/projects/experiments/smart-water-bottle",
+    cliCategoryFolder: "hobby",
+    cliPath: "~/projects/hobby/smart-water-bottle",
     cliCommands: {
-      open: "cd ~/projects/experiments/smart-water-bottle",
-      cat: "cat ~/projects/experiments/smart-water-bottle/README.md",
-      cd: "cd ~/projects/experiments/smart-water-bottle"
+      open: "cd ~/projects/hobby/smart-water-bottle",
+      cat: "cat ~/projects/hobby/smart-water-bottle/README.md",
+      cd: "cd ~/projects/hobby/smart-water-bottle"
     },
     readmeContent: `# Smart Water Bottle System
 
@@ -821,8 +821,8 @@ IoT hydration tracking system combining Arduino C++ hardware sensor logging and 
     name: "Zomato Frontend Clone",
     shortDescription: "Responsive HTML/CSS frontend clone of Zomato website.",
     fullDescription: "A responsive static frontend clone of the Zomato restaurant discovery website built purely with HTML5 and CSS3.",
-    category: "experiments",
-    categoryLabel: "HTML / CSS",
+    category: "hobby",
+    categoryLabel: "Hobby / Frontend Layout",
     status: "Completed",
     year: "2024",
     languages: ["HTML", "CSS"],
@@ -842,12 +842,12 @@ IoT hydration tracking system combining Arduino C++ hardware sensor logging and 
     featured: false,
     priority: 19,
     portfolioTier: "tier3_experiments",
-    cliCategoryFolder: "experiments",
-    cliPath: "~/projects/experiments/zomato-clone",
+    cliCategoryFolder: "hobby",
+    cliPath: "~/projects/hobby/zomato-clone",
     cliCommands: {
-      open: "cd ~/projects/experiments/zomato-clone",
-      cat: "cat ~/projects/experiments/zomato-clone/README.md",
-      cd: "cd ~/projects/experiments/zomato-clone"
+      open: "cd ~/projects/hobby/zomato-clone",
+      cat: "cat ~/projects/hobby/zomato-clone/README.md",
+      cd: "cd ~/projects/hobby/zomato-clone"
     },
     readmeContent: `# Zomato Frontend Clone
 

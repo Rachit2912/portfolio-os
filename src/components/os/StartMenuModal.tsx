@@ -76,10 +76,10 @@ export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose 
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#020904]/85 backdrop-blur-md select-none"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#020904]/85 backdrop-blur-md select-none my-auto"
     >
       <div
-        className="w-full max-w-2xl bg-[#030D06] border-2 border-[#39FF14] rounded-lg shadow-2xl glow-green p-4 sm:p-6 space-y-4 font-mono text-xs overflow-hidden relative"
+        className="w-full max-w-2xl bg-[#030D06] border-2 border-[#39FF14] rounded-lg shadow-2xl glow-green p-4 sm:p-6 space-y-4 font-mono text-xs overflow-hidden relative my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

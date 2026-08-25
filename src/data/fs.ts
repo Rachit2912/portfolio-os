@@ -3,7 +3,7 @@ import { projectsData } from './projects';
 import { experienceData } from './experience';
 import { profileData } from './profile';
 
-const categories: Array<'backend' | 'systems' | 'ai' | 'experiments'> = ['backend', 'systems', 'ai', 'experiments'];
+const categories = ['full-stack', 'backend', 'ai', 'ml', 'cv', 'cpp-systems', 'hobby'];
 
 const projectCategoryNodes: VirtualFileNode[] = categories.map((cat) => {
   const catProjects = projectsData.filter((p) => p.cliCategoryFolder === cat);

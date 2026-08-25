@@ -9,7 +9,7 @@ const NEOFETCH_PRE_RUN = (
   <div className="os-panel p-4 border-[#39FF14] glow-green-sm space-y-3 font-mono text-xs max-w-xl my-1 bg-[#030D06]">
     <div className="flex items-center space-x-4 border-b border-[#39FF14]/30 pb-2">
       <div className="text-[#39FF14] font-extrabold text-sm tracking-wider text-glow-green">
-        rachit@rachit-portfolio-os
+        guest@rachit-portfolio-os
       </div>
     </div>
 
@@ -127,7 +127,7 @@ export const TerminalWindow: React.FC = () => {
       <div className="bg-[#0A1C10] border-b border-[#39FF14]/30 px-4 py-2 flex items-center justify-between select-none shrink-0">
         <div className="flex items-center space-x-2 text-[#39FF14]">
           <TerminalIcon className="w-4 h-4 text-[#39FF14]" />
-          <span className="font-bold tracking-wide">rachit@rachit-portfolio-os:{currentPath}$</span>
+          <span className="font-bold tracking-wide">guest@rachit-portfolio-os:{currentPath}$</span>
         </div>
         <div className="flex items-center space-x-2">
           <span className="text-[10px] text-[#70A080] hidden sm:inline">Type 'help' for commands</span>
@@ -146,19 +146,21 @@ export const TerminalWindow: React.FC = () => {
         className="flex-1 p-4 overflow-y-auto space-y-3 font-mono"
         onClick={() => inputRef.current?.focus()}
       >
-        {/* Pre-run Neofetch display */}
-        <div className="space-y-1 text-[#39FF14]">
-          <div className="text-[#39FF14] font-bold">rachit@rachit-portfolio-os:~$ neofetch</div>
-          {NEOFETCH_PRE_RUN}
-          <div className="text-[#70A080] text-[11px] pt-1">
-            Rachit Portfolio OS Terminal Ready. Type <span className="text-[#39FF14] font-bold">'help'</span> for list of commands.
+        {/* Pre-run Neofetch display only shown if history hasn't been cleared */}
+        {commandHistory.length === 0 && pastInputs.length === 0 && (
+          <div className="space-y-1 text-[#39FF14]">
+            <div className="text-[#39FF14] font-bold">guest@rachit-portfolio-os:~$ neofetch</div>
+            {NEOFETCH_PRE_RUN}
+            <div className="text-[#70A080] text-[11px] pt-1">
+              Rachit Portfolio OS Terminal Ready. Type <span className="text-[#39FF14] font-bold">'help'</span> for list of commands.
+            </div>
           </div>
-        </div>
+        )}
 
         {commandHistory.map((item) => (
           <div key={item.id} className="space-y-1">
             <div className="flex items-center space-x-2">
-              <span className="text-[#00FF66] font-bold">rachit@rachit-portfolio-os:{item.promptPath || '~'}$</span>
+              <span className="text-[#00FF66] font-bold">guest@rachit-portfolio-os:{item.promptPath || '~'}$</span>
               <span className="font-bold text-[#39FF14]">{item.command}</span>
             </div>
             {item.output && (
@@ -171,7 +173,7 @@ export const TerminalWindow: React.FC = () => {
 
         {/* Command Input Prompt */}
         <form onSubmit={handleSubmit} className="flex items-center space-x-2 pt-2">
-          <span className="text-[#00FF66] font-bold shrink-0">rachit@rachit-portfolio-os:{currentPath}$</span>
+          <span className="text-[#00FF66] font-bold shrink-0">guest@rachit-portfolio-os:{currentPath}$</span>
           <input
             ref={inputRef}
             type="text"

@@ -15,7 +15,6 @@ import { ResumeView } from '@/components/workspaces/ResumeView';
 import { ContactView } from '@/components/workspaces/ContactView';
 import { SnakeGame } from '@/components/games/SnakeGame';
 import { TetrisGame } from '@/components/games/TetrisGame';
-import { KernelPanic404 } from '@/components/effects/KernelPanic404';
 import { MatrixRainOverlay } from '@/components/effects/MatrixRainOverlay';
 
 export default function PortfolioOS() {
@@ -101,7 +100,6 @@ export default function PortfolioOS() {
           {activeWorkspace === 'contact' && <ContactView />}
           {activeWorkspace === 'game-snake' && <SnakeGame />}
           {activeWorkspace === 'game-tetris' && <TetrisGame />}
-          {activeWorkspace === 'easter-egg-404' && <KernelPanic404 />}
         </main>
 
         <HudPanel />

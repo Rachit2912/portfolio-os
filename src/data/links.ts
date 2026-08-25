@@ -155,12 +155,6 @@ export const cliCommands: CLICommand[] = [
     usage: "matrix"
   },
   {
-    name: "404",
-    description: "Trigger kernel panic fault screen (Easter Egg)",
-    category: "Easter Eggs",
-    usage: "404"
-  },
-  {
     name: "coffee",
     description: "Brew developer coffee (Easter Egg)",
     category: "Easter Eggs",

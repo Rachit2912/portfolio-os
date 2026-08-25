@@ -10,8 +10,7 @@ export type WorkspaceTab =
   | 'contact'
   | 'game-snake'
   | 'game-tetris'
-  | 'easter-egg-matrix'
-  | 'easter-egg-404';
+  | 'easter-egg-matrix';
 
 export interface CommandHistoryItem {
   id: string;

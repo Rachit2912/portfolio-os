@@ -43,11 +43,16 @@ export interface ExperienceItem {
 }
 
 export type DomainCategory =
+  | 'full-stack'
   | 'backend'
+  | 'ai'
+  | 'ml'
+  | 'cv'
+  | 'cpp-systems'
+  | 'hobby'
   | 'systems'
   | 'cpp'
   | 'go'
-  | 'ai'
   | 'computer-vision'
   | 'cloud'
   | 'developer-tools'
@@ -82,7 +87,7 @@ export interface Project {
   featured: boolean;
   priority: number;
   portfolioTier: PortfolioTier;
-  cliCategoryFolder: 'backend' | 'systems' | 'ai' | 'experiments';
+  cliCategoryFolder: 'full-stack' | 'backend' | 'ai' | 'ml' | 'cv' | 'cpp-systems' | 'hobby' | 'systems' | 'experiments';
   cliPath: string;
   cliCommands: {
     open: string;
