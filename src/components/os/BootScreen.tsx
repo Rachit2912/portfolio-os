@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Shield, Cpu, ArrowRight, LogIn } from 'lucide-react';
+import { Terminal, SquareCode, Cpu, ArrowRight, LogIn } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 
 const BOOT_LOGS = [
@@ -130,7 +130,7 @@ export const BootScreen: React.FC = () => {
             animate={{ scale: 1, opacity: 1 }}
             className="inline-flex items-center justify-center p-3 rounded-full bg-[#0A1C10] border border-[#39FF14]/40 glow-green-sm mb-2"
           >
-            <Shield className="w-10 h-10 text-[#39FF14]" />
+            <SquareCode className="w-10 h-10 text-[#39FF14]" />
           </motion.div>
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#E8FFE8]">
             RACHIT JOSHI <span className="text-[#39FF14]">// PORTFOLIO OS</span>

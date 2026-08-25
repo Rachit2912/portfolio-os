@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Terminal,
   FolderGit2,
@@ -9,9 +9,11 @@ import {
   Mail,
   Sparkles,
   GitBranch,
-  Monitor
+  Monitor,
+  Settings
 } from 'lucide-react';
 import { useOSStore, WorkspaceTab } from '@/store/useOSStore';
+import { SettingsModal } from './SettingsModal';
 
 interface LauncherItem {
   id: WorkspaceTab;
@@ -33,6 +35,7 @@ const LAUNCHER_ITEMS: LauncherItem[] = [
 
 export const LauncherRail: React.FC = () => {
   const { activeWorkspace, setActiveWorkspace, setCurrentPath } = useOSStore();
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const handleSelect = (item: LauncherItem) => {
     if (item.id === 'easter-egg-matrix') {
@@ -49,24 +52,24 @@ export const LauncherRail: React.FC = () => {
   };
 
   return (
-    <aside className="w-16 sm:w-20 bg-[#05140A] border-r border-[#39FF14]/30 flex flex-col items-center py-4 space-y-3 z-20 select-none shrink-0">
+    <aside className="w-22 sm:w-28 bg-[#05140A] border-r border-[#39FF14]/30 flex flex-col items-center py-3 space-y-2 z-20 select-none shrink-0 overflow-y-auto">
       {LAUNCHER_ITEMS.map((item) => {
         const Icon = item.icon;
         const isActive = activeWorkspace === item.id;
 
         return (
-          <div key={item.id} className="relative group flex flex-col items-center w-full px-2">
+          <div key={item.id} className="relative group flex flex-col items-center w-full px-1.5">
             <button
               onClick={() => handleSelect(item)}
               aria-label={item.label}
-              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-lg flex flex-col items-center justify-center transition-all cursor-pointer relative ${
+              className={`w-full py-2 px-1 rounded-lg flex flex-col items-center justify-center transition-all cursor-pointer relative ${
                 isActive
                   ? 'bg-[#39FF14]/20 border-2 border-[#39FF14] text-[#39FF14] glow-green-sm'
                   : 'bg-[#0A1C10] border border-[#39FF14]/15 text-[#70A080] hover:text-[#39FF14] hover:border-[#39FF14]/50'
               }`}
             >
-              <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span className="text-[9px] font-mono mt-0.5 tracking-tighter truncate max-w-full font-bold">
+              <Icon className="w-5 h-5" />
+              <span className="text-[10px] font-mono mt-1 font-bold whitespace-nowrap tracking-tight">
                 {item.label}
               </span>
             </button>
@@ -78,6 +81,22 @@ export const LauncherRail: React.FC = () => {
           </div>
         );
       })}
+
+      <div className="mt-auto pt-2 w-full px-1.5 border-t border-[#39FF14]/20">
+        <button
+          onClick={() => setSettingsOpen(true)}
+          aria-label="Settings"
+          className="w-full py-2 px-1 rounded-lg bg-[#0A1C10] border border-[#39FF14]/30 text-[#39FF14] hover:bg-[#39FF14]/20 hover:border-[#39FF14] transition-all cursor-pointer flex flex-col items-center justify-center glow-green-sm"
+          title="System Settings / Change Theme Color"
+        >
+          <Settings className="w-5 h-5 animate-spin" style={{ animationDuration: '10s' }} />
+          <span className="text-[10px] font-mono mt-1 font-bold whitespace-nowrap">
+            Settings
+          </span>
+        </button>
+      </div>
+
+      <SettingsModal isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </aside>
   );
 };

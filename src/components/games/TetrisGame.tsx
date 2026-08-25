@@ -4,8 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Gamepad2, RotateCcw, Play, ArrowLeft, ArrowRight, ArrowDown, RotateCw, LogOut } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 
-const COLS = 10;
-const ROWS = 20;
+const COLS = 12;
+const ROWS = 22;
 
 const TETROMINOS = {
   I: { shape: [[1, 1, 1, 1]], color: 'bg-[#39FF14]' },
@@ -201,12 +201,12 @@ export const TetrisGame: React.FC = () => {
   }
 
   return (
-    <div className="w-full h-full overflow-y-auto p-4 sm:p-6 bg-[#020904] text-[#E8FFE8] font-mono select-none flex flex-col items-center justify-center space-y-4">
+    <div className="w-full h-full overflow-y-auto p-2 sm:p-4 bg-[#020904] text-[#E8FFE8] font-mono select-none flex flex-col items-center justify-start space-y-3">
       {/* Header Bar */}
-      <div className="os-panel p-4 border-[#39FF14]/40 glow-green-sm w-full max-w-md flex items-center justify-between">
+      <div className="os-panel p-3 border-[#39FF14]/40 glow-green-sm w-full flex items-center justify-between shrink-0">
         <div className="flex items-center space-x-2 text-[#39FF14]">
           <Gamepad2 className="w-5 h-5 animate-pulse" />
-          <h1 className="text-base font-extrabold text-[#E8FFE8]">MATRIX TETRIS ARCADE</h1>
+          <h1 className="text-sm sm:text-base font-extrabold text-[#E8FFE8]">MATRIX TETRIS ARCADE</h1>
         </div>
         <div className="text-xs flex items-center space-x-3">
           <div className="space-y-0.5 text-right">
@@ -215,7 +215,7 @@ export const TetrisGame: React.FC = () => {
           </div>
           <button
             onClick={() => setActiveWorkspace('desktop')}
-            className="px-2 py-1 bg-[#FF2A55]/15 border border-[#FF2A55] text-[#FF2A55] font-bold rounded flex items-center space-x-1 hover:bg-[#FF2A55] hover:text-[#000] transition-colors cursor-pointer text-[10px]"
+            className="px-2.5 py-1 bg-[#FF2A55]/15 border border-[#FF2A55] text-[#FF2A55] font-bold rounded flex items-center space-x-1 hover:bg-[#FF2A55] hover:text-[#000] transition-colors cursor-pointer text-[10px]"
             title="Press Esc or Q to Exit"
           >
             <LogOut className="w-3 h-3" />
@@ -224,10 +224,10 @@ export const TetrisGame: React.FC = () => {
         </div>
       </div>
 
-      {/* Tetris Board Grid */}
-      <div className="relative border-2 border-[#39FF14] bg-[#030D06] p-2 sm:p-3 rounded shadow-2xl glow-green w-full max-w-md flex justify-center">
+      {/* Tetris Board Grid Maximized */}
+      <div className="relative border-2 border-[#39FF14] bg-[#030D06] p-2 sm:p-3 rounded shadow-2xl glow-green w-full flex-1 flex justify-center items-center min-h-[380px] overflow-hidden">
         <div
-          className="grid gap-0.5 w-full max-w-[320px] h-[520px]"
+          className="grid gap-0.5 w-full max-w-[380px] h-[580px]"
           style={{
             gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))`
           }}

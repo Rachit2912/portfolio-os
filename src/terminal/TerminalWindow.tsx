@@ -39,14 +39,23 @@ export const TerminalWindow: React.FC = () => {
     clearCommandHistory,
     setCurrentPath,
     setActiveWorkspace,
-    setSelectedProjectSlug
+    setSelectedProjectSlug,
+    neofetchHasRun,
+    setNeofetchHasRun
   } = useOSStore();
 
   const [inputVal, setInputVal] = useState('');
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [pastInputs, setPastInputs] = useState<string[]>([]);
+  const [clearedSession, setClearedSession] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!neofetchHasRun) {
+      setNeofetchHasRun(true);
+    }
+  }, [neofetchHasRun, setNeofetchHasRun]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -59,6 +68,7 @@ export const TerminalWindow: React.FC = () => {
 
     if (trimmed.toLowerCase() === 'clear') {
       clearCommandHistory();
+      setClearedSession(true);
       setInputVal('');
       setHistoryIndex(-1);
       return;
@@ -146,8 +156,8 @@ export const TerminalWindow: React.FC = () => {
         className="flex-1 p-4 overflow-y-auto space-y-3 font-mono"
         onClick={() => inputRef.current?.focus()}
       >
-        {/* Pre-run Neofetch display only shown if history hasn't been cleared */}
-        {commandHistory.length === 0 && pastInputs.length === 0 && (
+        {/* Pre-run Neofetch display only shown once on session load until cleared */}
+        {!clearedSession && commandHistory.length === 0 && pastInputs.length === 0 && (
           <div className="space-y-1 text-[#39FF14]">
             <div className="text-[#39FF14] font-bold">guest@rachit-portfolio-os:~$ neofetch</div>
             {NEOFETCH_PRE_RUN}

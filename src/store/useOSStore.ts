@@ -31,6 +31,8 @@ interface OSState {
   terminalFocused: boolean;
   logoutMessage: string | null;
   commandHistory: CommandHistoryItem[];
+  themeColor: string;
+  neofetchHasRun: boolean;
 
   // Actions
   setBooted: (booted: boolean) => void;
@@ -42,6 +44,9 @@ interface OSState {
   setTerminalFocused: (focused: boolean) => void;
   addCommandHistory: (item: CommandHistoryItem) => void;
   clearCommandHistory: () => void;
+  setThemeColor: (color: string) => void;
+  resetTheme: () => void;
+  setNeofetchHasRun: (hasRun: boolean) => void;
   logout: (msg?: string) => void;
 }
 
@@ -55,6 +60,8 @@ export const useOSStore = create<OSState>((set) => ({
   terminalFocused: false,
   logoutMessage: null,
   commandHistory: [],
+  themeColor: '#39FF14',
+  neofetchHasRun: false,
 
   setBooted: (booted) => set({ booted }),
   setActiveWorkspace: (activeWorkspace) => set({ activeWorkspace }),
@@ -65,9 +72,13 @@ export const useOSStore = create<OSState>((set) => ({
   setTerminalFocused: (terminalFocused) => set({ terminalFocused }),
   addCommandHistory: (item) => set((state) => ({ commandHistory: [...state.commandHistory, item] })),
   clearCommandHistory: () => set({ commandHistory: [] }),
+  setThemeColor: (themeColor) => set({ themeColor }),
+  resetTheme: () => set({ themeColor: '#39FF14' }),
+  setNeofetchHasRun: (neofetchHasRun) => set({ neofetchHasRun }),
   logout: (msg = "LOGGED OUT SUCCESSFULLY. SESSION TERMINATED.") => set({
     booted: false,
     activeWorkspace: 'desktop',
     logoutMessage: msg,
+    neofetchHasRun: false,
   }),
 }));

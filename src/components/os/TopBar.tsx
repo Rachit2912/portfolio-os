@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Terminal, Shield, ExternalLink, Wifi, LogOut, LayoutGrid } from 'lucide-react';
+import { Terminal, SquareCode, ExternalLink, Wifi, LogOut, LayoutGrid } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 import { socialLinks } from '@/data/links';
 import { StartMenuModal } from './StartMenuModal';
@@ -33,7 +33,7 @@ export const TopBar: React.FC = () => {
         </button>
 
         <div className="flex items-center space-x-2 text-[#39FF14] font-extrabold text-glow-green">
-          <Shield className="w-4 h-4 text-[#39FF14]" />
+          <SquareCode className="w-4.5 h-4.5 text-[#39FF14]" />
           <span className="hidden sm:inline tracking-wider">RACHIT_PORTFOLIO_OS</span>
         </div>
         <span className="text-[#70A080] hidden sm:inline">|</span>

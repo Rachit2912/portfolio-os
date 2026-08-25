@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Gamepad2, RotateCcw, Trophy, Play, Pause, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, LogOut } from 'lucide-react';
 import { useOSStore } from '@/store/useOSStore';
 
-const GRID_SIZE = 20;
+const GRID_SIZE = 28;
 const INITIAL_SPEED = 120;
 
 type Position = { x: number; y: number };
@@ -129,19 +129,19 @@ export const SnakeGame: React.FC = () => {
   }, [isStarted, isPaused, gameOver, food, highScore]);
 
   return (
-    <div className="w-full h-full overflow-y-auto p-4 sm:p-6 bg-[#020904] text-[#E8FFE8] font-mono select-none flex flex-col items-center justify-center space-y-4">
+    <div className="w-full h-full overflow-y-auto p-2 sm:p-4 bg-[#020904] text-[#E8FFE8] font-mono select-none flex flex-col items-center justify-start space-y-3">
       {/* Game Bar */}
-      <div className="os-panel p-4 border-[#39FF14]/40 glow-green-sm w-full max-w-2xl flex items-center justify-between">
+      <div className="os-panel p-3 border-[#39FF14]/40 glow-green-sm w-full flex items-center justify-between shrink-0">
         <div className="flex items-center space-x-2 text-[#39FF14]">
           <Gamepad2 className="w-5 h-5 animate-pulse" />
-          <h1 className="text-base font-extrabold text-[#E8FFE8]">MATRIX SNAKE ARCADE</h1>
+          <h1 className="text-sm sm:text-base font-extrabold text-[#E8FFE8]">MATRIX SNAKE ARCADE</h1>
         </div>
         <div className="flex items-center space-x-4 text-xs">
           <div className="text-[#00FF66] font-bold">SCORE: <span className="text-[#39FF14]">{score}</span></div>
           <div className="text-[#70A080]">HIGH: <span className="text-[#39FF14]">{highScore}</span></div>
           <button
             onClick={() => setActiveWorkspace('desktop')}
-            className="px-2 py-1 bg-[#FF2A55]/15 border border-[#FF2A55] text-[#FF2A55] font-bold rounded flex items-center space-x-1 hover:bg-[#FF2A55] hover:text-[#000] transition-colors cursor-pointer text-[10px]"
+            className="px-2.5 py-1 bg-[#FF2A55]/15 border border-[#FF2A55] text-[#FF2A55] font-bold rounded flex items-center space-x-1 hover:bg-[#FF2A55] hover:text-[#000] transition-colors cursor-pointer text-[10px]"
             title="Press Esc or Q to Exit"
           >
             <LogOut className="w-3 h-3" />
@@ -150,10 +150,10 @@ export const SnakeGame: React.FC = () => {
         </div>
       </div>
 
-      {/* Grid Canvas Area */}
-      <div className="relative border-2 border-[#39FF14] bg-[#030D06] p-2 sm:p-3 rounded shadow-2xl glow-green w-full max-w-2xl flex justify-center">
+      {/* Grid Canvas Area Maximized */}
+      <div className="relative border-2 border-[#39FF14] bg-[#030D06] p-2 rounded shadow-2xl glow-green w-full flex-1 flex justify-center items-center min-h-[360px] overflow-hidden">
         <div
-          className="grid gap-0.5 w-full aspect-square max-w-[540px] max-h-[540px]"
+          className="grid gap-0.5 w-full max-w-[620px] aspect-square"
           style={{
             gridTemplateColumns: `repeat(${GRID_SIZE}, minmax(0, 1fr))`
           }}
