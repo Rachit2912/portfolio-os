@@ -36,10 +36,10 @@ export default function PortfolioOS() {
       <div className="flex flex-1 overflow-hidden relative z-10">
         <LauncherRail />
 
-        <main className="flex-1 overflow-hidden p-2 sm:p-4 bg-[#020904]/80 backdrop-blur-xs">
+        <main className="flex-1 overflow-hidden p-2 sm:p-4 bg-[#020904]/30 backdrop-blur-xs">
           {activeWorkspace === 'desktop' && (
             <div
-              className="w-full h-full flex flex-col items-center justify-center space-y-6 text-center p-6 os-panel border"
+              className="w-full h-full flex flex-col items-center justify-center space-y-6 text-center p-6 os-panel border bg-[#0A1C10]/40 backdrop-blur-sm"
               style={{ borderColor: 'var(--border-dim)' }}
             >
               <div className="space-y-2 max-w-2xl">
@@ -60,7 +60,7 @@ export default function PortfolioOS() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl pt-4">
                 <div
                   onClick={() => useOSStore.setState({ activeWorkspace: 'projects', currentPath: '~/projects' })}
-                  className="os-panel p-4 border hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
+                  className="os-panel p-4 border bg-[#0A1C10]/60 backdrop-blur-xs hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
                   style={{ borderColor: 'var(--border-dim)' }}
                 >
                   <div className="text-theme font-bold text-sm">
@@ -73,7 +73,7 @@ export default function PortfolioOS() {
 
                 <div
                   onClick={() => useOSStore.setState({ activeWorkspace: 'terminal' })}
-                  className="os-panel p-4 border hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
+                  className="os-panel p-4 border bg-[#0A1C10]/60 backdrop-blur-xs hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
                   style={{ borderColor: 'var(--border-dim)' }}
                 >
                   <div className="text-theme font-bold text-sm">
@@ -86,7 +86,7 @@ export default function PortfolioOS() {
 
                 <div
                   onClick={() => useOSStore.setState({ activeWorkspace: 'experience', currentPath: '~/experience' })}
-                  className="os-panel p-4 border hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
+                  className="os-panel p-4 border bg-[#0A1C10]/60 backdrop-blur-xs hover:scale-102 transition-all cursor-pointer group text-left space-y-1"
                   style={{ borderColor: 'var(--border-dim)' }}
                 >
                   <div className="text-theme font-bold text-sm">
