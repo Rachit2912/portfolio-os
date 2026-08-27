@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: var(--sys-green);
+  --color-primary-green: var(--primary-green);
+  --color-border-dim: var(--border-dim);
+  --color-border-bright: var(--border-bright);
+}
+
+@layer base {
+  html {
+    font-size: 21px; /* +20% visual font scale as requested for large readable text layout */
+  }
+
+  :root {
+    --bg-0: #020904;
+    --bg-1: #05140A;
+    --panel: #0A1C10;
+    --terminal: #030D06;
+    --sys-green: #39FF14;
+    --primary-green: #00FF66;
+    --theme-accent: #39FF14;
+    --border-dim: rgba(57, 255, 20, 0.25);
+    --border-bright: rgba(57, 255, 20, 0.7);
+    --text-primary: #E8FFE8;
+    --text-secondary: #70A080;
+  }
+
+  body {
+    background-color: var(--bg-0);
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Fira Code', ui-monospace, monospace;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Background Micro-grid pattern with dynamic accent */
+.bg-micro-grid {
+  background-image:
+    linear-gradient(to right, var(--border-dim) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-dim) 1px, transparent 1px);
+  background-size: 28px 24px;
+}
+
+/* CRT Scanline Overlay */
+.crt-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(2, 18, 6, 0.35) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0.6;
+}
+
+/* Dynamic Glow utilities */
+.glow-green {
+  box-shadow: 0 0 20px var(--border-bright), inset 0 0 12px var(--border-dim);
+}
+
+.glow-green-sm {
+  box-shadow: 0 0 10px var(--border-bright);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px var(--sys-green);
+}
+
+/* Dynamic Theme Accent helper classes */
+.text-theme {
+  color: var(--sys-green) !important;
+}
+
+.bg-theme {
+  background-color: var(--sys-green) !important;
+}
+
+.border-theme {
+  border-color: var(--sys-green) !important;
+}
+
+/* Dark panel container styling */
+.os-panel {
+  background-color: var(--panel);
+  border: 1px solid var(--border-dim);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.os-panel-active {
+  border-color: var(--border-bright);
+  box-shadow: 0 0 16px var(--border-bright);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-1);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-dim);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-bright);
+}
