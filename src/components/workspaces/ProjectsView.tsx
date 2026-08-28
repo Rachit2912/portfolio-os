@@ -67,7 +67,7 @@ export const ProjectsView: React.FC = () => {
     <div className="w-full h-full flex flex-col md:flex-row overflow-hidden font-mono text-xs bg-[#020904]">
       {/* Sidebar List */}
       <aside
-        className="w-full md:w-80 bg-[#05140A] border-b md:border-b-0 md:border-r p-4 space-y-4 overflow-y-auto shrink-0 select-none"
+        className="w-full md:w-64 lg:w-80 bg-[#05140A] border-b md:border-b-0 md:border-r p-3 sm:p-4 space-y-3 sm:space-y-4 overflow-y-auto shrink-0 select-none max-h-56 md:max-h-none"
         style={{ borderColor: 'var(--border-dim)' }}
       >
         <div className="flex items-center space-x-2 text-theme font-bold border-b pb-2" style={{ borderColor: 'var(--border-dim)' }}>
@@ -78,7 +78,7 @@ export const ProjectsView: React.FC = () => {
         {/* Domain Filter Tabs */}
         <div className="space-y-1.5">
           <div className="text-[10px] text-[#70A080] font-semibold uppercase tracking-wider">Domain Categories</div>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-nowrap md:flex-wrap overflow-x-auto gap-1 pb-1 -mx-1 px-1 scrollbar-none">
             {DOMAIN_TABS.map((tab) => {
               const isActive = activeCategory === tab.id;
               return (
@@ -86,7 +86,7 @@ export const ProjectsView: React.FC = () => {
                   key={tab.id}
                   onClick={() => setActiveCategory(tab.id)}
                   style={isActive ? { backgroundColor: themeColor, color: '#020904' } : { borderColor: 'var(--border-dim)' }}
-                  className={`px-2 py-1 rounded text-[10px] transition-all cursor-pointer font-semibold ${
+                  className={`px-2 py-1 rounded text-[10px] transition-all cursor-pointer font-semibold shrink-0 ${
                     isActive
                       ? 'font-bold'
                       : 'bg-[#0A1C10] border text-[#70A080] hover:text-[#E8FFE8]'

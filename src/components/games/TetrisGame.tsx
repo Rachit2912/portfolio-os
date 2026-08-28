@@ -297,18 +297,38 @@ export const TetrisGame: React.FC = () => {
       </div>
 
       {/* On-screen Controls */}
-      <div className="flex items-center space-x-2">
-        <button onClick={moveLeft} style={{ borderColor: 'var(--border-dim)', color: themeColor }} className="p-2.5 bg-[#0A1C10] border rounded">
-          <ArrowLeft className="w-4 h-4" />
+      <div className="flex items-center space-x-3 shrink-0 pt-1">
+        <button
+          onClick={moveLeft}
+          style={{ borderColor: 'var(--border-bright)', color: themeColor }}
+          className="p-3.5 bg-[#0A1C10] border rounded-lg active:scale-95 transition-transform shadow-lg"
+          aria-label="Move Left"
+        >
+          <ArrowLeft className="w-6 h-6" />
         </button>
-        <button onClick={rotatePiece} style={{ borderColor: 'var(--border-dim)', color: themeColor }} className="p-2.5 bg-[#0A1C10] border rounded">
-          <RotateCw className="w-4 h-4" />
+        <button
+          onClick={rotatePiece}
+          style={{ borderColor: 'var(--border-bright)', color: themeColor }}
+          className="p-3.5 bg-[#0A1C10] border rounded-lg active:scale-95 transition-transform shadow-lg"
+          aria-label="Rotate Piece"
+        >
+          <RotateCw className="w-6 h-6" />
         </button>
-        <button onClick={dropPiece} style={{ borderColor: 'var(--border-dim)', color: themeColor }} className="p-2.5 bg-[#0A1C10] border rounded">
-          <ArrowDown className="w-4 h-4" />
+        <button
+          onClick={dropPiece}
+          style={{ borderColor: 'var(--border-bright)', color: themeColor }}
+          className="p-3.5 bg-[#0A1C10] border rounded-lg active:scale-95 transition-transform shadow-lg"
+          aria-label="Drop Piece"
+        >
+          <ArrowDown className="w-6 h-6" />
         </button>
-        <button onClick={moveRight} style={{ borderColor: 'var(--border-dim)', color: themeColor }} className="p-2.5 bg-[#0A1C10] border rounded">
-          <ArrowRight className="w-4 h-4" />
+        <button
+          onClick={moveRight}
+          style={{ borderColor: 'var(--border-bright)', color: themeColor }}
+          className="p-3.5 bg-[#0A1C10] border rounded-lg active:scale-95 transition-transform shadow-lg"
+          aria-label="Move Right"
+        >
+          <ArrowRight className="w-6 h-6" />
         </button>
       </div>
     </div>

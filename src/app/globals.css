@@ -9,7 +9,19 @@
 
 @layer base {
   html {
-    font-size: 21px; /* +20% visual font scale as requested for large readable text layout */
+    font-size: 16px; /* Base size for mobile screens */
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    html {
+      font-size: 18px; /* Balanced font size for tablet screens */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 21px; /* Scaled font size for desktop screens */
+    }
   }
 
   :root {

@@ -33,30 +33,30 @@ export const TopBar: React.FC = () => {
   }, []);
 
   return (
-    <header className="h-10 bg-[#05140A]/90 border-b border-[#39FF14]/30 px-4 flex items-center justify-between text-xs font-mono select-none z-30 backdrop-blur-md">
-      <div className="flex items-center space-x-3">
+    <header className="h-10 bg-[#05140A]/90 border-b border-[#39FF14]/30 px-2 sm:px-4 flex items-center justify-between text-[11px] sm:text-xs font-mono select-none z-30 backdrop-blur-md shrink-0">
+      <div className="flex items-center space-x-1.5 sm:space-x-3 truncate">
         <button
           onClick={() => setStartOpen(true)}
           style={{ backgroundColor: themeColor, color: '#020904' }}
-          className="px-2.5 py-1 font-extrabold rounded flex items-center space-x-1.5 transition-all cursor-pointer glow-green-sm text-xs shrink-0"
+          className="px-2 sm:px-2.5 py-1 font-extrabold rounded flex items-center space-x-1 transition-all cursor-pointer glow-green-sm text-[11px] sm:text-xs shrink-0"
         >
           <LayoutGrid className="w-3.5 h-3.5" />
           <span>START</span>
         </button>
 
-        <div className="flex items-center space-x-2 text-theme font-extrabold text-glow-green" title="Arch Linux / RachitOS Kernel">
-          <ArchLinuxIcon className="w-4.5 h-4.5 text-theme" />
+        <div className="flex items-center space-x-1.5 text-theme font-extrabold text-glow-green shrink-0" title="Arch Linux / RachitOS Kernel">
+          <ArchLinuxIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-theme" />
           <span className="hidden sm:inline tracking-wider">RACHIT_PORTFOLIO_OS</span>
         </div>
         <span className="text-[#70A080] hidden sm:inline">|</span>
-        <div className="text-theme font-semibold flex items-center space-x-1">
-          <span className="text-[#70A080]">path:</span>
-          <span>{currentPath}</span>
+        <div className="text-theme font-semibold flex items-center space-x-1 truncate text-[10px] sm:text-xs">
+          <span className="text-[#70A080] hidden xs:inline">path:</span>
+          <span className="truncate max-w-[90px] xs:max-w-none">{currentPath}</span>
         </div>
         <span className="text-[#70A080] hidden md:inline">({activeWorkspace})</span>
       </div>
 
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-2 sm:space-x-4 shrink-0">
         <div className="hidden lg:flex items-center space-x-3 border-r border-[#39FF14]/20 pr-4">
           {socialLinks.slice(0, 4).map((link) => (
             <a
@@ -73,20 +73,20 @@ export const TopBar: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex items-center space-x-3 text-[#70A080]">
+        <div className="flex items-center space-x-2 sm:space-x-3 text-[#70A080]">
           <div className="hidden md:flex items-center space-x-1 text-theme text-[11px] font-bold">
             <Wifi className="w-3.5 h-3.5" />
             <span>ONLINE</span>
           </div>
 
-          <div className="text-theme font-bold tracking-wider text-glow-green flex items-center space-x-2">
+          <div className="text-theme font-bold tracking-wider text-glow-green flex items-center space-x-2 text-[10px] sm:text-xs">
             <span className="text-[#70A080] text-[10px] hidden xl:inline">{dateStr}</span>
             <span>{timeStr || '00:00:00'}</span>
           </div>
 
           <button
             onClick={() => logout("USER LOGGED OUT. SESSION TERMINATED.")}
-            className="p-1.5 rounded bg-[#FF2A55]/15 border border-[#FF2A55]/60 text-[#FF2A55] hover:bg-[#FF2A55] hover:text-[#000] transition-all cursor-pointer flex items-center space-x-1 text-[11px] font-bold"
+            className="p-1 sm:p-1.5 rounded bg-[#FF2A55]/15 border border-[#FF2A55]/60 text-[#FF2A55] hover:bg-[#FF2A55] hover:text-[#000] transition-all cursor-pointer flex items-center space-x-1 text-[10px] sm:text-[11px] font-bold"
             title="Logout / System Shutdown"
           >
             <LogOut className="w-3.5 h-3.5" />
