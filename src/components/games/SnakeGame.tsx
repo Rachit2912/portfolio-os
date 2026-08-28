@@ -245,31 +245,39 @@ export const SnakeGame: React.FC = () => {
       </div>
 
       {/* On-screen Touch / Arrow Controls */}
-      <div className="flex flex-col items-center space-y-1 sm:hidden pt-2">
+      <div className="flex flex-col items-center space-y-1 sm:hidden pt-2 shrink-0">
         <button
           onClick={() => directionRef.current !== 'DOWN' && setDirection('UP')}
-          className="p-3 bg-[#0A1C10] border border-[#39FF14]/40 rounded text-[#39FF14]"
+          style={{ borderColor: 'var(--border-bright)', color: themeColor }}
+          className="p-3.5 bg-[#0A1C10] border rounded-lg active:scale-95 transition-transform shadow-lg"
+          aria-label="Move Up"
         >
-          <ArrowUp className="w-5 h-5" />
+          <ArrowUp className="w-6 h-6" />
         </button>
-        <div className="flex space-x-2">
+        <div className="flex space-x-3">
           <button
             onClick={() => directionRef.current !== 'RIGHT' && setDirection('LEFT')}
-            className="p-3 bg-[#0A1C10] border border-[#39FF14]/40 rounded text-[#39FF14]"
+            style={{ borderColor: 'var(--border-bright)', color: themeColor }}
+            className="p-3.5 bg-[#0A1C10] border rounded-lg active:scale-95 transition-transform shadow-lg"
+            aria-label="Move Left"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="w-6 h-6" />
           </button>
           <button
             onClick={() => directionRef.current !== 'UP' && setDirection('DOWN')}
-            className="p-3 bg-[#0A1C10] border border-[#39FF14]/40 rounded text-[#39FF14]"
+            style={{ borderColor: 'var(--border-bright)', color: themeColor }}
+            className="p-3.5 bg-[#0A1C10] border rounded-lg active:scale-95 transition-transform shadow-lg"
+            aria-label="Move Down"
           >
-            <ArrowDown className="w-5 h-5" />
+            <ArrowDown className="w-6 h-6" />
           </button>
           <button
             onClick={() => directionRef.current !== 'LEFT' && setDirection('RIGHT')}
-            className="p-3 bg-[#0A1C10] border border-[#39FF14]/40 rounded text-[#39FF14]"
+            style={{ borderColor: 'var(--border-bright)', color: themeColor }}
+            className="p-3.5 bg-[#0A1C10] border rounded-lg active:scale-95 transition-transform shadow-lg"
+            aria-label="Move Right"
           >
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-6 h-6" />
           </button>
         </div>
       </div>

@@ -87,13 +87,14 @@ export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose 
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#020904]/85 backdrop-blur-md select-none my-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-[#020904]/85 backdrop-blur-md select-none my-auto overflow-y-auto"
     >
       <div
-        className="w-full max-w-2xl bg-[#030D06] border-2 rounded-lg shadow-2xl glow-green p-4 sm:p-6 space-y-4 font-mono text-xs overflow-hidden relative my-auto"
+        className="w-full max-w-2xl bg-[#030D06] border-2 rounded-lg shadow-2xl glow-green p-3 sm:p-6 space-y-3 sm:space-y-4 font-mono text-xs overflow-hidden relative my-auto max-h-[90vh] flex flex-col justify-between"
         style={{ borderColor: themeColor }}
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Header */}
         {/* Header */}
         <div className="flex justify-between items-center border-b pb-3" style={{ borderColor: 'var(--border-dim)' }}>
           <div className="flex items-center space-x-2 text-theme font-bold">

@@ -27,10 +27,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#020904]/85 backdrop-blur-md select-none my-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-[#020904]/85 backdrop-blur-md select-none my-auto overflow-y-auto"
     >
       <div
-        className="w-full max-w-md bg-[#030D06] border-2 rounded-lg shadow-2xl glow-green p-5 space-y-5 font-mono text-xs overflow-hidden relative my-auto"
+        className="w-full max-w-md bg-[#030D06] border-2 rounded-lg shadow-2xl glow-green p-4 sm:p-5 space-y-4 font-mono text-xs overflow-hidden relative my-auto max-h-[90vh] flex flex-col justify-between"
         style={{ borderColor: themeColor }}
         onClick={(e) => e.stopPropagation()}
       >

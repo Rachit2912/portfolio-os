@@ -33,7 +33,7 @@ export default function PortfolioOS() {
 
       <TopBar />
 
-      <div className="flex flex-1 overflow-hidden relative z-10">
+      <div className="flex flex-1 overflow-hidden relative z-10 pb-14 md:pb-0">
         <LauncherRail />
 
         <main className="flex-1 overflow-hidden p-2 sm:p-4 bg-[#020904]/30 backdrop-blur-xs">
