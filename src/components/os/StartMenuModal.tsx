@@ -87,46 +87,45 @@ export const StartMenuModal: React.FC<StartMenuModalProps> = ({ isOpen, onClose 
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-[#020904]/85 backdrop-blur-md select-none my-auto overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 pt-12 sm:p-6 bg-[#020904]/85 backdrop-blur-md select-none"
     >
       <div
-        className="w-full max-w-2xl bg-[#030D06] border-2 rounded-lg shadow-2xl glow-green p-3 sm:p-6 space-y-3 sm:space-y-4 font-mono text-xs overflow-hidden relative my-auto max-h-[90vh] flex flex-col justify-between"
+        className="w-full max-w-2xl max-h-[calc(100vh-110px)] sm:max-h-[85vh] bg-[#030D06] border-2 rounded-lg shadow-2xl glow-green p-3.5 sm:p-6 font-mono text-xs overflow-hidden relative flex flex-col"
         style={{ borderColor: themeColor }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        {/* Header */}
-        <div className="flex justify-between items-center border-b pb-3" style={{ borderColor: 'var(--border-dim)' }}>
+        <div className="flex justify-between items-center border-b pb-3 shrink-0" style={{ borderColor: 'var(--border-dim)' }}>
           <div className="flex items-center space-x-2 text-theme font-bold">
             <UserCheck className="w-5 h-5 text-theme" />
-            <h2 className="text-base font-extrabold tracking-wide text-[#E8FFE8]">
+            <h2 className="text-sm sm:text-base font-extrabold tracking-wide text-[#E8FFE8] truncate">
               RACHIT_PORTFOLIO_OS // START MENU
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-1 text-[#70A080] hover:text-[#FF2A55] transition-colors rounded cursor-pointer"
+            className="p-1 text-[#70A080] hover:text-[#FF2A55] transition-colors rounded cursor-pointer shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Search input */}
-        <div className="relative">
+        <div className="relative mt-3 shrink-0">
           <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-theme" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search apps, games, CLI commands (e.g., snake, projects, resume)..."
-            className="w-full pl-9 pr-4 py-2.5 bg-[#0A1C10] border rounded text-theme placeholder-[#70A080] focus:outline-none text-xs"
+            placeholder="Search apps, games, CLI commands (e.g., snake, projects)..."
+            className="w-full pl-9 pr-4 py-2 bg-[#0A1C10] border rounded text-theme placeholder-[#70A080] focus:outline-none text-xs"
             style={{ borderColor: 'var(--border-dim)' }}
             autoFocus
           />
         </div>
 
         {/* Menu Grid */}
-        <div className="max-h-80 overflow-y-auto space-y-3 pr-1">
+        <div className="flex-1 min-h-0 overflow-y-auto my-3 pr-1 space-y-2.5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {filteredItems.map((item) => {
               const Icon = item.icon;
