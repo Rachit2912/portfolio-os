@@ -57,7 +57,7 @@ export default function PortfolioOS() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl pt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-3xl pt-4">
                 <div
                   onClick={() => useOSStore.setState({ activeWorkspace: 'projects', currentPath: '~/projects' })}
                   className="os-panel p-4 border bg-[#0A1C10]/60 backdrop-blur-xs hover:scale-102 transition-all cursor-pointer group text-left space-y-1"

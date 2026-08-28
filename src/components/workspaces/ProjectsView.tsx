@@ -67,7 +67,7 @@ export const ProjectsView: React.FC = () => {
     <div className="w-full h-full flex flex-col md:flex-row overflow-hidden font-mono text-xs bg-[#020904]">
       {/* Sidebar List */}
       <aside
-        className="w-full md:w-80 bg-[#05140A] border-b md:border-b-0 md:border-r p-3 sm:p-4 space-y-3 sm:space-y-4 overflow-y-auto shrink-0 select-none max-h-56 md:max-h-none"
+        className="w-full md:w-64 lg:w-80 bg-[#05140A] border-b md:border-b-0 md:border-r p-3 sm:p-4 space-y-3 sm:space-y-4 overflow-y-auto shrink-0 select-none max-h-56 md:max-h-none"
         style={{ borderColor: 'var(--border-dim)' }}
       >
         <div className="flex items-center space-x-2 text-theme font-bold border-b pb-2" style={{ borderColor: 'var(--border-dim)' }}>
